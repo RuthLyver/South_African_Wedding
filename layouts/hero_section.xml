@@ -1,0 +1,29 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image1"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/hero_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A Magical South African Wedding Journey"
+        android:textSize="28sp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"/>
+
+    <Button
+        android:id="@+id/cta_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Commencer votre aventure sud-africaine"
+        android:backgroundTint="#DAB89C"
+        android:textColor="#FFFFFF"
+        android:layout_below="@id/hero_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+</RelativeLayout>

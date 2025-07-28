@@ -1,0 +1,19 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/silk_greige_texture"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RUTH & CEDRIC"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#CDAF9D"/>
+
+    <!-- Navigation items here with animation -->
+</LinearLayout>
