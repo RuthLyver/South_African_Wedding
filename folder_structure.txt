@@ -1,0 +1,14 @@
+project_root/
+├── images/
+│   └── image1.jpg
+├── icons/
+│   ├── icon_phone.png
+│   ├── icon_email.png
+│   ├── icon_instagram.png
+│   ├── icon_facebook.png
+│   └── icon_share.png
+├── layouts/
+│   ├── header.xml
+│   ├── hero_section.xml
+│   ├── footer.xml
+│   └── homepage.xml
