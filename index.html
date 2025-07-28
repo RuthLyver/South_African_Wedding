@@ -1,41 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruth & Cedric Wedding</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ruth & Cedric Wedding</title>
+  <style>
+    :root {
+      --pure-white: #ffffff;
+      --creamy-white: #f7f5ef;
+      --soft-greige: #d7d1c9;
+      --warm-sand: #dab89c;
+      --blush-taupe: #d6b3a2;
+      --desert-clay: #cdaf9d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--pure-white);
+      color: #333;
+    }
+
+    header {
+      background: var(--soft-greige);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: var(--desert-clay);
+    }
+
+    nav {
+      flex-basis: 100%;
+      margin-top: 0.5rem;
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    nav li a {
+      text-decoration: none;
+      color: var(--warm-sand);
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+    }
+
+    nav li a:hover {
+      background-color: var(--blush-taupe);
+      color: white;
+    }
+
+    .hero {
+      background: url('images/image1.jpg') no-repeat center center/cover;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta {
+      background: var(--warm-sand);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .cta:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: var(--soft-greige);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-icons a img {
+      width: 30px;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-icons a img:hover {
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">RUTH & CEDRIC</div>
-    <nav>
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Itinéraire</a></li>
-            <li><a href="#">Hébergement</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+  <div class="logo">Ruth & Cedric</div>
+  <nav>
+    <ul>
+      <li><a href="#">Home / Accueil</a></li>
+      <li><a href="#">Our Story / Notre Histoire</a></li>
+      <li><a href="#">Itinerary / Itinéraire</a></li>
+      <li><a href="#">Accommodation / Hébergement</a></li>
+      <li><a href="#">Travel & Transport / Voyage</a></li>
+      <li><a href="#">Wedding Day / Jour du Mariage</a></li>
+      <li><a href="#">Culture / Culture</a></li>
+      <li><a href="#">What to Pack / Bagages</a></li>
+      <li><a href="#">Gallery / Galerie</a></li>
+      <li><a href="#">Contact / Contact</a></li>
+    </ul>
+  </nav>
 </header>
 
 <section class="hero">
-    <div class="hero-content">
-        <h1>A Magical South African Wedding Journey</h1>
-        <p class="subtitle">Where French elegance meets African soul</p>
-        <button class="cta">Commencer votre aventure sud-africaine</button>
-    </div>
+  <div class="hero-content">
+    <h1>A Magical South African Wedding Journey</h1>
+    <p>Where French elegance meets African soul</p>
+    <button class="cta">Commencer votre aventure sud-africaine</button>
+  </div>
 </section>
 
 <footer>
-    <div class="footer-icons">
-        <img src="icons/icon_phone.png" alt="Phone">
-        <img src="icons/icon_email.png" alt="Email">
-        <img src="icons/icon_instagram.png" alt="Instagram">
-        <img src="icons/icon_facebook.png" alt="Facebook">
-        <img src="icons/icon_share.png" alt="Share">
-    </div>
+  <div class="footer-icons">
+    <a href="tel:+27829627848"><img src="icons/icon_phone.svg" alt="Phone"></a>
+    <a href="mailto:phaahlaruth@gmail.com"><img src="icons/icon_email.svg" alt="Email"></a>
+    <a href="https://www.instagram.com" target="_blank"><img src="icons/icon_instagram.svg" alt="Instagram"></a>
+    <a href="https://www.facebook.com" target="_blank"><img src="icons/icon_facebook.svg" alt="Facebook"></a>
+    <a href="https://wa.me/27829627848" target="_blank"><img src="icons/icon_share.svg" alt="WhatsApp Share"></a>
+  </div>
+  <p>&copy; 2025 Ruth & Cedric</p>
 </footer>
 
 </body>
