@@ -24,30 +24,42 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       background: var(--pure-white);
-      color: #333;
+      color: var(--pure-white);
     }
 
     header {
       background: var(--soft-greige);
       padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
 
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .logo {
       font-weight: bold;
+      font-size: 1.8rem;
+      color: var(--pure-white);
+      text-align: center;
+      flex: 1;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
       font-size: 1.5rem;
-      color: var(--desert-clay);
+      color: var(--pure-white);
+      cursor: pointer;
     }
 
     nav {
-      flex-basis: 100%;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
     }
 
     nav ul {
@@ -60,7 +72,7 @@
 
     nav li a {
       text-decoration: none;
-      color: var(--warm-sand);
+      color: var(--pure-white);
       font-weight: bold;
       padding: 0.5rem 1rem;
       border-radius: 6px;
@@ -78,7 +90,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: white;
+      color: var(--pure-white);
       padding: 2rem;
       position: relative;
     }
@@ -95,6 +107,11 @@
     .hero-content {
       position: relative;
       z-index: 1;
+    }
+
+    .hero-content h1,
+    .hero-content p {
+      color: var(--pure-white);
     }
 
     .hero-content h1 {
@@ -120,6 +137,7 @@
       background: var(--soft-greige);
       text-align: center;
       padding: 1rem;
+      color: var(--pure-white);
     }
 
     .footer-icons {
@@ -139,9 +157,29 @@
     }
 
     @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
       nav ul {
         flex-direction: column;
         gap: 0.5rem;
+        padding: 0.5rem;
+      }
+
+      nav li {
+        text-align: center;
       }
     }
   </style>
@@ -149,8 +187,11 @@
 <body>
 
 <header>
-  <div class="logo">Ruth & Cedric</div>
-  <nav>
+  <div class="header-container">
+    <div class="logo">Ruth & Cedric</div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </div>
+  <nav id="main-nav">
     <ul>
       <li><a href="#">Home / Accueil</a></li>
       <li><a href="#">Our Story / Notre Histoire</a></li>
@@ -184,6 +225,13 @@
   </div>
   <p>&copy; 2025 Ruth & Cedric</p>
 </footer>
+
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById("main-nav");
+    nav.classList.toggle("active");
+  }
+</script>
 
 </body>
 </html>
