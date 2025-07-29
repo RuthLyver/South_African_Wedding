@@ -26,6 +26,7 @@
       background: var(--bg-beige);
       color: var(--text-dark);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     header {
@@ -47,12 +48,13 @@
     }
 
     .hamburger {
-      font-size: 1.5rem;
+      font-size: 2rem;
       background: none;
       border: none;
       cursor: pointer;
       color: var(--lux-gold);
       transition: transform 0.3s ease;
+      z-index: 1100;
     }
 
     .hamburger.open {
@@ -60,20 +62,21 @@
     }
 
     nav.nav-menu {
-      max-height: 0;
-      overflow: hidden;
-      flex-direction: column;
       position: absolute;
       top: 60px;
       left: 0;
       width: 100%;
       background: white;
       border-top: 1px solid #ddd;
+      max-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       transition: max-height 0.4s ease-in-out;
     }
 
     nav.nav-menu.open {
-      max-height: 500px;
+      max-height: 600px;
     }
 
     nav.nav-menu a,
@@ -100,7 +103,7 @@
     }
 
     .hero {
-      padding-top: 100px;
+      padding-top: 80px;
       height: 100vh;
       background: url('images/image1.jpg') center/cover no-repeat;
       color: white;
@@ -114,7 +117,8 @@
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 2.3rem;
+      margin: 1rem;
       animation: typewriter 3s steps(30) 1s 1 normal both,
                  blinkTextCursor 500ms steps(44) infinite normal;
       display: inline-block;
@@ -124,14 +128,15 @@
     }
 
     .countdown {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
-      padding: 1.2rem 2rem;
+      padding: 1.2rem 1.5rem;
       background: rgba(255, 255, 255, 0.85);
       color: var(--text-dark);
       margin-top: 1rem;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 90%;
     }
 
     @keyframes typewriter {
@@ -144,9 +149,25 @@
       to { border-right-color: transparent; }
     }
 
-    .hover-glow:hover {
-      box-shadow: 0 0 20px var(--glow-gold);
-      transform: translateY(-2px);
+    @media (min-width: 768px) {
+      nav.nav-menu {
+        position: static;
+        max-height: none;
+        flex-direction: row;
+        background: none;
+        border-top: none;
+        display: flex !important;
+      }
+
+      nav.nav-menu a,
+      .lang-button {
+        border-bottom: none;
+        padding: 0 1rem;
+      }
+
+      .hamburger {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -229,12 +250,7 @@
     navMenu.classList.toggle("open");
     menuToggle.classList.toggle("open");
 
-    // Change icon ☰ ↔ ✖
-    if (menuToggle.textContent === "☰") {
-      menuToggle.textContent = "✖";
-    } else {
-      menuToggle.textContent = "☰";
-    }
+    menuToggle.textContent = menuToggle.textContent === "☰" ? "✖" : "☰";
   });
 
   updateMenu(currentLang);
