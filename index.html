@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html><html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,13 +13,14 @@
       --text-dark: hsl(30, 8%, 8%);
       --transition: all 0.3s ease;
     }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg-beige);
@@ -28,7 +28,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     header {
       display: flex;
       justify-content: space-between;
@@ -40,13 +39,11 @@
       width: 100%;
       z-index: 1000;
     }
-
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       color: var(--lux-gold);
     }
-
     .hamburger {
       font-size: 2rem;
       background: none;
@@ -56,11 +53,9 @@
       transition: transform 0.3s ease;
       z-index: 1100;
     }
-
     .hamburger.open {
       transform: rotate(90deg);
     }
-
     nav.nav-menu {
       position: absolute;
       top: 60px;
@@ -74,11 +69,9 @@
       flex-direction: column;
       transition: max-height 0.4s ease-in-out;
     }
-
     nav.nav-menu.open {
       max-height: 600px;
     }
-
     nav.nav-menu a,
     .lang-button {
       padding: 1rem;
@@ -88,20 +81,17 @@
       border-bottom: 1px solid #eee;
       transition: var(--transition);
     }
-
     nav.nav-menu a:hover,
     .lang-button:hover {
       background: var(--lux-gold);
       color: white;
     }
-
     .lang-button {
       background: none;
       border: none;
       text-align: left;
       cursor: pointer;
     }
-
     .hero {
       padding-top: 80px;
       height: 100vh;
@@ -114,7 +104,6 @@
       align-items: center;
       position: relative;
     }
-
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2.3rem;
@@ -126,37 +115,52 @@
       overflow: hidden;
       border-right: 2px solid white;
     }
-
+    .scroll-arrow {
+      font-size: 2rem;
+      color: var(--glow-gold);
+      cursor: pointer;
+      margin-top: 2rem;
+      animation: bounce 1.5s infinite;
+    }
     @keyframes typewriter {
       from { width: 0; }
       to { width: 100%; }
     }
-
     @keyframes blinkTextCursor {
       from { border-right-color: rgba(255,255,255,0.75); }
       to { border-right-color: transparent; }
     }
-
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+    section {
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--lux-gold);
+      margin-bottom: 1rem;
+    }
     footer {
       background: var(--bg-beige);
       padding: 3rem 1rem 4rem;
       text-align: center;
     }
-
     footer h2 {
       font-family: 'Playfair Display', serif;
       color: var(--lux-gold);
       font-size: 1.8rem;
       margin-bottom: 2rem;
     }
-
     #countdownContainer {
       display: flex;
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
-
     .countdown-box {
       background: white;
       padding: 1.5rem;
@@ -166,12 +170,10 @@
       min-width: 80px;
       transition: transform 0.3s ease;
     }
-
     .countdown-box:hover {
       transform: translateY(-5px) scale(1.05);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
     }
-
     .countdown-box span {
       font-size: 2rem;
       font-weight: bold;
@@ -179,12 +181,10 @@
       display: block;
       margin-bottom: 0.3rem;
     }
-
     .countdown-box small {
       font-size: 0.9rem;
       color: var(--text-dark);
     }
-
     @media (min-width: 768px) {
       nav.nav-menu {
         position: static;
@@ -194,13 +194,11 @@
         border-top: none;
         display: flex !important;
       }
-
       nav.nav-menu a,
       .lang-button {
         border-bottom: none;
         padding: 0 1rem;
       }
-
       .hamburger {
         display: none;
       }
@@ -208,7 +206,6 @@
   </style>
 </head>
 <body>
-
 <header>
   <div class="logo">C&R</div>
   <button id="menu-toggle" class="hamburger">☰</button>
@@ -224,11 +221,17 @@
     <button id="langToggle" class="lang-button">🌍 FR</button>
   </nav>
 </header>
-
 <section class="hero" id="home">
   <h1 id="heroTitle">Bienvenue en Afrique du Sud 🇿🇦</h1>
+  <div class="scroll-arrow" onclick="document.getElementById('welcome').scrollIntoView({ behavior: 'smooth' })">↓</div>
 </section>
-
+<section id="welcome"><h2>Bienvenue</h2><p>Un accueil chaleureux à tous nos invités.</p></section>
+<section id="travel"><h2>Voyage & Arrivée</h2><p>Infos sur les vols et les transferts depuis l'aéroport.</p></section>
+<section id="accommodation"><h2>Hébergement</h2><p>Suggestions d'hôtels et d'hébergements pour votre séjour.</p></section>
+<section id="itinerary"><h2>Programme</h2><p>Les activités et moments importants pendant votre séjour.</p></section>
+<section id="wedding"><h2>Lobola & Mariage</h2><p>Détails de la journée de Lobola et du mariage principal.</p></section>
+<section id="discover"><h2>Découvrir l’Afrique du Sud</h2><p>Explorez la culture, les paysages et la magie de l’Afrique du Sud.</p></section>
+<section id="emergency"><h2>Contacts d'Urgence</h2><p>Informations de contact en cas d'urgence.</p></section>
 <footer>
   <h2>Wedding day in</h2>
   <div id="countdownContainer">
@@ -238,95 +241,79 @@
     <div class="countdown-box"><span id="seconds">0</span><small>seconds</small></div>
   </div>
 </footer>
-
 <script>
-  const langToggle = document.getElementById("langToggle");
-  const navMenu = document.getElementById("navMenu");
-  const menuToggle = document.getElementById("menu-toggle");
-  const heroTitle = document.getElementById("heroTitle");
-
-  let currentLang = "fr";
-
-  const translations = {
-    fr: {
-      home: "Accueil",
-      welcome: "Bienvenue",
-      travel: "Voyage & Arrivée",
-      accommodation: "Hébergement",
-      itinerary: "Programme",
-      wedding: "Lobola & Mariage",
-      discover: "Découvrir l’Afrique du Sud",
-      emergency: "Contacts d'Urgence",
-      lang: "🌍 FR",
-      hero: "Bienvenue en Afrique du Sud 🇿🇦"
-    },
-    en: {
-      home: "Home",
-      welcome: "Welcome",
-      travel: "Travel & Arrival",
-      accommodation: "Accommodation",
-      itinerary: "Itinerary",
-      wedding: "Lobola & Wedding",
-      discover: "Discover South Africa",
-      emergency: "Emergency Contacts",
-      lang: "🌍 EN",
-      hero: "Welcome to South Africa 🇿🇦"
-    }
-  };
-
-  function updateMenu(lang) {
-    document.querySelectorAll("#navMenu a").forEach(link => {
-      const key = link.getAttribute("data-key");
-      link.textContent = translations[lang][key];
-    });
-    langToggle.textContent = translations[lang].lang;
-    heroTitle.textContent = translations[lang].hero;
+const langToggle = document.getElementById("langToggle");
+const navMenu = document.getElementById("navMenu");
+const menuToggle = document.getElementById("menu-toggle");
+const heroTitle = document.getElementById("heroTitle");
+let currentLang = "fr";
+const translations = {
+  fr: {
+    home: "Accueil",
+    welcome: "Bienvenue",
+    travel: "Voyage & Arrivée",
+    accommodation: "Hébergement",
+    itinerary: "Programme",
+    wedding: "Lobola & Mariage",
+    discover: "Découvrir l’Afrique du Sud",
+    emergency: "Contacts d'Urgence",
+    lang: "🌍 FR",
+    hero: "Bienvenue en Afrique du Sud 🇿🇦"
+  },
+  en: {
+    home: "Home",
+    welcome: "Welcome",
+    travel: "Travel & Arrival",
+    accommodation: "Accommodation",
+    itinerary: "Itinerary",
+    wedding: "Lobola & Wedding",
+    discover: "Discover South Africa",
+    emergency: "Emergency Contacts",
+    lang: "🌍 EN",
+    hero: "Welcome to South Africa 🇿🇦"
   }
-
-  langToggle.addEventListener("click", () => {
-    currentLang = currentLang === "fr" ? "en" : "fr";
-    updateMenu(currentLang);
+};
+function updateMenu(lang) {
+  document.querySelectorAll("#navMenu a").forEach(link => {
+    const key = link.getAttribute("data-key");
+    link.textContent = translations[lang][key];
   });
-
-  menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("open");
-    menuToggle.classList.toggle("open");
-    menuToggle.textContent = menuToggle.textContent === "☰" ? "✖" : "☰";
-  });
-
+  langToggle.textContent = translations[lang].lang;
+  heroTitle.textContent = translations[lang].hero;
+}
+langToggle.addEventListener("click", () => {
+  currentLang = currentLang === "fr" ? "en" : "fr";
   updateMenu(currentLang);
-
-  // 3D Countdown to Nov 1, 2025
-  const daysEl = document.getElementById("days");
-  const hoursEl = document.getElementById("hours");
-  const minutesEl = document.getElementById("minutes");
-  const secondsEl = document.getElementById("seconds");
-
-  const targetDate = new Date("2025-11-01T10:00:00+02:00");
-
-  function updateCountdown() {
-    const now = new Date();
-    const diff = targetDate - now;
-
-    if (diff <= 0) {
-      daysEl.textContent = hoursEl.textContent = minutesEl.textContent = secondsEl.textContent = "0";
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    daysEl.textContent = days;
-    hoursEl.textContent = hours;
-    minutesEl.textContent = minutes;
-    secondsEl.textContent = seconds;
+});
+menuToggle.addEventListener("click", () => {
+  navMenu.classList.toggle("open");
+  menuToggle.classList.toggle("open");
+  menuToggle.textContent = menuToggle.textContent === "☰" ? "✖" : "☰";
+});
+updateMenu(currentLang);
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minutesEl = document.getElementById("minutes");
+const secondsEl = document.getElementById("seconds");
+const targetDate = new Date("2025-11-01T10:00:00+02:00");
+function updateCountdown() {
+  const now = new Date();
+  const diff = targetDate - now;
+  if (diff <= 0) {
+    daysEl.textContent = hoursEl.textContent = minutesEl.textContent = secondsEl.textContent = "0";
+    return;
   }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+  daysEl.textContent = days;
+  hoursEl.textContent = hours;
+  minutesEl.textContent = minutes;
+  secondsEl.textContent = seconds;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
 </script>
-
 </body>
 </html>
