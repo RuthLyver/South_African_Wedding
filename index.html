@@ -127,18 +127,6 @@
       border-right: 2px solid white;
     }
 
-    .countdown {
-      font-size: 1.1rem;
-      font-weight: bold;
-      padding: 1.2rem 1.5rem;
-      background: rgba(255, 255, 255, 0.85);
-      color: var(--text-dark);
-      margin-top: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      max-width: 90%;
-    }
-
     @keyframes typewriter {
       from { width: 0; }
       to { width: 100%; }
@@ -147,6 +135,54 @@
     @keyframes blinkTextCursor {
       from { border-right-color: rgba(255,255,255,0.75); }
       to { border-right-color: transparent; }
+    }
+
+    footer {
+      background: var(--bg-beige);
+      padding: 3rem 1rem 4rem;
+      text-align: center;
+    }
+
+    footer h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--lux-gold);
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    #countdownContainer {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .countdown-box {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      min-width: 80px;
+      transition: transform 0.3s ease;
+    }
+
+    .countdown-box:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .countdown-box span {
+      font-size: 2rem;
+      font-weight: bold;
+      color: black;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .countdown-box small {
+      font-size: 0.9rem;
+      color: var(--text-dark);
     }
 
     @media (min-width: 768px) {
@@ -191,13 +227,19 @@
 
 <section class="hero" id="home">
   <h1 id="heroTitle">Bienvenue en Afrique du Sud 🇿🇦</h1>
-  <div class="countdown">
-    Wedding day in <span id="countdown">Loading...</span>
-  </div>
 </section>
 
+<footer>
+  <h2>Wedding day in</h2>
+  <div id="countdownContainer">
+    <div class="countdown-box"><span id="days">0</span><small>days</small></div>
+    <div class="countdown-box"><span id="hours">0</span><small>hours</small></div>
+    <div class="countdown-box"><span id="minutes">0</span><small>minutes</small></div>
+    <div class="countdown-box"><span id="seconds">0</span><small>seconds</small></div>
+  </div>
+</footer>
+
 <script>
-  // Multilingual toggle
   const langToggle = document.getElementById("langToggle");
   const navMenu = document.getElementById("navMenu");
   const menuToggle = document.getElementById("menu-toggle");
@@ -249,31 +291,37 @@
   menuToggle.addEventListener("click", () => {
     navMenu.classList.toggle("open");
     menuToggle.classList.toggle("open");
-
     menuToggle.textContent = menuToggle.textContent === "☰" ? "✖" : "☰";
   });
 
   updateMenu(currentLang);
 
-  // Countdown
-  const countdownEl = document.getElementById("countdown");
-  const weddingDate = new Date("2024-11-01T10:00:00+02:00");
+  // 3D Countdown to Nov 1, 2025
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
+
+  const targetDate = new Date("2025-11-01T10:00:00+02:00");
 
   function updateCountdown() {
     const now = new Date();
-    const diff = weddingDate - now;
+    const diff = targetDate - now;
 
     if (diff <= 0) {
-      countdownEl.textContent = "🎉 Today is the day!";
+      daysEl.textContent = hoursEl.textContent = minutesEl.textContent = secondsEl.textContent = "0";
       return;
     }
 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins = Math.floor((diff / (1000 * 60)) % 60);
-    const secs = Math.floor((diff / 1000) % 60);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-    countdownEl.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
+    daysEl.textContent = days;
+    hoursEl.textContent = hours;
+    minutesEl.textContent = minutes;
+    secondsEl.textContent = seconds;
   }
 
   updateCountdown();
