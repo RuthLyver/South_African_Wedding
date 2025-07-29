@@ -1,3 +1,4 @@
+<!-- Updated navigation with Lobola Day and mobile typewriter restored -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -157,9 +158,10 @@
     .hero-content h1 {
       font-size: clamp(1.2rem, 6vw, 2rem);
       margin-bottom: 0.5rem;
-      white-space: normal;
+      white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid var(--pure-white);
+      width: 0;
       animation: typing 5s steps(40, end) infinite alternate;
     }
 
@@ -244,8 +246,11 @@
       }
 
       .hero-content h1 {
-        animation: none;
-        border-right: none;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid var(--pure-white);
+        width: 0;
+        animation: typing 5s steps(40, end) infinite alternate;
       }
     }
   </style>
@@ -269,6 +274,7 @@
       <li><a href="#">Culture / Culture</a></li>
       <li><a href="#">What to Pack / Bagages</a></li>
       <li><a href="#">Gallery / Galerie</a></li>
+      <li><a href="#">Lobola Day / Journée de la Dot</a></li>
       <li><a href="#">Contact / Contact</a></li>
     </ul>
   </nav>
