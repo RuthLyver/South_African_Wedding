@@ -87,9 +87,14 @@
 
     .hero {
       padding-top: 100px;
-      background: url('https://images.unsplash.com/photo-1583912268181-c4bbd1a0ff17?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      height: 100vh;
+      background: url('images/image1.jpg') center/cover no-repeat;
       color: white;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       position: relative;
     }
 
@@ -107,11 +112,10 @@
     .countdown {
       font-size: 1.2rem;
       font-weight: bold;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.8);
+      padding: 1.2rem 2rem;
+      background: rgba(255, 255, 255, 0.85);
       color: var(--text-dark);
-      margin: 1rem auto;
-      display: inline-block;
+      margin-top: 1rem;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
