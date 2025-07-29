@@ -52,10 +52,16 @@
       border: none;
       cursor: pointer;
       color: var(--lux-gold);
+      transition: transform 0.3s ease;
+    }
+
+    .hamburger.open {
+      transform: rotate(90deg);
     }
 
     nav.nav-menu {
-      display: flex;
+      max-height: 0;
+      overflow: hidden;
       flex-direction: column;
       position: absolute;
       top: 60px;
@@ -63,6 +69,11 @@
       width: 100%;
       background: white;
       border-top: 1px solid #ddd;
+      transition: max-height 0.4s ease-in-out;
+    }
+
+    nav.nav-menu.open {
+      max-height: 500px;
     }
 
     nav.nav-menu a,
@@ -81,8 +92,11 @@
       color: white;
     }
 
-    .hidden {
-      display: none;
+    .lang-button {
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
     }
 
     .hero {
@@ -134,13 +148,6 @@
       box-shadow: 0 0 20px var(--glow-gold);
       transform: translateY(-2px);
     }
-
-    .lang-button {
-      background: none;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -148,7 +155,7 @@
 <header>
   <div class="logo">C&R</div>
   <button id="menu-toggle" class="hamburger">☰</button>
-  <nav id="navMenu" class="nav-menu hidden">
+  <nav id="navMenu" class="nav-menu">
     <a href="#home" data-key="home"></a>
     <a href="#welcome" data-key="welcome"></a>
     <a href="#travel" data-key="travel"></a>
@@ -169,7 +176,7 @@
 </section>
 
 <script>
-  // Multilingual support
+  // Multilingual toggle
   const langToggle = document.getElementById("langToggle");
   const navMenu = document.getElementById("navMenu");
   const menuToggle = document.getElementById("menu-toggle");
@@ -219,12 +226,20 @@
   });
 
   menuToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("hidden");
+    navMenu.classList.toggle("open");
+    menuToggle.classList.toggle("open");
+
+    // Change icon ☰ ↔ ✖
+    if (menuToggle.textContent === "☰") {
+      menuToggle.textContent = "✖";
+    } else {
+      menuToggle.textContent = "☰";
+    }
   });
 
   updateMenu(currentLang);
 
-  // Countdown Timer
+  // Countdown
   const countdownEl = document.getElementById("countdown");
   const weddingDate = new Date("2024-11-01T10:00:00+02:00");
 
