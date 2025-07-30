@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload hero for faster LCP (path matches CSS background) -->
-  <link rel="preload" as="image" href="/images/background.jpg" imagesrcset="/images/background.jpg" imagesizes="100vw">
+  <link rel="preload" as="image" href="images/image1.jpg" imagesrcset="images/image1.jpg" imagesizes="100vw">
 
   <style>
     :root{
@@ -73,7 +73,7 @@
     /* Hero */
     .hero{
       padding-top:74px; min-height:100svh;
-      background: url('/images/background.jpg') center/cover no-repeat;
+      background: url('images/image1.jpg') center/cover no-repeat;
       color:white; text-align:center; display:grid; place-items:center; position:relative;
       isolation:isolate;
     }
@@ -137,18 +137,10 @@
 </head>
 <body>
 
-<!-- Optional background music (user‑gesture recommended) -->
-<!-- <audio id="bg-music" loop preload="none">
-  <source src="/media/audio1.mp3" type="audio/mpeg">
-</audio> -->
-
 <header>
   <div class="logo" aria-label="Cédric & Ruth">C&R</div>
-
   <button id="menu-toggle" class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">☰</button>
-
   <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
-    <!-- Provide default text to avoid blank content if JS fails -->
     <a href="#home" data-key="home">Accueil</a>
     <a href="#welcome" data-key="welcome">Bienvenue</a>
     <a href="#travel" data-key="travel">Voyage et arrivée</a>
@@ -187,7 +179,6 @@
 <section id="travel" class="card-section" aria-labelledby="travel-title">
   <div class="card">
     <h2 id="travel-title" data-i18n="travelTitle">Voyage et arrivée</h2>
-    <!-- Split text so translation doesn't wipe links -->
     <p>
       <span data-i18n="travelBody_part1">Vol de Paris vers</span>
       <a href="https://maps.google.com?q=O.R.+Tambo+International+Airport" target="_blank" rel="noopener noreferrer">O. R. Tambo International Airport</a>,
@@ -211,27 +202,21 @@
 <section id="itinerary" class="card-section" aria-labelledby="itinerary-title">
   <div class="card">
     <h2 id="itinerary-title" data-i18n="itineraryTitle">Itinéraire</h2>
-    <p data-i18n="itineraryBody">
-      Un aperçu jour par jour de nos activités et temps forts. Les détails finaux seront partagés à l’approche de la date.
-    </p>
+    <p data-i18n="itineraryBody">Un aperçu jour par jour de nos activités et temps forts. Les détails finaux seront partagés à l’approche de la date.</p>
   </div>
 </section>
 
 <section id="lobola" class="card-section" aria-labelledby="lobola-title">
   <div class="card">
     <h2 id="lobola-title" data-i18n="lobolaTitle">Cérémonie de Lobola & Mariage</h2>
-    <p data-i18n="lobolaBody">
-      Rejoignez-nous pour une belle cérémonie traditionnelle de Lobola suivie du mariage. Nous partagerons l’amour, la culture et la joie qui unissent nos deux familles.
-    </p>
+    <p data-i18n="lobolaBody">Rejoignez-nous pour une belle cérémonie traditionnelle de Lobola suivie du mariage. Nous partagerons l’amour, la culture et la joie qui unissent nos deux familles.</p>
   </div>
 </section>
 
 <section id="discover" class="card-section" aria-labelledby="discover-title">
   <div class="card">
     <h2 id="discover-title" data-i18n="discoverTitle">Découvrez l’Afrique du Sud</h2>
-    <p data-i18n="discoverBody">
-      Explorez les paysages magnifiques, la cuisine locale, les safaris et la culture dynamique de l’Afrique du Sud pendant votre séjour.
-    </p>
+    <p data-i18n="discoverBody">Explorez les paysages magnifiques, la cuisine locale, les safaris et la culture dynamique de l’Afrique du Sud pendant votre séjour.</p>
   </div>
 </section>
 
@@ -285,110 +270,65 @@
   // i18n dictionary
   const translations = {
     fr:{
-      // nav
       home:"Accueil", welcome:"Bienvenue", travel:"Voyage et arrivée", accommodation:"Hébergement",
       itinerary:"Itinéraire", lobola:"Lobola & Mariage", discover:"Découvrir l’Afrique du Sud",
       gallery:"Galerie", emergency:"Urgence", lang:"🌍 FR",
-
-      // hero & CTA
       hero:"Bienvenue en Afrique du Sud 🇿🇦", cta:"Commencez votre aventure",
-
-      // welcome
       welcomeTitle:"Bienvenue",
       welcomeBody:"Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud. Merci d’avoir fait le voyage — préparez‑vous pour des souvenirs inoubliables !",
-
-      // travel
       travelTitle:"Voyage et arrivée",
       travelBody_part1:"Vol de Paris vers",
       travelBody_part2:"puis Gautrain jusqu’à",
-
-      // accommodation
       accomTitle:"Hébergement",
       accomItem1:"Sandton Sun Towers — 24–26 oct.",
       accomItem2:"Bakubung Bush Lodge, Pilanesberg — 26–28 oct.",
       accomItem3:"Appartement privé, Sandton — 28–31 oct.",
-
-      // itinerary
       itineraryTitle:"Itinéraire",
       itineraryBody:"Un aperçu jour par jour de nos activités et temps forts. Les détails finaux seront partagés à l’approche de la date.",
-
-      // lobola & wedding
       lobolaTitle:"Cérémonie de Lobola & Mariage",
       lobolaBody:"Rejoignez-nous pour une belle cérémonie traditionnelle de Lobola suivie du mariage. Nous partagerons l’amour, la culture et la joie qui unissent nos deux familles.",
-
-      // discover
       discoverTitle:"Découvrez l’Afrique du Sud",
       discoverBody:"Explorez les paysages magnifiques, la cuisine locale, les safaris et la culture dynamique de l’Afrique du Sud pendant votre séjour.",
-
-      // gallery
       galleryTitle:"Galerie Safari",
-
-      // emergency
       emergencyTitle:"Contacts d’urgence",
       phoneLabel:"Téléphone de Ruth", hospitalLabel:"Hôpital",
-
-      // countdown
       countdownTitle:"Jours restants avant le mariage",
       days:"jours", hours:"heures", minutes:"minutes", seconds:"secondes"
     },
     en:{
-      // nav
       home:"Home", welcome:"Welcome", travel:"Travel & Arrival", accommodation:"Accommodation",
       itinerary:"Itinerary", lobola:"Lobola & Wedding", discover:"Discover South Africa",
       gallery:"Gallery", emergency:"Emergency", lang:"🌍 EN",
-
-      // hero & CTA
       hero:"Welcome to South Africa 🇿🇦", cta:"Begin your adventure",
-
-      // welcome
       welcomeTitle:"Welcome",
       welcomeBody:"We’re delighted to welcome you to South Africa to celebrate our wedding. Thank you for traveling to be with us—get ready for unforgettable memories!",
-
-      // travel
       travelTitle:"Travel & Arrival",
       travelBody_part1:"Flight from Paris to",
       travelBody_part2:"then Gautrain to",
-
-      // accommodation
       accomTitle:"Accommodation",
       accomItem1:"Sandton Sun Towers — 24–26 Oct",
       accomItem2:"Bakubung Bush Lodge, Pilanesberg — 26–28 Oct",
       accomItem3:"Private apartment, Sandton — 28–31 Oct",
-
-      // itinerary
       itineraryTitle:"Itinerary",
       itineraryBody:"A day-by-day overview of events and highlights. Final timings will be shared closer to the date.",
-
-      // lobola & wedding
       lobolaTitle:"Lobola Ceremony & Wedding",
       lobolaBody:"Join us for a beautiful traditional Lobola ceremony followed by our wedding celebration. We look forward to sharing love, culture, and joy with you.",
-
-      // discover
       discoverTitle:"Discover South Africa",
       discoverBody:"Explore South Africa’s breathtaking landscapes, local cuisine, thrilling safaris, and vibrant culture during your stay.",
-
-      // gallery
       galleryTitle:"Safari Gallery",
-
-      // emergency
       emergencyTitle:"Emergency Contacts",
       phoneLabel:"Ruth’s Phone", hospitalLabel:"Hospital",
-
-      // countdown
       countdownTitle:"Days until the wedding",
       days:"days", hours:"hours", minutes:"minutes", seconds:"seconds"
     }
   };
 
   function setLangAttr(lang){ htmlEl.setAttribute("lang", lang); }
-
   function updateTexts(lang){
-    // nav links
     document.querySelectorAll("#navMenu a").forEach(link=>{
       const key = link.getAttribute("data-key");
       if (translations[lang][key]) link.textContent = translations[lang][key];
     });
-    // elements with data-i18n
     document.querySelectorAll("[data-i18n]").forEach(el=>{
       const key = el.getAttribute("data-i18n");
       const t = translations[lang][key];
@@ -401,13 +341,11 @@
   let currentLang = localStorage.getItem("lang") || "fr";
   updateTexts(currentLang);
 
-  // Toggle language
   langToggle.addEventListener("click", ()=>{
     currentLang = currentLang === "fr" ? "en" : "fr";
     updateTexts(currentLang);
   });
 
-  // Mobile menu
   menuToggle.addEventListener("click", ()=>{
     const open = navMenu.classList.toggle("open");
     menuToggle.textContent = open ? "✖" : "☰";
@@ -421,21 +359,18 @@
     });
   });
 
-  // CTA smooth scroll
   ctaStart.addEventListener("click", ()=>{
     document.getElementById("welcome").scrollIntoView({behavior:"smooth"});
   });
 
-  // Countdown (change date/time if needed)
-  const targetDate = new Date("2025-11-01T10:00:00+02:00"); // SAST
+  const targetDate = new Date("2025-11-01T10:00:00+02:00");
   function updateCountdown(){
     const now = new Date();
     let diff = targetDate - now;
-    if (diff < 0) diff = 0; // don't go negative
-
-    const d = Math.floor(diff / (1000*60*60*24));
-    const h = Math.floor((diff / (1000*60*60)) % 24);
-    const m = Math.floor((diff / (1000*60)) % 60);
+    if (diff < 0) diff = 0;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff / 3600000) % 24);
+    const m = Math.floor((diff / 60000) % 60);
     const s = Math.floor((diff / 1000) % 60);
     document.getElementById("days").textContent = d;
     document.getElementById("hours").textContent = h.toString().padStart(2,"0");
@@ -445,23 +380,11 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Greeting audio (user-initiated)
   function playAudio(lang){
     document.querySelectorAll("audio[id^='audio']").forEach(a=>{ a.pause(); a.currentTime = 0; });
-    const el = document.getElementById("audio-"+lang);
-    if(el) el.play();
+    document.getElementById("audio-"+lang)?.play();
   }
   window.playAudio = playAudio;
-
-  // Optional: music toggle example
-  // const musicBtn = document.getElementById('music-toggle');
-  // musicBtn?.addEventListener('click', () => {
-  //   const audio = document.getElementById('bg-music');
-  //   if (!audio) return;
-  //   if (audio.paused) { audio.play(); musicBtn.textContent = '⏸ Music'; }
-  //   else { audio.pause(); musicBtn.textContent = '▶️ Music'; }
-  // });
 </script>
 </body>
 </html>
-
