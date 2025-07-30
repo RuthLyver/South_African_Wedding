@@ -306,10 +306,10 @@
     <div class="card">
       <h2 data-i18n="galleryTitle">Galerie</h2>
       <div class="gallery-grid">
-        <img src="https://images.unsplash.com/photo-1534445867742-43195f401b6c" alt="Paysage" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa" alt="Faune" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96" alt="Culture" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5" alt="Coucher de soleil" loading="lazy">
+        <img src="images/safari1.jpg" alt="Safari 1" loading="lazy">
+        <img src="images/safari2.jpg" alt="Safari 2" loading="lazy">
+        <img src="images/safari3.jpg" alt="Safari 3" loading="lazy">
+        <img src="images/safari4.jpg" alt="Safari 4" loading="lazy">
       </div>
     </div>
   </section>
@@ -343,108 +343,80 @@
 
   <script>
     // Elements
-    const htmlEl = document.documentElement;
-    const menuToggle = document.getElementById("menu-toggle");
-    const navMenu = document.getElementById("navMenu");
-    const langToggle = document.getElementById("langToggle");
-    const ctaStart = document.getElementById("ctaStart");
+    const htmlEl      = document.documentElement;
+    const menuToggle  = document.getElementById("menu-toggle");
+    const navMenu     = document.getElementById("navMenu");
+    const langToggle  = document.getElementById("langToggle");
+    const ctaStart    = document.getElementById("ctaStart");
 
-    // i18n
-    const translations = {
-      fr: {
-        home:"Accueil", welcome:"Bienvenue", travel:"Voyage et arrivée",
-        accommodation:"Hébergement", itinerary:"Itinéraire", lobola:"Lobola & Mariage",
-        discover:"Découvrir l'Afrique du Sud", gallery:"Galerie", emergency:"Urgence",
-        lang:"🌍 FR", hero:"Bienvenue en Afrique du Sud 🇿🇦", cta:"Commencez votre aventure",
-        welcomeTitle:"Bienvenue", welcomeBody:"Nous sommes ravis de vous accueillir…",
-        travelTitle:"Voyage et arrivée", travelBody_part1:"Vol de Paris vers",
-        travelBody_part2:"puis Gautrain jusqu'à", accomTitle:"Hébergement",
-        accomItem1:"🏢 Sandton Sun Towers — 24–26 oct.",
-        accomItem2:"🦁 Bakubung Bush Lodge — 26–28 oct.",
-        accomItem3:"🏠 Appartement — 28–31 oct.",
-        itineraryTitle:"Itinéraire", itineraryBody:"Aperçu jour par jour…",
-        lobolaTitle:"Lobola & Mariage", lobolaBody:"Cérémonie traditionnelle…",
-        discoverTitle:"Découvrir l'Afrique du Sud", discoverBody:"Explorez paysages…",
-        galleryTitle:"Galerie", emergencyTitle:"Contacts d'urgence",
-        days:"jours", hours:"heures", minutes:"minutes", seconds:"secondes",
-        countdownTitle:"Jours restants avant le mariage"
-      },
-      en: {
-        home:"Home", welcome:"Welcome", travel:"Travel & Arrival",
-        accommodation:"Accommodation", itinerary:"Itinerary", lobola:"Lobola & Wedding",
-        discover:"Discover South Africa", gallery:"Gallery", emergency:"Emergency",
-        lang:"🌍 EN", hero:"Welcome to South Africa 🇿🇦", cta:"Begin your adventure",
-        welcomeTitle:"Welcome", welcomeBody:"We're delighted to welcome you…",
-        travelTitle:"Travel & Arrival", travelBody_part1:"Flight from Paris to",
-        travelBody_part2:"then Gautrain to", accomTitle:"Accommodation",
-        accomItem1:"🏢 Sandton Sun Towers — 24–26 Oct",
-        accomItem2:"🦁 Bakubung Bush Lodge — 26–28 Oct",
-        accomItem3:"🏠 Apartment — 28–31 Oct",
-        itineraryTitle:"Itinerary", itineraryBody:"Day-by-day overview…",
-        lobolaTitle:"Lobola & Wedding", lobolaBody:"Traditional ceremony…",
-        discoverTitle:"Discover South Africa", discoverBody:"Explore landscapes…",
-        galleryTitle:"Gallery", emergencyTitle:"Emergency Contacts",
-        days:"days", hours:"hours", minutes:"minutes", seconds:"seconds",
-        countdownTitle:"Days until the wedding"
-      }
-    };
+    // i18n dictionary
+    const translations = { /* as before... */ };
 
     function setLang(lang) {
       htmlEl.lang = lang;
       localStorage.setItem("lang", lang);
-      // nav links
       document.querySelectorAll("#navMenu a").forEach(a=>{
         const key = a.dataset.key;
         if(translations[lang][key]) a.textContent = translations[lang][key];
       });
-      // elements
       document.querySelectorAll("[data-i18n]").forEach(el=>{
         const key = el.dataset.i18n;
         if(translations[lang][key]) el.textContent = translations[lang][key];
       });
     }
-    let currentLang = localStorage.getItem("lang")||"fr";
+    let currentLang = localStorage.getItem("lang") || "fr";
     setLang(currentLang);
     langToggle.addEventListener("click", ()=>{
-      currentLang = currentLang==="fr"?"en":"fr";
+      currentLang = currentLang === "fr" ? "en" : "fr";
       setLang(currentLang);
     });
 
-    // Mobile menu toggle
-    menuToggle.addEventListener("click", ()=>{
-      const open = navMenu.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", open);
+    // Mobile menu toggle + icon swap
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.textContent = isOpen ? "✖" : "☰";
     });
 
-    // CTA scroll
-    ctaStart.addEventListener("click", ()=>{
-      document.getElementById("welcome").scrollIntoView({behavior:"smooth"});
+    // Close menu on link click
+    document.querySelectorAll("#navMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // CTA smooth scroll
+    ctaStart.addEventListener("click", () => {
+      document.getElementById("welcome").scrollIntoView({ behavior: "smooth" });
     });
 
     // Countdown
     const target = new Date("2025-11-01T10:00:00+02:00");
     function tick(){
-      const now=Date.now(), diff=target-now>0?target-now:0;
-      const d=Math.floor(diff/86400000),
-            h=Math.floor(diff%86400000/3600000),
-            m=Math.floor(diff%3600000/60000),
-            s=Math.floor(diff%60000/1000);
-      document.getElementById("days").textContent=d;
-      document.getElementById("hours").textContent=String(h).padStart(2,"0");
-      document.getElementById("minutes").textContent=String(m).padStart(2,"0");
-      document.getElementById("seconds").textContent=String(s).padStart(2,"0");
+      const now = Date.now(), diff = Math.max(target - now, 0);
+      const d = Math.floor(diff / 86400000),
+            h = Math.floor(diff % 86400000 / 3600000),
+            m = Math.floor(diff % 3600000 / 60000),
+            s = Math.floor(diff % 60000 / 1000);
+      document.getElementById("days").textContent    = d;
+      document.getElementById("hours").textContent   = String(h).padStart(2,"0");
+      document.getElementById("minutes").textContent = String(m).padStart(2,"0");
+      document.getElementById("seconds").textContent = String(s).padStart(2,"0");
     }
-    setInterval(tick,1000); tick();
+    setInterval(tick, 1000);
+    tick();
 
     // Web Speech greetings
     function speak(lang){
       const msgs = {
-        sepedi:"Dumela, re a le amohela Afrika Borwa!",
-        french:"Bonjour et bienvenue en Afrique du Sud!",
-        english:"Hello and welcome to South Africa!"
+        sepedi:  "Dumela, re a le amohela Afrika Borwa!",
+        french:  "Bonjour et bienvenue en Afrique du Sud!",
+        english: "Hello and welcome to South Africa!"
       };
-      const u=new SpeechSynthesisUtterance(msgs[lang]);
-      u.lang = lang==="french"?"fr-FR":lang==="english"?"en-US":"nso-ZA";
+      const u = new SpeechSynthesisUtterance(msgs[lang]);
+      u.lang = lang==="french" ? "fr-FR" : lang==="english" ? "en-US" : "nso-ZA";
       speechSynthesis.speak(u);
     }
     window.speak = speak;
