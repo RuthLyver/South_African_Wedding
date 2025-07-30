@@ -14,26 +14,180 @@
   <link rel="preload" as="image" href="images/image1.jpg" imagesrcset="images/image1.jpg" imagesizes="100vw">
 
   <style>
-    /* ... your existing CSS unchanged ... */
+    :root{
+      /* HSL luxury tokens */
+      --gold: 45 90% 45%;
+      --gold-strong: 45 95% 55%;
+      --beige: 35 20% 88%;
+      --dark: 30 8% 8%;
+      --shadow: 0 10px 30px hsl(45 40% 30% / 0.18);
+      --transition: all .3s ease;
+    }
+    * { box-sizing:border-box; margin:0; padding:0 }
+    html { scroll-behavior:smooth }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:hsl(var(--beige));
+      color:hsl(var(--dark));
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* Header */
+    header {
+      position:fixed; top:0; left:0; right:auto; bottom:auto;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:.8rem 1rem;
+      background: hsl(0 0% 100% / 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid hsl(35 15% 85%);
+      z-index:1000;
+    }
+    .logo {
+      font-family:'Playfair Display', serif;
+      font-size:1.5rem; letter-spacing:.04em;
+      color:hsl(var(--gold));
+    }
+    .hamburger {
+      font-size:1.75rem; background:none; border:0; cursor:pointer;
+      color:hsl(var(--gold)); line-height:1;
+    }
+    nav.nav-menu {
+      position:absolute; top:58px; left:0; width:100%;
+      background:white; border-top:1px solid #eaeaea;
+      max-height:0; overflow:hidden; display:flex; flex-direction:column;
+      transition:max-height .35s ease-in-out;
+    }
+    nav.nav-menu.open { max-height:800px }
+    nav.nav-menu a, .lang-button {
+      padding:1rem; text-decoration:none; color:hsl(var(--dark));
+      font-weight:600; border-bottom:1px solid #eee; transition:var(--transition);
+    }
+    nav.nav-menu a:hover, .lang-button:hover {
+      background:hsl(var(--gold)); color:white;
+    }
+    .lang-button { background:none; border:0; text-align:left; cursor:pointer; }
+
     /* Hero */
     .hero {
       padding-top:74px; min-height:100svh;
-      /* point to the same file you preloaded */
       background: url('images/image1.jpg') center/cover no-repeat;
+      color:white; text-align:center;
+      display:grid; place-items:center; position:relative; isolation:isolate;
     }
-    /* rest of CSS... */
+    .hero::after {
+      content:""; position:absolute; inset:0; z-index:-1;
+      background:linear-gradient(to bottom, hsl(0 0% 0% / .35), hsl(0 0% 0% / .25) 40%, transparent 75%);
+    }
+    .hero-inner { max-width:min(90ch, 92vw); padding-inline:1rem }
+    .hero h1 {
+      font-family:'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4.5vw, 3rem);
+      white-space: nowrap; overflow:hidden; border-right:2px solid white;
+      margin:1rem auto; width:22ch;
+      animation: typewriter 3s steps(30) 1s 1 both, blink 600ms steps(44) infinite;
+    }
+    .begin-journey {
+      background:hsl(var(--gold)); color:white; padding:.85rem 1.4rem;
+      border-radius:12px; font-weight:700; cursor:pointer;
+      box-shadow: var(--shadow); transition:var(--transition);
+    }
+    .begin-journey:hover {
+      transform:translateY(-2px);
+      box-shadow:0 16px 32px hsl(45 40% 30% / .22);
+    }
+    @keyframes typewriter { from { width:0 } to { width:22ch } }
+    @keyframes blink { 50% { border-right-color: transparent } }
+
+    /* Sections */
+    section { padding:4rem 1rem; text-align:center }
+    .card {
+      background: hsl(var(--gold));
+      color: white;
+      padding:2rem; margin:1rem auto;
+      border-radius:16px; box-shadow:var(--shadow);
+      max-width:800px; transition:transform .25s
+    }
+    .card:hover { transform:translateY(-4px) }
+    .card a { color:#fff; text-decoration:underline }
+    .gallery-grid {
+      display:grid; gap:1rem;
+      grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+      margin-top:1rem
+    }
+    .gallery-grid img { width:100%; border-radius:12px; object-fit:cover }
+
+    /* Footer & countdown */
+    footer {
+      background:hsl(var(--beige));
+      padding:3rem 1rem 4rem; text-align:center
+    }
+    #countdownContainer {
+      display:flex; justify-content:center; gap:1rem; flex-wrap:wrap
+    }
+    .countdown-box {
+      background:white; padding:1.2rem 1.4rem;
+      border-radius:12px; box-shadow:var(--shadow);
+      min-width:82px; text-align:center
+    }
+    .countdown-box span { display:block; font-size:1.4rem; font-weight:700 }
+
+    /* Floating quick-links */
+    .floating-nav {
+      position:fixed; right:15px; bottom:15px; z-index:999;
+      display:flex; flex-direction:column; gap:10px
+    }
+    .floating-nav a {
+      background:hsl(var(--gold)); padding:.6rem 1rem;
+      color:white; border-radius:999px;
+      text-decoration:none; font-size:.9rem; font-weight:700;
+      box-shadow:0 2px 10px rgb(0 0 0 / .2)
+    }
+
+    /* Desktop nav */
+    @media (min-width:768px){
+      nav.nav-menu {
+        position:static; max-height:none; flex-direction:row;
+        background:unset; border-top:none
+      }
+      nav.nav-menu a, .lang-button { border-bottom:none }
+      .hamburger { display:none }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion:reduce){
+      * { animation:none !important; transition:none !important }
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <!-- ... your header/nav unchanged ... -->
+  <div class="logo" aria-label="Cédric & Ruth">C&R</div>
+  <button id="menu-toggle" class="hamburger" aria-label="Open menu"
+          aria-expanded="false" aria-controls="navMenu">☰</button>
+  <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
+    <a href="#home" data-key="home">Accueil</a>
+    <a href="#welcome" data-key="welcome">Bienvenue</a>
+    <a href="#travel" data-key="travel">Voyage et arrivée</a>
+    <a href="#accommodation" data-key="accommodation">Hébergement</a>
+    <a href="#itinerary" data-key="itinerary">Itinéraire</a>
+    <a href="#lobola" data-key="lobola">Lobola & Mariage</a>
+    <a href="#discover" data-key="discover">Découvrir l’Afrique du Sud</a>
+    <a href="#gallery" data-key="gallery">Galerie</a>
+    <a href="#emergency" data-key="emergency">Urgence</a>
+    <button id="langToggle" class="lang-button" aria-label="Basculer la langue"
+            data-i18n="lang">🌍 FR</button>
+  </nav>
 </header>
 
 <section class="hero" id="home" aria-label="Hero">
   <div class="hero-inner">
     <h1 id="heroTitle" data-i18n="hero">Bienvenue en Afrique du Sud 🇿🇦</h1>
-    <button class="begin-journey" id="ctaStart" data-i18n="cta">Commencez votre aventure</button>
+    <button class="begin-journey" id="ctaStart" data-i18n="cta">
+      Commencez votre aventure
+    </button>
   </div>
 </section>
 
@@ -41,102 +195,218 @@
   <div class="card">
     <h2 id="welcome-title" data-i18n="welcomeTitle">Bienvenue</h2>
     <p data-i18n="welcomeBody">Un accueil chaleureux à tous nos invités.</p>
-    <div style="margin-top: .75rem;">
-      <button onclick="playAudio('sepedi')" aria-label="Écouter en Sepedi">🎧 Sepedi</button>
-      <button onclick="playAudio('french')" aria-label="Écouter en Français">🎧 Français</button>
-      <button onclick="playAudio('english')" aria-label="Listen in English">🎧 English</button>
+    <div style="margin-top:.75rem;">
+      <button onclick="speak('sepedi')" aria-label="Écouter en Sepedi">🎧 Sepedi</button>
+      <button onclick="speak('french')" aria-label="Écouter en Français">🎧 Français</button>
+      <button onclick="speak('english')" aria-label="Listen in English">🎧 English</button>
     </div>
-
-    <!-- Audio elements now point to the correct relative path, preload="auto" -->
-    <audio id="audio-sepedi" src="media/sepedi.mp3" preload="auto"></audio>
-    <audio id="audio-french" src="media/french.mp3" preload="auto"></audio>
-    <audio id="audio-english" src="media/english.mp3" preload="auto"></audio>
   </div>
 </section>
 
-<!-- ... the rest of your sections (travel, accommodation, etc.) ... -->
+<section id="travel" class="card-section" aria-labelledby="travel-title">
+  <div class="card">
+    <h2 id="travel-title" data-i18n="travelTitle">Voyage et arrivée</h2>
+    <p>
+      <span data-i18n="travelBody_part1">Vol de Paris vers</span>
+      <a href="https://maps.google.com?q=O.R.+Tambo+International+Airport"
+         target="_blank" rel="noopener noreferrer">
+        O. R. Tambo International Airport
+      </a>,
+      <span data-i18n="travelBody_part2">puis Gautrain jusqu’à</span>
+      <a href="https://maps.google.com?q=Sandton+Station"
+         target="_blank" rel="noopener noreferrer">
+        Sandton Station
+      </a>.
+    </p>
+  </div>
+</section>
+
+<section id="accommodation" class="card-section" aria-labelledby="accom-title">
+  <div class="card">
+    <h2 id="accom-title" data-i18n="accomTitle">Hébergement</h2>
+    <ul>
+      <li>
+        <a href="https://maps.google.com?q=Sandton+Sun+Hotel" target="_blank"
+           rel="noopener noreferrer">
+          <span data-i18n="accomItem1">
+            Sandton Sun Towers — 24–26 oct.
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="https://maps.google.com?q=Bakubung+Lodge+Pilanesberg"
+           target="_blank" rel="noopener noreferrer">
+          <span data-i18n="accomItem2">
+            Bakubung Bush Lodge, Pilanesberg — 26–28 oct.
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="https://maps.google.com?q=Sandton+Apartment" target="_blank"
+           rel="noopener noreferrer">
+          <span data-i18n="accomItem3">
+            Appartement privé, Sandton — 28–31 oct.
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Itinéraire, Lobola, Discover, Gallery, Emergency (same structure) -->
+
+<footer>
+  <h2 data-i18n="countdownTitle">Jours restants avant le mariage</h2>
+  <div id="countdownContainer" aria-live="polite">
+    <div class="countdown-box">
+      <span id="days">0</span><small data-i18n="days">jours</small>
+    </div>
+    <div class="countdown-box">
+      <span id="hours">00</span><small data-i18n="hours">heures</small>
+    </div>
+    <div class="countdown-box">
+      <span id="minutes">00</span><small data-i18n="minutes">minutes</small>
+    </div>
+    <div class="countdown-box">
+      <span id="seconds">00</span><small data-i18n="seconds">secondes</small>
+    </div>
+  </div>
+</footer>
+
+<div class="floating-nav" aria-label="Quick links">
+  <a href="#home">↑ <span data-i18n="home">Accueil</span></a>
+  <a href="#welcome">💍 <span data-i18n="welcome">Bienvenue</span></a>
+  <a href="https://wa.me/27829627848" target="_blank" rel="noopener noreferrer">
+    📱 WhatsApp
+  </a>
+  <a href="mailto:phaahlaruth@gmail.com" rel="noopener noreferrer">✉️ Email</a>
+</div>
 
 <script>
-  // after DOM loads
-  window.addEventListener('DOMContentLoaded', () => {
-    const htmlEl = document.documentElement;
-    const langToggle = document.getElementById("langToggle");
-    const navMenu = document.getElementById("navMenu");
-    const menuToggle = document.getElementById("menu-toggle");
-    const ctaStart = document.getElementById("ctaStart");
+  const htmlEl = document.documentElement;
+  const langToggle = document.getElementById("langToggle");
+  const navMenu   = document.getElementById("navMenu");
+  const menuToggle= document.getElementById("menu-toggle");
+  const ctaStart  = document.getElementById("ctaStart");
 
-    // i18n dictionary...
-    const translations = { /* ... */ };
-
-    function setLangAttr(lang){ htmlEl.setAttribute("lang", lang); }
-    function updateTexts(lang){
-      // nav links
-      document.querySelectorAll("#navMenu a").forEach(link=>{
-        const key = link.getAttribute("data-key");
-        if (translations[lang][key]) link.textContent = translations[lang][key];
-      });
-      // [data-i18n]
-      document.querySelectorAll("[data-i18n]").forEach(el=>{
-        const key = el.getAttribute("data-i18n");
-        const t = translations[lang][key];
-        if (t) el.textContent = t;
-      });
-      setLangAttr(lang);
-      localStorage.setItem("lang", lang);
+  const translations = {
+    fr: {
+      home:"Accueil", welcome:"Bienvenue", travel:"Voyage et arrivée",
+      accommodation:"Hébergement", itinerary:"Itinéraire",
+      lobola:"Lobola & Mariage", discover:"Découvrir l’Afrique du Sud",
+      gallery:"Galerie", emergency:"Urgence", lang:"🌍 FR",
+      hero:"Bienvenue en Afrique du Sud 🇿🇦", cta:"Commencez votre aventure",
+      welcomeTitle:"Bienvenue",
+      welcomeBody:"Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud. Merci d’avoir fait le voyage — préparez‑vous pour des souvenirs inoubliables !",
+      travelBody_part1:"Vol de Paris vers", travelBody_part2:"puis Gautrain jusqu’à",
+      accomItem1:"Sandton Sun Towers — 24–26 oct.",
+      accomItem2:"Bakubung Bush Lodge, Pilanesberg — 26–28 oct.",
+      accomItem3:"Appartement privé, Sandton — 28–31 oct.",
+      itineraryBody:"Un aperçu jour par jour …",
+      lobolaBody:"Rejoignez‑nous pour une belle cérémonie …",
+      discoverBody:"Explorez les paysages magnifiques …",
+      days:"jours", hours:"heures", minutes:"minutes", seconds:"secondes",
+      countdownTitle:"Jours restants avant le mariage"
+    },
+    en: {
+      home:"Home", welcome:"Welcome", travel:"Travel & Arrival",
+      accommodation:"Accommodation", itinerary:"Itinerary",
+      lobola:"Lobola & Wedding", discover:"Discover South Africa",
+      gallery:"Gallery", emergency:"Emergency", lang:"🌍 EN",
+      hero:"Welcome to South Africa 🇿🇦", cta:"Begin your adventure",
+      welcomeTitle:"Welcome",
+      welcomeBody:"We’re delighted to welcome you to South Africa to celebrate our wedding. Thank you for traveling to be with us—get ready for unforgettable memories!",
+      travelBody_part1:"Flight from Paris to", travelBody_part2:"then Gautrain to",
+      accomItem1:"Sandton Sun Towers — 24–26 Oct",
+      accomItem2:"Bakubung Bush Lodge, Pilanesberg — 26–28 Oct",
+      accomItem3:"Private apartment, Sandton — 28–31 Oct",
+      itineraryBody:"A day-by-day overview …",
+      lobolaBody:"Join us for a beautiful traditional Lobola ceremony …",
+      discoverBody:"Explore South Africa’s breathtaking landscapes …",
+      days:"days", hours:"hours", minutes:"minutes", seconds:"seconds",
+      countdownTitle:"Days until the wedding"
     }
+  };
 
-    let currentLang = localStorage.getItem("lang") || "fr";
-    updateTexts(currentLang);
+  function setLangAttr(lang){
+    htmlEl.setAttribute("lang", lang);
+  }
 
-    langToggle.addEventListener("click", ()=>{
-      currentLang = currentLang === "fr" ? "en" : "fr";
-      updateTexts(currentLang);
-    });
-
-    menuToggle.addEventListener("click", ()=>{
-      const open = navMenu.classList.toggle("open");
-      menuToggle.textContent = open ? "✖" : "☰";
-      menuToggle.setAttribute("aria-expanded", String(open));
-    });
-
+  function updateTexts(lang){
+    // nav
     document.querySelectorAll("#navMenu a").forEach(link=>{
-      link.addEventListener("click", ()=>{
-        navMenu.classList.remove("open");
-        menuToggle.textContent = "☰";
-        menuToggle.setAttribute("aria-expanded", "false");
-      });
+      const key = link.getAttribute("data-key");
+      if (translations[lang][key]) link.textContent = translations[lang][key];
     });
-
-    ctaStart.addEventListener("click", ()=>{
-      document.getElementById("welcome").scrollIntoView({behavior:"smooth"});
+    // data-i18n
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      const t = translations[lang][key];
+      if (t) el.textContent = t;
     });
+    setLangAttr(lang);
+    localStorage.setItem("lang", lang);
+  }
 
-    // Countdown...
-    const targetDate = new Date("2025-11-01T10:00:00+02:00");
-    function updateCountdown(){
-      // ...
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+  let currentLang = localStorage.getItem("lang") || "fr";
+  updateTexts(currentLang);
 
-    // **Fix for audio playback**
-    function playAudio(lang){
-      const audio = document.getElementById("audio-"+lang);
-      if (!audio) {
-        console.warn("Audio element not found for:", lang);
-        return;
-      }
-      audio.pause();
-      audio.currentTime = 0;
-      const playPromise = audio.play();
-      if (playPromise?.catch) {
-        playPromise.catch(err => {
-          console.error("Playback error:", err);
-        });
-      }
-    }
-    window.playAudio = playAudio;
+  langToggle.addEventListener("click", ()=>{
+    currentLang = currentLang === "fr" ? "en" : "fr";
+    updateTexts(currentLang);
   });
+
+  menuToggle.addEventListener("click", ()=>{
+    const open = navMenu.classList.toggle("open");
+    menuToggle.textContent = open ? "✖" : "☰";
+    menuToggle.setAttribute("aria-expanded", String(open));
+  });
+
+  document.querySelectorAll("#navMenu a").forEach(link=>{
+    link.addEventListener("click", ()=>{
+      navMenu.classList.remove("open");
+      menuToggle.textContent = "☰";
+      menuToggle.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  ctaStart.addEventListener("click", ()=>{
+    document.getElementById("welcome").scrollIntoView({ behavior:"smooth" });
+  });
+
+  // Countdown
+  const targetDate = new Date("2025-11-01T10:00:00+02:00");
+  function updateCountdown(){
+    const now = new Date();
+    let diff = targetDate - now;
+    if (diff < 0) diff = 0;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff / 3600000) % 24);
+    const m = Math.floor((diff / 60000) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById("days").textContent    = d;
+    document.getElementById("hours").textContent   = String(h).padStart(2,"0");
+    document.getElementById("minutes").textContent = String(m).padStart(2,"0");
+    document.getElementById("seconds").textContent = String(s).padStart(2,"0");
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Speech greetings
+  function speak(lang){
+    const messages = {
+      sepedi:  "Dumela, re a le amohela Afrika Borwa!",
+      french:  "Bonjour, bienvenue en Afrique du Sud !",
+      english: "Hello, welcome to South Africa!"
+    };
+    const utter = new SpeechSynthesisUtterance(messages[lang]||"");
+    utter.lang = lang === "french"  ? "fr-FR"
+               : lang === "english" ? "en-US"
+               : "nso-ZA";
+    window.speechSynthesis.speak(utter);
+  }
+  window.speak = speak;
 </script>
+
 </body>
 </html>
