@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <!-- Background music -->
+  <!-- Background Music -->
   <audio id="bg-music" autoplay loop src="media/audio1.mp3"></audio>
 
   <!-- Header -->
@@ -140,18 +140,18 @@
   <!-- Floating Navigation Buttons -->
   <div class="floating-nav">
     <a href="#home">🏠</a>
-    <a href="#wedding">💍</a>
+    <a href="#lobola">💍</a>
     <a href="https://wa.me/27829627848" target="_blank">📱</a>
     <a href="mailto:phaahlaruth@gmail.com">✉️</a>
   </div>
 
   <!-- Scripts -->
   <script>
-    const htmlEl = document.documentElement;
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("navMenu");
     const langToggle = document.getElementById("langToggle");
     const ctaStart = document.getElementById("ctaStart");
+    const heroTitle = document.getElementById("heroTitle");
 
     menuToggle.addEventListener("click", () => {
       const isOpen = navMenu.classList.toggle("open");
@@ -181,6 +181,30 @@
       u.lang = lang==="french" ? "fr-FR" : lang==="english" ? "en-US" : "nso-ZA";
       speechSynthesis.speak(u);
     }
+
+    const translations = {
+      fr: {
+        home: "🏠 Accueil", welcome: "💍 Bienvenue", travel: "✈️ Voyage", accommodation: "🏨 Hébergement",
+        itinerary: "📅 Itinéraire", lobola: "💒 Lobola & Mariage", discover: "🌍 Découvrir",
+        gallery: "📸 Galerie", emergency: "🚨 Urgence", lang: "🌍 FR", hero: "Bienvenue en Afrique du Sud 🇿🇦"
+      },
+      en: {
+        home: "🏠 Home", welcome: "💍 Welcome", travel: "✈️ Travel", accommodation: "🏨 Accommodation",
+        itinerary: "📅 Itinerary", lobola: "💒 Lobola & Wedding", discover: "🌍 Discover",
+        gallery: "📸 Gallery", emergency: "🚨 Emergency", lang: "🌍 EN", hero: "Welcome to South Africa 🇿🇦"
+      }
+    };
+
+    let currentLang = "fr";
+    langToggle.addEventListener("click", () => {
+      currentLang = currentLang === "fr" ? "en" : "fr";
+      document.querySelectorAll("#navMenu a").forEach(link => {
+        const key = link.dataset.key;
+        link.textContent = translations[currentLang][key];
+      });
+      langToggle.textContent = translations[currentLang].lang;
+      heroTitle.textContent = translations[currentLang].hero;
+    });
 
     const target = new Date("2025-11-01T10:00:00+02:00");
     function tick(){
