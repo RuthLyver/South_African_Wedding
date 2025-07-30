@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <!-- Preload hero for faster LCP -->
-  <link rel="preload" as="image" href="/images/image1.jpg" imagesrcset="/images/image1.jpg" imagesizes="100vw">
+  <link rel="preload" as="image" href="/images/background.jpg" imagesrcset="/images/background.jpg" imagesizes="100vw">
 
   <style>
     :root{
@@ -58,7 +58,7 @@
       max-height:0; overflow:hidden; display:flex; flex-direction:column;
       transition:max-height .35s ease-in-out;
     }
-    nav.nav-menu.open{max-height:620px}
+    nav.nav-menu.open{max-height:800px}
     nav.nav-menu a, .lang-button{
       padding:1rem; text-decoration:none; color:hsl(var(--dark));
       font-weight:600; border-bottom:1px solid #eee; transition:var(--transition);
@@ -100,8 +100,13 @@
 
     /* Sections */
     section{padding:4rem 1rem; text-align:center}
-    .card{background:white; padding:2rem; margin:1rem auto; border-radius:16px; box-shadow:var(--shadow); max-width:800px; transition:transform .25s}
+    .card{
+      background: hsl(var(--gold));
+      color: white;
+      padding:2rem; margin:1rem auto; border-radius:16px; box-shadow:var(--shadow); max-width:800px; transition:transform .25s
+    }
     .card:hover{transform:translateY(-4px)}
+    .card a{color:#fff; text-decoration:underline}
     .gallery-grid{display:grid; gap:1rem; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); margin-top:1rem}
     .gallery-grid img{width:100%; border-radius:12px; object-fit:cover}
 
@@ -146,8 +151,11 @@
     <!-- Provide default text to avoid blank content if JS fails -->
     <a href="#home" data-key="home">Accueil</a>
     <a href="#welcome" data-key="welcome">Bienvenue</a>
-    <a href="#travel" data-key="travel">Voyage & Arrivée</a>
+    <a href="#travel" data-key="travel">Voyage et arrivée</a>
     <a href="#accommodation" data-key="accommodation">Hébergement</a>
+    <a href="#itinerary" data-key="itinerary">Itinéraire</a>
+    <a href="#lobola" data-key="lobola">Lobola & Mariage</a>
+    <a href="#discover" data-key="discover">Découvrir l’Afrique du Sud</a>
     <a href="#gallery" data-key="gallery">Galerie</a>
     <a href="#emergency" data-key="emergency">Urgence</a>
     <button id="langToggle" class="lang-button" aria-label="Basculer la langue" data-i18n="lang">🌍 FR</button>
@@ -157,7 +165,7 @@
 <section class="hero" id="home" aria-label="Hero">
   <div class="hero-inner">
     <h1 id="heroTitle" data-i18n="hero">Bienvenue en Afrique du Sud 🇿🇦</h1>
-    <button class="begin-journey" id="ctaStart" data-i18n="cta">Commencer votre aventure</button>
+    <button class="begin-journey" id="ctaStart" data-i18n="cta">Commencez votre aventure</button>
   </div>
 </section>
 
@@ -178,11 +186,12 @@
 
 <section id="travel" class="card-section" aria-labelledby="travel-title">
   <div class="card">
-    <h2 id="travel-title" data-i18n="travelTitle">Voyage & Arrivée</h2>
-    <p data-i18n="travelBody">
-      Vol de Paris vers
-      <a href="https://maps.google.com?q=O.R.+Tambo+International+Airport" target="_blank" rel="noopener noreferrer">O.R. Tambo International Airport</a>,
-      puis Gautrain jusqu'à
+    <h2 id="travel-title" data-i18n="travelTitle">Voyage et arrivée</h2>
+    <!-- Split text so translation doesn't wipe links -->
+    <p>
+      <span data-i18n="travelBody_part1">Vol de Paris vers</span>
+      <a href="https://maps.google.com?q=O.R.+Tambo+International+Airport" target="_blank" rel="noopener noreferrer">O. R. Tambo International Airport</a>,
+      <span data-i18n="travelBody_part2">puis Gautrain jusqu’à</span>
       <a href="https://maps.google.com?q=Sandton+Station" target="_blank" rel="noopener noreferrer">Sandton Station</a>.
     </p>
   </div>
@@ -192,10 +201,37 @@
   <div class="card">
     <h2 id="accom-title" data-i18n="accomTitle">Hébergement</h2>
     <ul>
-      <li><a href="https://maps.google.com?q=Sandton+Sun+Hotel" target="_blank" rel="noopener noreferrer">Sandton Sun Towers – 24–26 Oct</a></li>
-      <li><a href="https://maps.google.com?q=Bakubung+Lodge+Pilanesberg" target="_blank" rel="noopener noreferrer">Bakubung Lodge, Pilanesberg – 26–28 Oct</a></li>
-      <li><a href="https://maps.google.com?q=Sandton+Apartment" target="_blank" rel="noopener noreferrer">Appartement privé, Sandton – 28–31 Oct</a></li>
+      <li><a href="https://maps.google.com?q=Sandton+Sun+Hotel" target="_blank" rel="noopener noreferrer"><span data-i18n="accomItem1">Sandton Sun Towers — 24–26 oct.</span></a></li>
+      <li><a href="https://maps.google.com?q=Bakubung+Lodge+Pilanesberg" target="_blank" rel="noopener noreferrer"><span data-i18n="accomItem2">Bakubung Bush Lodge, Pilanesberg — 26–28 oct.</span></a></li>
+      <li><a href="https://maps.google.com?q=Sandton+Apartment" target="_blank" rel="noopener noreferrer"><span data-i18n="accomItem3">Appartement privé, Sandton — 28–31 oct.</span></a></li>
     </ul>
+  </div>
+</section>
+
+<section id="itinerary" class="card-section" aria-labelledby="itinerary-title">
+  <div class="card">
+    <h2 id="itinerary-title" data-i18n="itineraryTitle">Itinéraire</h2>
+    <p data-i18n="itineraryBody">
+      Un aperçu jour par jour de nos activités et temps forts. Les détails finaux seront partagés à l’approche de la date.
+    </p>
+  </div>
+</section>
+
+<section id="lobola" class="card-section" aria-labelledby="lobola-title">
+  <div class="card">
+    <h2 id="lobola-title" data-i18n="lobolaTitle">Cérémonie de Lobola & Mariage</h2>
+    <p data-i18n="lobolaBody">
+      Rejoignez-nous pour une belle cérémonie traditionnelle de Lobola suivie du mariage. Nous partagerons l’amour, la culture et la joie qui unissent nos deux familles.
+    </p>
+  </div>
+</section>
+
+<section id="discover" class="card-section" aria-labelledby="discover-title">
+  <div class="card">
+    <h2 id="discover-title" data-i18n="discoverTitle">Découvrez l’Afrique du Sud</h2>
+    <p data-i18n="discoverBody">
+      Explorez les paysages magnifiques, la cuisine locale, les safaris et la culture dynamique de l’Afrique du Sud pendant votre séjour.
+    </p>
   </div>
 </section>
 
@@ -212,11 +248,11 @@
 
 <section id="emergency" class="card-section" aria-labelledby="emergency-title">
   <div class="card">
-    <h2 id="emergency-title" data-i18n="emergencyTitle">Contacts d'Urgence</h2>
+    <h2 id="emergency-title" data-i18n="emergencyTitle">Contacts d’urgence</h2>
     <ul>
-      <li><span data-i18n="phoneLabel">Téléphone de Ruth</span>: <a href="tel:+27829627848">082 962 7848</a></li>
-      <li>Email: <a href="mailto:phaahlaruth@gmail.com">phaahlaruth@gmail.com</a></li>
-      <li><span data-i18n="hospitalLabel">Hôpital</span>: <a href="https://maps.google.com?q=Sandton+Mediclinic" target="_blank" rel="noopener noreferrer">Sandton Mediclinic</a></li>
+      <li><span data-i18n="phoneLabel">Téléphone de Ruth</span> : <a href="tel:+27829627848">+27 82 962 7848</a></li>
+      <li>Email : <a href="mailto:phaahlaruth@gmail.com">phaahlaruth@gmail.com</a></li>
+      <li><span data-i18n="hospitalLabel">Hôpital</span> : <a href="https://maps.google.com?q=Sandton+Mediclinic" target="_blank" rel="noopener noreferrer">Sandton Mediclinic</a></li>
     </ul>
   </div>
 </section>
@@ -233,10 +269,10 @@
 
 <!-- Floating Navigation -->
 <div class="floating-nav" aria-label="Quick links">
-  <a href="#home">↑ Home</a>
-  <a href="#wedding">💍 Wedding</a>
-  <a href="https://wa.me/27829627848" target="_blank">📱 WhatsApp</a>
-  <a href="mailto:phaahlaruth@gmail.com" target="_blank">✉️ Email</a>
+  <a href="#home">↑ <span data-i18n="home">Accueil</span></a>
+  <a href="#welcome">💍 <span data-i18n="welcome">Bienvenue</span></a>
+  <a href="https://wa.me/27829627848" target="_blank" rel="noopener noreferrer">📱 WhatsApp</a>
+  <a href="mailto:phaahlaruth@gmail.com" target="_blank" rel="noopener noreferrer">✉️ Email</a>
 </div>
 
 <script>
@@ -244,32 +280,101 @@
   const langToggle = document.getElementById("langToggle");
   const navMenu = document.getElementById("navMenu");
   const menuToggle = document.getElementById("menu-toggle");
-  const heroTitle = document.getElementById("heroTitle");
   const ctaStart = document.getElementById("ctaStart");
 
   // i18n dictionary
   const translations = {
     fr:{
-      home:"Accueil", welcome:"Bienvenue", travel:"Voyage & Arrivée", accommodation:"Hébergement",
+      // nav
+      home:"Accueil", welcome:"Bienvenue", travel:"Voyage et arrivée", accommodation:"Hébergement",
+      itinerary:"Itinéraire", lobola:"Lobola & Mariage", discover:"Découvrir l’Afrique du Sud",
       gallery:"Galerie", emergency:"Urgence", lang:"🌍 FR",
-      hero:"Bienvenue en Afrique du Sud 🇿🇦", cta:"Commencer votre aventure",
-      welcomeTitle:"Bienvenue", welcomeBody:"Un accueil chaleureux à tous nos invités.",
-      travelTitle:"Voyage & Arrivée",
-      travelBody:"Vol de Paris vers O.R. Tambo International Airport, puis Gautrain jusqu'à Sandton Station.",
-      accomTitle:"Hébergement", galleryTitle:"Galerie Safari", emergencyTitle:"Contacts d'Urgence",
+
+      // hero & CTA
+      hero:"Bienvenue en Afrique du Sud 🇿🇦", cta:"Commencez votre aventure",
+
+      // welcome
+      welcomeTitle:"Bienvenue",
+      welcomeBody:"Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud. Merci d’avoir fait le voyage — préparez‑vous pour des souvenirs inoubliables !",
+
+      // travel
+      travelTitle:"Voyage et arrivée",
+      travelBody_part1:"Vol de Paris vers",
+      travelBody_part2:"puis Gautrain jusqu’à",
+
+      // accommodation
+      accomTitle:"Hébergement",
+      accomItem1:"Sandton Sun Towers — 24–26 oct.",
+      accomItem2:"Bakubung Bush Lodge, Pilanesberg — 26–28 oct.",
+      accomItem3:"Appartement privé, Sandton — 28–31 oct.",
+
+      // itinerary
+      itineraryTitle:"Itinéraire",
+      itineraryBody:"Un aperçu jour par jour de nos activités et temps forts. Les détails finaux seront partagés à l’approche de la date.",
+
+      // lobola & wedding
+      lobolaTitle:"Cérémonie de Lobola & Mariage",
+      lobolaBody:"Rejoignez-nous pour une belle cérémonie traditionnelle de Lobola suivie du mariage. Nous partagerons l’amour, la culture et la joie qui unissent nos deux familles.",
+
+      // discover
+      discoverTitle:"Découvrez l’Afrique du Sud",
+      discoverBody:"Explorez les paysages magnifiques, la cuisine locale, les safaris et la culture dynamique de l’Afrique du Sud pendant votre séjour.",
+
+      // gallery
+      galleryTitle:"Galerie Safari",
+
+      // emergency
+      emergencyTitle:"Contacts d’urgence",
       phoneLabel:"Téléphone de Ruth", hospitalLabel:"Hôpital",
+
+      // countdown
       countdownTitle:"Jours restants avant le mariage",
       days:"jours", hours:"heures", minutes:"minutes", seconds:"secondes"
     },
     en:{
+      // nav
       home:"Home", welcome:"Welcome", travel:"Travel & Arrival", accommodation:"Accommodation",
+      itinerary:"Itinerary", lobola:"Lobola & Wedding", discover:"Discover South Africa",
       gallery:"Gallery", emergency:"Emergency", lang:"🌍 EN",
+
+      // hero & CTA
       hero:"Welcome to South Africa 🇿🇦", cta:"Begin your adventure",
-      welcomeTitle:"Welcome", welcomeBody:"A warm welcome to all our guests.",
+
+      // welcome
+      welcomeTitle:"Welcome",
+      welcomeBody:"We’re delighted to welcome you to South Africa to celebrate our wedding. Thank you for traveling to be with us—get ready for unforgettable memories!",
+
+      // travel
       travelTitle:"Travel & Arrival",
-      travelBody:"Flight from Paris to O.R. Tambo International Airport, then Gautrain to Sandton Station.",
-      accomTitle:"Accommodation", galleryTitle:"Safari Gallery", emergencyTitle:"Emergency Contacts",
-      phoneLabel:"Ruth's Phone", hospitalLabel:"Hospital",
+      travelBody_part1:"Flight from Paris to",
+      travelBody_part2:"then Gautrain to",
+
+      // accommodation
+      accomTitle:"Accommodation",
+      accomItem1:"Sandton Sun Towers — 24–26 Oct",
+      accomItem2:"Bakubung Bush Lodge, Pilanesberg — 26–28 Oct",
+      accomItem3:"Private apartment, Sandton — 28–31 Oct",
+
+      // itinerary
+      itineraryTitle:"Itinerary",
+      itineraryBody:"A day-by-day overview of events and highlights. Final timings will be shared closer to the date.",
+
+      // lobola & wedding
+      lobolaTitle:"Lobola Ceremony & Wedding",
+      lobolaBody:"Join us for a beautiful traditional Lobola ceremony followed by our wedding celebration. We look forward to sharing love, culture, and joy with you.",
+
+      // discover
+      discoverTitle:"Discover South Africa",
+      discoverBody:"Explore South Africa’s breathtaking landscapes, local cuisine, thrilling safaris, and vibrant culture during your stay.",
+
+      // gallery
+      galleryTitle:"Safari Gallery",
+
+      // emergency
+      emergencyTitle:"Emergency Contacts",
+      phoneLabel:"Ruth’s Phone", hospitalLabel:"Hospital",
+
+      // countdown
       countdownTitle:"Days until the wedding",
       days:"days", hours:"hours", minutes:"minutes", seconds:"seconds"
     }
@@ -322,7 +427,7 @@
   });
 
   // Countdown (change date/time if needed)
-  const targetDate = new Date("2025-11-01T10:00:00+02:00");
+  const targetDate = new Date("2025-11-01T10:00:00+02:00"); // SAST
   function updateCountdown(){
     const now = new Date();
     let diff = targetDate - now;
