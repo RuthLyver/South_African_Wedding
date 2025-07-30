@@ -29,6 +29,8 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
+
+    /* HEADER */
     header {
       display: flex;
       justify-content: space-between;
@@ -93,10 +95,12 @@
       text-align: left;
       cursor: pointer;
     }
+
+    /* HERO */
     .hero {
       padding-top: 80px;
       height: 100vh;
-      background: url('images/image1.jpg') center/cover no-repeat;
+      background: url('images/safari-hero.jpg') center/cover no-repeat;
       color: white;
       text-align: center;
       display: flex;
@@ -109,32 +113,29 @@
       font-family: 'Playfair Display', serif;
       font-size: 2.3rem;
       margin: 1rem;
-      animation: typewriter 3s steps(30) 1s 1 normal both,
-                 blinkTextCursor 500ms steps(44) infinite normal;
-      display: inline-block;
+      animation: typewriter 3s steps(30) 1s 1 normal both, blinkTextCursor 500ms steps(44) infinite normal;
       white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid white;
     }
-    .scroll-arrow {
-      font-size: 2rem;
-      color: var(--glow-gold);
-      cursor: pointer;
+    .begin-journey {
+      background: var(--glow-gold);
+      color: white;
+      padding: 0.8rem 1.4rem;
+      border-radius: 10px;
+      font-weight: bold;
       margin-top: 2rem;
-      animation: bounce 1.5s infinite;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: var(--transition);
     }
-    @keyframes typewriter {
-      from { width: 0; }
-      to { width: 100%; }
+    .begin-journey:hover {
+      background: white;
+      color: var(--glow-gold);
+      border: 2px solid var(--glow-gold);
     }
-    @keyframes blinkTextCursor {
-      from { border-right-color: rgba(255,255,255,0.75); }
-      to { border-right-color: transparent; }
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(8px); }
-    }
+
+    /* SECTIONS */
     section {
       padding: 4rem 1rem;
       text-align: center;
@@ -145,16 +146,12 @@
       color: var(--lux-gold);
       margin-bottom: 1rem;
     }
+
+    /* FOOTER + COUNTDOWN */
     footer {
       background: var(--bg-beige);
       padding: 3rem 1rem 4rem;
       text-align: center;
-    }
-    footer h2 {
-      font-family: 'Playfair Display', serif;
-      color: var(--lux-gold);
-      font-size: 1.8rem;
-      margin-bottom: 2rem;
     }
     #countdownContainer {
       display: flex;
@@ -179,13 +176,41 @@
       font-size: 2rem;
       font-weight: bold;
       color: black;
-      display: block;
-      margin-bottom: 0.3rem;
     }
     .countdown-box small {
       font-size: 0.9rem;
-      color: var(--text-dark);
     }
+
+    /* FLOATING BUTTONS (example) */
+    .floating-nav {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .floating-nav a {
+      background: var(--glow-gold);
+      padding: 0.6rem 1rem;
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blinkTextCursor {
+      from { border-right-color: rgba(255,255,255,0.75); }
+      to { border-right-color: transparent; }
+    }
+
     @media (min-width: 768px) {
       nav.nav-menu {
         position: static;
@@ -193,7 +218,6 @@
         flex-direction: row;
         background: none;
         border-top: none;
-        display: flex !important;
       }
       nav.nav-menu a,
       .lang-button {
@@ -208,6 +232,12 @@
 </head>
 <body>
 
+<!-- BACKGROUND MUSIC -->
+<audio autoplay loop>
+  <source src="/media/audio1.mp3" type="audio/mp3">
+</audio>
+
+<!-- HEADER -->
 <header>
   <div class="logo">C&R</div>
   <button id="menu-toggle" class="hamburger">☰</button>
@@ -224,19 +254,39 @@
   </nav>
 </header>
 
+<!-- HERO SECTION -->
 <section class="hero" id="home">
   <h1 id="heroTitle">Bienvenue en Afrique du Sud 🇿🇦</h1>
-  <div class="scroll-arrow" onclick="document.getElementById('welcome').scrollIntoView({ behavior: 'smooth' })">↓</div>
+  <button class="begin-journey" onclick="document.getElementById('welcome').scrollIntoView({ behavior: 'smooth' })">Commencer votre aventure</button>
 </section>
 
-<section id="welcome"><h2>Bienvenue</h2><p>Un accueil chaleureux à tous nos invités.</p></section>
-<section id="travel"><h2>Voyage & Arrivée</h2><p>Infos sur les vols et les transferts depuis l'aéroport.</p></section>
-<section id="accommodation"><h2>Hébergement</h2><p>Suggestions d'hôtels et d'hébergements pour votre séjour.</p></section>
-<section id="itinerary"><h2>Programme</h2><p>Les activités et moments importants pendant votre séjour.</p></section>
-<section id="wedding"><h2>Lobola & Mariage</h2><p>Détails de la journée de Lobola et du mariage principal.</p></section>
-<section id="discover"><h2>Découvrir l’Afrique du Sud</h2><p>Explorez la culture, les paysages et la magie de l’Afrique du Sud.</p></section>
-<section id="emergency"><h2>Contacts d'Urgence</h2><p>Informations de contact en cas d'urgence.</p></section>
+<!-- WELCOME SECTION -->
+<section id="welcome">
+  <h2>Bienvenue</h2>
+  <p>Un accueil chaleureux à tous nos invités.</p>
+  <p>
+    <button onclick="playAudio('sepedi')">🎧 Sepedi</button>
+    <button onclick="playAudio('french')">🎧 Français</button>
+    <button onclick="playAudio('english')">🎧 English</button>
+  </p>
+  <audio id="audio-sepedi" src="/media/sepedi.mp3"></audio>
+  <audio id="audio-french" src="/media/french.mp3"></audio>
+  <audio id="audio-english" src="/media/english.mp3"></audio>
+</section>
 
+<!-- TRAVEL SECTION -->
+<section id="travel">
+  <h2>Voyage & Arrivée</h2>
+  <p>Vols de Paris à <a href="https://maps.google.com?q=JHB+Airport" target="_blank">Aéroport JHB</a>, puis Gautrain vers <a href="https://maps.google.com?q=Sandton+Station" target="_blank">Sandton</a>.</p>
+</section>
+
+<!-- ACCOMMODATION -->
+<section id="accommodation">
+  <h2>Hébergement</h2>
+  <p>Sandton Sun: <a href="https://maps.google.com?q=Sandton+Sun+Hotel" target="_blank">24–26 Oct</a></p>
+</section>
+
+<!-- COUNTDOWN -->
 <footer>
   <h2>Wedding day in</h2>
   <div id="countdownContainer">
@@ -247,6 +297,19 @@
   </div>
 </footer>
 
+<!-- FLOATING NAV -->
+<div class="floating-nav">
+  <a href="#home">↑ Home</a>
+  <a href="#wedding">💍 Wedding</a>
+  <a href="https://wa.me/27829627848" target="_blank">
+    <img src="/icons/icon_whatsapp.svg" alt="WhatsApp" width="18"> WhatsApp
+  </a>
+  <a href="mailto:phaahlaruth@gmail.com" target="_blank">
+    <img src="/icons/icon_email.svg" alt="Email" width="18"> Email
+  </a>
+</div>
+
+<!-- SCRIPT -->
 <script>
 const langToggle = document.getElementById("langToggle");
 const navMenu = document.getElementById("navMenu");
@@ -254,34 +317,18 @@ const menuToggle = document.getElementById("menu-toggle");
 const heroTitle = document.getElementById("heroTitle");
 
 let currentLang = "fr";
-
 const translations = {
   fr: {
-    home: "Accueil",
-    welcome: "Bienvenue",
-    travel: "Voyage & Arrivée",
-    accommodation: "Hébergement",
-    itinerary: "Programme",
-    wedding: "Lobola & Mariage",
-    discover: "Découvrir l’Afrique du Sud",
-    emergency: "Contacts d'Urgence",
-    lang: "🌍 FR",
-    hero: "Bienvenue en Afrique du Sud 🇿🇦"
+    home: "Accueil", welcome: "Bienvenue", travel: "Voyage & Arrivée", accommodation: "Hébergement",
+    itinerary: "Programme", wedding: "Lobola & Mariage", discover: "Découvrir l’Afrique du Sud", emergency: "Contacts d'Urgence",
+    lang: "🌍 FR", hero: "Bienvenue en Afrique du Sud 🇿🇦"
   },
   en: {
-    home: "Home",
-    welcome: "Welcome",
-    travel: "Travel & Arrival",
-    accommodation: "Accommodation",
-    itinerary: "Itinerary",
-    wedding: "Lobola & Wedding",
-    discover: "Discover South Africa",
-    emergency: "Emergency Contacts",
-    lang: "🌍 EN",
-    hero: "Welcome to South Africa 🇿🇦"
+    home: "Home", welcome: "Welcome", travel: "Travel & Arrival", accommodation: "Accommodation",
+    itinerary: "Itinerary", wedding: "Lobola & Wedding", discover: "Discover South Africa", emergency: "Emergency Contacts",
+    lang: "🌍 EN", hero: "Welcome to South Africa 🇿🇦"
   }
 };
-
 function updateMenu(lang) {
   document.querySelectorAll("#navMenu a").forEach(link => {
     const key = link.getAttribute("data-key");
@@ -290,56 +337,45 @@ function updateMenu(lang) {
   langToggle.textContent = translations[lang].lang;
   heroTitle.textContent = translations[lang].hero;
 }
-
 langToggle.addEventListener("click", () => {
   currentLang = currentLang === "fr" ? "en" : "fr";
   updateMenu(currentLang);
 });
-
 menuToggle.addEventListener("click", () => {
   navMenu.classList.toggle("open");
   menuToggle.classList.toggle("open");
-  menuToggle.textContent = menuToggle.textContent === "☰" ? "✖" : "☰";
+  menuToggle.textContent = navMenu.classList.contains("open") ? "✖" : "☰";
 });
-
-// Close menu when nav item is clicked
 document.querySelectorAll("#navMenu a").forEach(link => {
   link.addEventListener("click", () => {
-    if (navMenu.classList.contains("open")) {
-      navMenu.classList.remove("open");
-      menuToggle.classList.remove("open");
-      menuToggle.textContent = "☰";
-    }
+    navMenu.classList.remove("open");
+    menuToggle.classList.remove("open");
+    menuToggle.textContent = "☰";
   });
 });
-
 updateMenu(currentLang);
 
-// Countdown Timer
-const daysEl = document.getElementById("days");
-const hoursEl = document.getElementById("hours");
-const minutesEl = document.getElementById("minutes");
-const secondsEl = document.getElementById("seconds");
+// COUNTDOWN
 const targetDate = new Date("2025-11-01T10:00:00+02:00");
-
 function updateCountdown() {
   const now = new Date();
   const diff = targetDate - now;
-  if (diff <= 0) {
-    daysEl.textContent = hoursEl.textContent = minutesEl.textContent = secondsEl.textContent = "0";
-    return;
-  }
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-  daysEl.textContent = days;
-  hoursEl.textContent = hours;
-  minutesEl.textContent = minutes;
-  secondsEl.textContent = seconds;
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((diff / (1000 * 60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+  document.getElementById("days").textContent = d;
+  document.getElementById("hours").textContent = h;
+  document.getElementById("minutes").textContent = m;
+  document.getElementById("seconds").textContent = s;
 }
-updateCountdown();
 setInterval(updateCountdown, 1000);
+
+// AUDIO
+function playAudio(lang) {
+  document.querySelectorAll("audio[id^='audio']").forEach(a => a.pause());
+  document.getElementById("audio-" + lang).play();
+}
 </script>
 
 </body>
