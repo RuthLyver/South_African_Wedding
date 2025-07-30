@@ -19,9 +19,7 @@
       margin: 0;
       padding: 0;
     }
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg-beige);
@@ -29,18 +27,17 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
-    /* HEADER */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem;
       background: white;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
       position: fixed;
       width: 100%;
+      top: 0;
       z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .logo {
       font-family: 'Playfair Display', serif;
@@ -53,11 +50,6 @@
       border: none;
       cursor: pointer;
       color: var(--lux-gold);
-      transition: transform 0.3s ease;
-      z-index: 1100;
-    }
-    .hamburger.open {
-      transform: rotate(90deg);
     }
     nav.nav-menu {
       position: absolute;
@@ -65,93 +57,67 @@
       left: 0;
       width: 100%;
       background: white;
-      border-top: 1px solid #ddd;
       max-height: 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       transition: max-height 0.4s ease-in-out;
     }
-    nav.nav-menu.open {
-      max-height: 600px;
-    }
-    nav.nav-menu a,
-    .lang-button {
+    nav.nav-menu.open { max-height: 600px; }
+    nav.nav-menu a, .lang-button {
       padding: 1rem;
       text-decoration: none;
       color: var(--text-dark);
       font-weight: bold;
       border-bottom: 1px solid #eee;
-      transition: var(--transition);
-    }
-    nav.nav-menu a:hover,
-    .lang-button:hover {
-      background: var(--lux-gold);
-      color: white;
     }
     .lang-button {
       background: none;
       border: none;
-      text-align: left;
       cursor: pointer;
     }
-
-    /* HERO */
     .hero {
       padding-top: 80px;
       height: 100vh;
       background: url('images/safari-hero.jpg') center/cover no-repeat;
       color: white;
-      text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      position: relative;
+      text-align: center;
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.3rem;
-      margin: 1rem;
-      animation: typewriter 3s steps(30) 1s 1 normal both, blinkTextCursor 500ms steps(44) infinite normal;
+      font-size: 2.5rem;
+      animation: typewriter 3s steps(40) 1s 1 normal both, blinkTextCursor 500ms steps(40) infinite;
       white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid white;
     }
     .begin-journey {
-      background: var(--glow-gold);
-      color: white;
-      padding: 0.8rem 1.4rem;
-      border-radius: 10px;
-      font-weight: bold;
       margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--glow-gold);
+      border: none;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transition: var(--transition);
     }
-    .begin-journey:hover {
-      background: white;
-      color: var(--glow-gold);
-      border: 2px solid var(--glow-gold);
-    }
-
-    /* SECTIONS */
     section {
       padding: 4rem 1rem;
       text-align: center;
     }
     section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
       color: var(--lux-gold);
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
-
-    /* FOOTER + COUNTDOWN */
     footer {
       background: var(--bg-beige);
-      padding: 3rem 1rem 4rem;
-      text-align: center;
+      padding: 2rem 1rem;
     }
     #countdownContainer {
       display: flex;
@@ -163,25 +129,13 @@
       background: white;
       padding: 1.5rem;
       border-radius: 12px;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
-      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       min-width: 80px;
-      transition: transform 0.3s ease;
-    }
-    .countdown-box:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
     }
     .countdown-box span {
       font-size: 2rem;
       font-weight: bold;
-      color: black;
     }
-    .countdown-box small {
-      font-size: 0.9rem;
-    }
-
-    /* FLOATING BUTTONS (example) */
     .floating-nav {
       position: fixed;
       bottom: 15px;
@@ -193,15 +147,12 @@
     }
     .floating-nav a {
       background: var(--glow-gold);
-      padding: 0.6rem 1rem;
       color: white;
+      padding: 0.6rem 1rem;
       border-radius: 50px;
       text-decoration: none;
       font-size: 0.9rem;
-      font-weight: bold;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
-
     @keyframes typewriter {
       from { width: 0; }
       to { width: 100%; }
@@ -210,34 +161,27 @@
       from { border-right-color: rgba(255,255,255,0.75); }
       to { border-right-color: transparent; }
     }
-
     @media (min-width: 768px) {
       nav.nav-menu {
         position: static;
         max-height: none;
         flex-direction: row;
         background: none;
-        border-top: none;
       }
-      nav.nav-menu a,
-      .lang-button {
+      nav.nav-menu a, .lang-button {
         border-bottom: none;
         padding: 0 1rem;
       }
-      .hamburger {
-        display: none;
-      }
+      .hamburger { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- BACKGROUND MUSIC -->
 <audio autoplay loop>
   <source src="/media/audio1.mp3" type="audio/mp3">
 </audio>
 
-<!-- HEADER -->
 <header>
   <div class="logo">C&R</div>
   <button id="menu-toggle" class="hamburger">☰</button>
@@ -254,13 +198,11 @@
   </nav>
 </header>
 
-<!-- HERO SECTION -->
 <section class="hero" id="home">
   <h1 id="heroTitle">Bienvenue en Afrique du Sud 🇿🇦</h1>
   <button class="begin-journey" onclick="document.getElementById('welcome').scrollIntoView({ behavior: 'smooth' })">Commencer votre aventure</button>
 </section>
 
-<!-- WELCOME SECTION -->
 <section id="welcome">
   <h2>Bienvenue</h2>
   <p>Un accueil chaleureux à tous nos invités.</p>
@@ -274,19 +216,21 @@
   <audio id="audio-english" src="/media/english.mp3"></audio>
 </section>
 
-<!-- TRAVEL SECTION -->
 <section id="travel">
   <h2>Voyage & Arrivée</h2>
-  <p>Vols de Paris à <a href="https://maps.google.com?q=JHB+Airport" target="_blank">Aéroport JHB</a>, puis Gautrain vers <a href="https://maps.google.com?q=Sandton+Station" target="_blank">Sandton</a>.</p>
+  <p>Vols de Paris à <a href="https://maps.google.com?q=JHB+Airport" target="_blank">Aéroport JHB</a>, Gautrain vers <a href="https://maps.google.com?q=Sandton+Station" target="_blank">Sandton</a>.</p>
 </section>
 
-<!-- ACCOMMODATION -->
-<section id="accommodation">
-  <h2>Hébergement</h2>
-  <p>Sandton Sun: <a href="https://maps.google.com?q=Sandton+Sun+Hotel" target="_blank">24–26 Oct</a></p>
-</section>
+<section id="accommodation"><h2>Hébergement</h2><p><a href="https://maps.google.com?q=Sandton+Sun" target="_blank">Sandton Sun</a>, <a href="https://maps.google.com?q=Bakubung+Lodge" target="_blank">Bakubung</a></p></section>
 
-<!-- COUNTDOWN -->
+<section id="itinerary"><h2>Programme</h2><p>Planning détaillé du 24 octobre au 3 novembre.</p></section>
+
+<section id="wedding"><h2>Lobola & Mariage</h2><p>Lobola à la maison familiale de Ruth. Mariage à <a href="https://maps.google.com?q=Sandstone+House+Franschhoek" target="_blank">Sandstone House</a>.</p></section>
+
+<section id="discover"><h2>Découvrir l’Afrique du Sud</h2><p>Culture, paysages, sécurité, faune.</p></section>
+
+<section id="emergency"><h2>Contacts d'Urgence</h2><p>WhatsApp Ruth: <a href="https://wa.me/27829627848" target="_blank">0829627848</a> — Email: <a href="mailto:phaahlaruth@gmail.com">phaahlaruth@gmail.com</a></p></section>
+
 <footer>
   <h2>Wedding day in</h2>
   <div id="countdownContainer">
@@ -297,37 +241,26 @@
   </div>
 </footer>
 
-<!-- FLOATING NAV -->
 <div class="floating-nav">
   <a href="#home">↑ Home</a>
   <a href="#wedding">💍 Wedding</a>
   <a href="https://wa.me/27829627848" target="_blank">
-    <img src="/icons/icon_whatsapp.svg" alt="WhatsApp" width="18"> WhatsApp
+    <img src="/icons/icon_whatsapp.svg" width="16" /> WhatsApp
   </a>
   <a href="mailto:phaahlaruth@gmail.com" target="_blank">
-    <img src="/icons/icon_email.svg" alt="Email" width="18"> Email
+    <img src="/icons/icon_email.svg" width="16" /> Email
   </a>
 </div>
 
-<!-- SCRIPT -->
 <script>
 const langToggle = document.getElementById("langToggle");
 const navMenu = document.getElementById("navMenu");
 const menuToggle = document.getElementById("menu-toggle");
 const heroTitle = document.getElementById("heroTitle");
-
 let currentLang = "fr";
 const translations = {
-  fr: {
-    home: "Accueil", welcome: "Bienvenue", travel: "Voyage & Arrivée", accommodation: "Hébergement",
-    itinerary: "Programme", wedding: "Lobola & Mariage", discover: "Découvrir l’Afrique du Sud", emergency: "Contacts d'Urgence",
-    lang: "🌍 FR", hero: "Bienvenue en Afrique du Sud 🇿🇦"
-  },
-  en: {
-    home: "Home", welcome: "Welcome", travel: "Travel & Arrival", accommodation: "Accommodation",
-    itinerary: "Itinerary", wedding: "Lobola & Wedding", discover: "Discover South Africa", emergency: "Emergency Contacts",
-    lang: "🌍 EN", hero: "Welcome to South Africa 🇿🇦"
-  }
+  fr: { home: "Accueil", welcome: "Bienvenue", travel: "Voyage & Arrivée", accommodation: "Hébergement", itinerary: "Programme", wedding: "Lobola & Mariage", discover: "Découvrir l’Afrique du Sud", emergency: "Contacts d'Urgence", lang: "🌍 FR", hero: "Bienvenue en Afrique du Sud 🇿🇦" },
+  en: { home: "Home", welcome: "Welcome", travel: "Travel & Arrival", accommodation: "Accommodation", itinerary: "Itinerary", wedding: "Lobola & Wedding", discover: "Discover South Africa", emergency: "Emergency Contacts", lang: "🌍 EN", hero: "Welcome to South Africa 🇿🇦" }
 };
 function updateMenu(lang) {
   document.querySelectorAll("#navMenu a").forEach(link => {
@@ -343,19 +276,17 @@ langToggle.addEventListener("click", () => {
 });
 menuToggle.addEventListener("click", () => {
   navMenu.classList.toggle("open");
-  menuToggle.classList.toggle("open");
   menuToggle.textContent = navMenu.classList.contains("open") ? "✖" : "☰";
 });
 document.querySelectorAll("#navMenu a").forEach(link => {
   link.addEventListener("click", () => {
     navMenu.classList.remove("open");
-    menuToggle.classList.remove("open");
     menuToggle.textContent = "☰";
   });
 });
 updateMenu(currentLang);
 
-// COUNTDOWN
+// Countdown
 const targetDate = new Date("2025-11-01T10:00:00+02:00");
 function updateCountdown() {
   const now = new Date();
@@ -371,7 +302,7 @@ function updateCountdown() {
 }
 setInterval(updateCountdown, 1000);
 
-// AUDIO
+// Audio greetings
 function playAudio(lang) {
   document.querySelectorAll("audio[id^='audio']").forEach(a => a.pause());
   document.getElementById("audio-" + lang).play();
