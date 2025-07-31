@@ -143,6 +143,7 @@
           hsl(0 0% 0% / .2) 50%,
           transparent 80%
         ),
+        url('images/safari01.jpg') center/cover no-repeat,
         linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
       color: white;
       display: flex; flex-direction: column;
@@ -686,3 +687,16 @@
     }
     setInterval(tick, 1000);
     tick();
+
+    // — WEB SPEECH GREETING
+    function speak(lang) {
+      const msgs = {
+        sepedi:  "Dumela, re a le amohela Afrika Borwa!",
+        french:  "Bonjour et bienvenue en Afrique du Sud!",
+        english: "Hello and welcome to South Africa!"
+      };
+      const u = new SpeechSynthesisUtterance(msgs[lang]);
+      u.lang = lang === "french" ? "fr-FR" : lang === "english" ? "en-US" : "nso-ZA";
+      speechSynthesis.speak(u);
+    }
+    window.speak = speak;
