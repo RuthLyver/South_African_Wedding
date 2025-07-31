@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>Cédric & Ruth – South African Wedding</title>
 
-  <!-- ============================= -->
-  <!--    Google Fonts Integration   -->
-  <!-- ============================= -->
+  <!-- =============================
+       Google Fonts Integration
+  ============================= -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
@@ -15,9 +15,9 @@
     rel="stylesheet"
   >
 
-  <!-- ============================= -->
-  <!--     FontAwesome for Icons     -->
-  <!-- ============================= -->
+  <!-- =============================
+       FontAwesome for Icons
+  ============================= -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -26,9 +26,9 @@
     referrerpolicy="no-referrer"
   >
 
-  <!-- ============================= -->
-  <!--   Preload Hero Background     -->
-  <!-- ============================= -->
+  <!-- =============================
+       Preload Hero Background
+  ============================= -->
   <link
     rel="preload"
     as="image"
@@ -38,9 +38,9 @@
   >
 
   <style>
-    /* =======================================
-       Theme variables (colors, shadows etc.)
-    ======================================= */
+    /*=======================================
+      Theme variables (colors, shadows, etc.)
+    =======================================*/
     :root {
       --gold: 45 90% 45%;
       --gold-strong: 45 95% 55%;
@@ -50,9 +50,9 @@
       --transition: all .3s ease;
     }
 
-    /* =======================================
-       Global resets + base styles
-    ======================================= */
+    /*=======================================
+      Global resets + base styles
+    =======================================*/
     * { box-sizing:border-box; margin:0; padding:0 }
     html { scroll-behavior:smooth }
     body {
@@ -61,15 +61,15 @@
       line-height:1.6; overflow-x:hidden;
     }
 
-    /* ================================
-       Header & Hamburger styles
-    ================================ */
+    /*=======================================
+      Header & Hamburger styles
+    =======================================*/
     header {
       position:fixed; top:0; left:0; right:0;
       display:flex; justify-content:space-between; align-items:center;
       padding:1rem; background: hsl(0 0% 100% / 0.9);
       backdrop-filter: blur(15px); border-bottom:1px solid hsl(35 15% 85%);
-      z-index:1000;
+      z-index:1000; /* below nav-menu */
     }
     .logo {
       font-family:'Playfair Display', serif;
@@ -83,16 +83,16 @@
     }
     .hamburger:hover { background:hsl(var(--gold)/.1); transform:scale(1.1) }
 
-    /* ================================
-       Navigation menu (mobile + desktop)
-    ================================ */
+    /*=======================================
+      Navigation menu (mobile + desktop)
+    =======================================*/
     nav.nav-menu {
       position:fixed; top:60px; left:0; right:0; bottom:0;
       background:hsl(0 0% 100%/.95); backdrop-filter:blur(20px);
       display:flex; flex-direction:column; padding:2rem 1rem;
       transform:translateX(-100%); transition:transform .35s ease;
       overflow-y:auto;
-      z-index:1100; /* above hero */
+      z-index:1100; /* sits above everything */
     }
     nav.nav-menu.open { transform:translateX(0) }
     nav.nav-menu a, .lang-button {
@@ -105,7 +105,6 @@
       background:hsl(var(--gold)); color:white; transform:translateX(8px);
     }
 
-    /* Desktop overrides for nav */
     @media(min-width:768px){
       .hamburger { display:none }
       nav.nav-menu {
@@ -121,9 +120,9 @@
       }
     }
 
-    /* ================================
-       Hero Section (background + text)
-    ================================ */
+    /*=======================================
+      Hero Section (background + text)
+    =======================================*/
     .hero {
       padding-top:60px; min-height:100svh;
       background:
@@ -150,9 +149,9 @@
       box-shadow:0 16px 32px hsl(45 40% 30%/.3);
     }
 
-    /* ================================
-       Section Cards (uniform layout)
-    ================================ */
+    /*=======================================
+      Section Cards (uniform layout)
+    =======================================*/
     section { padding:3rem 1rem; text-align:center; scroll-margin-top:80px }
     .card {
       background:hsl(var(--gold)); color:white;
@@ -165,9 +164,7 @@
     .card h2 { margin-bottom:1rem; font-size:clamp(1.5rem,5vw,2rem) }
     .card p { font-size:clamp(.95rem,3.5vw,1.1rem); line-height:1.7 }
 
-    /* ================================
-       Audio Button Styles
-    ================================ */
+    /* Audio button styling */
     .audio-button {
       background:hsl(var(--gold-strong)); color:white; border:none;
       padding:.75rem 1.25rem; border-radius:25px; margin:.5rem;
@@ -179,9 +176,7 @@
       box-shadow:0 6px 20px hsl(45 40% 30%/.35);
     }
 
-    /* ================================
-       Gallery Grid
-    ================================ */
+    /* Gallery layout */
     .gallery-grid {
       display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:1rem; margin-top:2rem;
@@ -192,9 +187,7 @@
     }
     .gallery-grid img:hover { transform:scale(1.02) }
 
-    /* ================================
-       Accommodation List
-    ================================ */
+    /* Accommodation list */
     .accommodation-list {
       list-style:none; text-align:left; padding:0; margin:1rem 0;
     }
@@ -207,9 +200,7 @@
       display:block; color:white; font-weight:600; text-decoration:none;
     }
 
-    /* ================================
-       Footer & Countdown Styles
-    ================================ */
+    /* Footer + Countdown */
     footer {
       background:hsl(var(--beige)); padding:3rem 1rem 5rem; text-align:center
     }
@@ -230,9 +221,7 @@
       display:block; margin-top:.25rem; color:hsl(var(--dark))
     }
 
-    /* ================================
-       Floating Quick Links
-    ================================ */
+    /* Floating quick links */
     .floating-nav {
       position:fixed; right:1rem; bottom:1rem; display:flex;
       flex-direction:column; gap:.75rem; z-index:999;
@@ -248,9 +237,7 @@
       box-shadow:0 6px 20px hsl(45 40% 30%/.4);
     }
 
-    /* ================================
-       Simple Fade-In Animation
-    ================================ */
+    /* Simple fade-in animation */
     @keyframes fadeInUp {
       from { opacity:0; transform:translateY(30px) }
       to   { opacity:1; transform:translateY(0) }
@@ -272,15 +259,15 @@
     >☰</button>
     <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
       <!-- data-key used for i18n lookup -->
-      <a href="#home"           data-key="home">🏠 Accueil</a>
-      <a href="#welcome"        data-key="welcome">💍 Bienvenue</a>
-      <a href="#travel"         data-key="travel">✈️ Voyage</a>
-      <a href="#accommodation"  data-key="accommodation">🏨 Hébergement</a>
-      <a href="#itinerary"      data-key="itinerary">📅 Itinéraire</a>
-      <a href="#lobola"         data-key="lobola">💒 Lobola & Mariage</a>
-      <a href="#discover"       data-key="discover">🌍 Découvrir</a>
-      <a href="#gallery"        data-key="gallery">📸 Galerie</a>
-      <a href="#emergency"      data-key="emergency">🚨 Urgence</a>
+      <a href="#home" data-key="home">🏠 Accueil</a>
+      <a href="#welcome" data-key="welcome">💍 Bienvenue</a>
+      <a href="#travel" data-key="travel">✈️ Voyage</a>
+      <a href="#accommodation" data-key="accommodation">🏨 Hébergement</a>
+      <a href="#itinerary" data-key="itinerary">📅 Itinéraire</a>
+      <a href="#lobola" data-key="lobola">💒 Lobola & Mariage</a>
+      <a href="#discover" data-key="discover">🌍 Découvrir</a>
+      <a href="#gallery" data-key="gallery">📸 Galerie</a>
+      <a href="#emergency" data-key="emergency">🚨 Urgence</a>
       <!-- language toggle -->
       <button id="langToggle" class="lang-button" data-i18n="lang">🌍 FR</button>
     </nav>
@@ -291,7 +278,6 @@
   ================================ -->
   <section class="hero" id="home">
     <div class="hero-inner">
-      <!-- data-i18n used for translations -->
       <h1 id="heroTitle" data-i18n="hero">Bienvenue en Afrique du Sud 🇿🇦</h1>
       <button class="begin-journey" id="ctaStart" data-i18n="cta">
         Commencez votre aventure
@@ -329,17 +315,13 @@
       <p>
         <i class="fas fa-plane"></i>
         <span data-i18n="travelBody_part1">Vol de Paris vers</span>
-        <a
-          href="https://maps.google.com?q=O.R.+Tambo+International+Airport"
-          target="_blank" rel="noopener">
+        <a href="https://maps.google.com?q=O.R.+Tambo+International+Airport" target="_blank" rel="noopener">
           <i class="fas fa-map-marker-alt"></i>
           O.R. Tambo International Airport
         </a>,
         <i class="fas fa-train"></i>
         <span data-i18n="travelBody_part2">puis Gautrain jusqu'à</span>
-        <a
-          href="https://maps.google.com?q=Sandton+Station"
-          target="_blank" rel="noopener">
+        <a href="https://maps.google.com?q=Sandton+Station" target="_blank" rel="noopener">
           <i class="fas fa-map-marker-alt"></i>
           Sandton Station
         </a>.
@@ -430,7 +412,7 @@
 
   <!-- ================================
        FOOTER & COUNTDOWN SECTION
-  ================================ -->
+  ================================
   <footer>
     <h2 data-i18n="countdownTitle">Jours restants avant le mariage</h2>
     <div id="countdownContainer">
@@ -443,7 +425,7 @@
 
   <!-- ================================
        FLOATING QUICK LINKS
-  ================================ -->
+  ================================
   <div class="floating-nav">
     <a href="#home">🏠</a>
     <a href="#welcome">💍</a>
@@ -451,19 +433,19 @@
     <a href="mailto:phaahlaruth@gmail.com">✉️</a>
   </div>
 
+  <!-- ================================
+       SCRIPT — Translations, Menu Toggle,
+       Smooth Scroll, Countdown & Speech
+  ================================
   <script>
-    // ================================
-    //    DOM ELEMENTS SELECTION
-    // ================================
+    // — DOM ELEMENTS SELECTION
     const htmlEl     = document.documentElement;
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu    = document.getElementById("navMenu");
     const langToggle = document.getElementById("langToggle");
     const ctaStart   = document.getElementById("ctaStart");
 
-    // ================================
-    //     TRANSLATIONS DICTIONARY
-    // ================================
+    // — TRANSLATIONS DICTIONARY
     const translations = {
       fr: {
         home:"Accueil", welcome:"Bienvenue", travel:"Voyage et arrivée",
@@ -513,20 +495,16 @@
       }
     };
 
-    // ================================
-    //      LANGUAGE SWITCHING
-    // ================================
+    // — LANGUAGE SWITCHING
     function setLang(lang) {
       htmlEl.lang = lang;
       localStorage.setItem("lang", lang);
-
-      // update nav link texts
+      // update nav links
       document.querySelectorAll("#navMenu a").forEach(a => {
         const key = a.dataset.key;
         if (translations[lang][key]) a.textContent = translations[lang][key];
       });
-
-      // update all [data-i18n] elements
+      // update content
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
         if (translations[lang][key]) el.textContent = translations[lang][key];
@@ -539,15 +517,13 @@
       setLang(currentLang);
     });
 
-    // ================================
-    //     MOBILE MENU TOGGLE LOGIC
-    // ================================
+    // — MOBILE MENU TOGGLE
     menuToggle.addEventListener("click", () => {
       const isOpen = navMenu.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", isOpen);
       menuToggle.textContent = isOpen ? "✖" : "☰";
     });
-    // close menu when any link is clicked
+    // close on link click
     document.querySelectorAll("#navMenu a").forEach(link => {
       link.addEventListener("click", () => {
         navMenu.classList.remove("open");
@@ -556,20 +532,15 @@
       });
     });
 
-    // ================================
-    //     CTA SMOOTH SCROLL LOGIC
-    // ================================
+    // — CTA SMOOTH SCROLL
     ctaStart.addEventListener("click", () => {
       document.getElementById("welcome").scrollIntoView({ behavior: "smooth" });
     });
 
-    // ================================
-    //       COUNTDOWN TIMER LOGIC
-    // ================================
+    // — COUNTDOWN TIMER
     const target = new Date("2025-11-01T10:00:00+02:00");
     function tick() {
-      const now = Date.now();
-      const diff = Math.max(target - now, 0);
+      const now = Date.now(), diff = Math.max(target - now, 0);
       const d = Math.floor(diff / 86400000),
             h = Math.floor((diff % 86400000) / 3600000),
             m = Math.floor((diff % 3600000) / 60000),
@@ -579,12 +550,9 @@
       document.getElementById("minutes").textContent = String(m).padStart(2,"0");
       document.getElementById("seconds").textContent = String(s).padStart(2,"0");
     }
-    setInterval(tick, 1000);
-    tick();
+    setInterval(tick,1000); tick();
 
-    // ================================
-    //     WEB SPEECH GREETING LOGIC
-    // ================================
+    // — WEB SPEECH GREETING
     function speak(lang) {
       const msgs = {
         sepedi:  "Dumela, re a le amohela Afrika Borwa!",
@@ -592,11 +560,7 @@
         english: "Hello and welcome to South Africa!"
       };
       const u = new SpeechSynthesisUtterance(msgs[lang]);
-      u.lang = lang === "french"
-        ? "fr-FR"
-        : lang === "english"
-          ? "en-US"
-          : "nso-ZA";
+      u.lang = lang==="french"?"fr-FR":lang==="english"?"en-US":"nso-ZA";
       speechSynthesis.speak(u);
     }
     window.speak = speak;
