@@ -5,19 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>Cédric & Ruth – South African Wedding</title>
 
-  <!-- Performance: fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"
+  >
 
-  <!-- Preload hero for faster LCP -->
-  <link rel="preload" as="image"
-        href="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-        imagesrcset="
-          https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80 800w,
-          https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80 1200w,
-          https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80 2000w"
-        imagesizes="100vw">
+  <!-- FontAwesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-p0fK2xWj9g0g4pL+4OaG0s6G8dgw5Uhdj+irqmu4LkQnkdg0nV+g9cXW4n5Ui8O2Q2KZcRtyNYf8X+XrA3vYhg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
+
+  <!-- Preload hero image -->
+  <link
+    rel="preload"
+    as="image"
+    href="images/background.jpg"
+    imagesrcset="images/background.jpg"
+    imagesizes="100vw"
+  >
 
   <style>
     :root {
@@ -95,8 +107,7 @@
       padding-top:60px; min-height:100svh;
       background:
         linear-gradient(to bottom, hsl(0 0% 0%/.4),hsl(0 0% 0%/.2)50%,transparent 80%),
-        url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')
-        center/cover no-repeat;
+        url('images/background.jpg') center/cover no-repeat;
       color:white; display:flex; flex-direction:column;
       justify-content:center; align-items:center; text-align:center;
     }
@@ -161,6 +172,7 @@
       display:block; color:white; font-weight:600; text-decoration:none;
     }
 
+    /* Footer & Floating Nav */
     footer {
       background:hsl(var(--beige)); padding:3rem 1rem 5rem; text-align:center
     }
@@ -191,53 +203,44 @@
     @keyframes fadeInUp {
       from { opacity:0; transform:translateY(30px) } to { opacity:1; transform:translateY(0) }
     }
-
-    @media(min-width:768px){
-      header { padding:1rem 2rem }
-      section { padding:4rem 2rem }
-      #countdownContainer { grid-template-columns:repeat(4,1fr); max-width:600px }
-    }
-    @media(min-width:1024px){
-      .card { padding:3rem 2.5rem; max-width:900px }
-      .gallery-grid { grid-template-columns:repeat(4,1fr); gap:1.5rem }
-      .gallery-grid img { height:300px }
-      .floating-nav { right:2rem; bottom:2rem }
-    }
-    @media(prefers-reduced-motion:reduce){
-      * { animation:none!important; transition:none!important }
-      html { scroll-behavior:auto }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Background music -->
-  <audio id="bg-music" autoplay loop src="media/audio1.mp3"></audio>
-
+  <!-- Header & Nav -->
   <header>
     <div class="logo" aria-label="Cédric & Ruth">C&R</div>
-    <button id="menu-toggle" class="hamburger" aria-controls="navMenu" aria-expanded="false">☰</button>
-    <nav id="navMenu" class="nav-menu" aria-label="Primary">
-      <a href="#home" data-key="home">🏠 Accueil</a>
-      <a href="#welcome" data-key="welcome">💍 Bienvenue</a>
-      <a href="#travel" data-key="travel">✈️ Voyage</a>
+    <button
+      id="menu-toggle"
+      class="hamburger"
+      aria-controls="navMenu"
+      aria-expanded="false"
+    >☰</button>
+    <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
+      <a href="#home"     data-key="home">🏠 Accueil</a>
+      <a href="#welcome"  data-key="welcome">💍 Bienvenue</a>
+      <a href="#travel"   data-key="travel">✈️ Voyage</a>
       <a href="#accommodation" data-key="accommodation">🏨 Hébergement</a>
       <a href="#itinerary" data-key="itinerary">📅 Itinéraire</a>
-      <a href="#lobola" data-key="lobola">💒 Lobola & Mariage</a>
+      <a href="#lobola"   data-key="lobola">💒 Lobola & Mariage</a>
       <a href="#discover" data-key="discover">🌍 Découvrir</a>
-      <a href="#gallery" data-key="gallery">📸 Galerie</a>
-      <a href="#emergency" data-key="emergency">🚨 Urgence</a>
+      <a href="#gallery"  data-key="gallery">📸 Galerie</a>
+      <a href="#emergency"data-key="emergency">🚨 Urgence</a>
       <button id="langToggle" class="lang-button" data-i18n="lang">🌍 FR</button>
     </nav>
   </header>
 
+  <!-- Hero -->
   <section class="hero" id="home">
     <div class="hero-inner">
       <h1 id="heroTitle" data-i18n="hero">Bienvenue en Afrique du Sud 🇿🇦</h1>
-      <button class="begin-journey" id="ctaStart" data-i18n="cta">Commencez votre aventure</button>
+      <button class="begin-journey" id="ctaStart" data-i18n="cta">
+        Commencez votre aventure
+      </button>
     </div>
   </section>
 
+  <!-- Welcome -->
   <section id="welcome">
     <div class="card">
       <h2 data-i18n="welcomeTitle">Bienvenue</h2>
@@ -252,18 +255,39 @@
     </div>
   </section>
 
+  <!-- Travel -->
   <section id="travel">
     <div class="card">
-      <h2 data-i18n="travelTitle">Voyage et arrivée</h2>
+      <h2 data-i18n="travelTitle">
+        <i class="fas fa-plane-departure" aria-hidden="true"></i>
+        Voyage et arrivée
+      </h2>
       <p>
+        <i class="fas fa-plane" aria-hidden="true"></i>
         <span data-i18n="travelBody_part1">Vol de Paris vers</span>
-        <a href="https://maps.google.com?q=O.R.+Tambo+International+Airport" target="_blank">O.R. Tambo International Airport</a>,
+        <a
+          href="https://maps.google.com?q=O.R.+Tambo+International+Airport"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+          O.R. Tambo International Airport
+        </a>,
+        <i class="fas fa-train" aria-hidden="true"></i>
         <span data-i18n="travelBody_part2">puis Gautrain jusqu'à</span>
-        <a href="https://maps.google.com?q=Sandton+Station" target="_blank">Sandton Station</a>.
+        <a
+          href="https://maps.google.com?q=Sandton+Station"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+          Sandton Station
+        </a>.
       </p>
     </div>
   </section>
 
+  <!-- Accommodation -->
   <section id="accommodation">
     <div class="card">
       <h2 data-i18n="accomTitle">Hébergement</h2>
@@ -275,6 +299,7 @@
     </div>
   </section>
 
+  <!-- Itinerary -->
   <section id="itinerary">
     <div class="card">
       <h2 data-i18n="itineraryTitle">Itinéraire</h2>
@@ -284,6 +309,7 @@
     </div>
   </section>
 
+  <!-- Lobola -->
   <section id="lobola">
     <div class="card">
       <h2 data-i18n="lobolaTitle">Lobola & Mariage</h2>
@@ -293,6 +319,7 @@
     </div>
   </section>
 
+  <!-- Discover -->
   <section id="discover">
     <div class="card">
       <h2 data-i18n="discoverTitle">Découvrir l'Afrique du Sud</h2>
@@ -302,28 +329,29 @@
     </div>
   </section>
 
+  <!-- Gallery -->
   <section id="gallery">
     <div class="card">
       <h2 data-i18n="galleryTitle">Galerie</h2>
       <div class="gallery-grid">
-        <img src="images/safari1.jpg" alt="Safari 1" loading="lazy">
-        <img src="images/safari2.jpg" alt="Safari 2" loading="lazy">
-        <img src="images/safari3.jpg" alt="Safari 3" loading="lazy">
-        <img src="images/safari4.jpg" alt="Safari 4" loading="lazy">
+        <img src="images/safari1.jpg" alt="Safari 1" loading="lazy">
+        <img src="images/safari2.jpg" alt="Safari 2" loading="lazy">
+        <img src="images/safari3.jpg" alt="Safari 3" loading="lazy">
+        <img src="images/safari4.jpg" alt="Safari 4" loading="lazy">
       </div>
     </div>
   </section>
 
+  <!-- Emergency -->
   <section id="emergency">
     <div class="card">
       <h2 data-i18n="emergencyTitle">Contacts d'urgence</h2>
-      <div class="emergency-contacts">
-        <div class="contact-item"><strong>🚨 Police/Ambulance:</strong> 10111</div>
-        <div class="contact-item"><strong>📱 Local:</strong> +27 82 962 7848</div>
-      </div>
+      <div class="contact-item"><strong>🚨 Police/Ambulance:</strong> 10111</div>
+      <div class="contact-item"><strong>📱 Local:</strong> +27 82 962 7848</div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <h2 data-i18n="countdownTitle">Jours restants avant le mariage</h2>
     <div id="countdownContainer">
@@ -334,6 +362,7 @@
     </div>
   </footer>
 
+  <!-- Floating Quick Links -->
   <div class="floating-nav">
     <a href="#home">🏠</a>
     <a href="#welcome">💍</a>
@@ -342,43 +371,89 @@
   </div>
 
   <script>
-    // Elements
-    const htmlEl      = document.documentElement;
-    const menuToggle  = document.getElementById("menu-toggle");
-    const navMenu     = document.getElementById("navMenu");
-    const langToggle  = document.getElementById("langToggle");
-    const ctaStart    = document.getElementById("ctaStart");
+    const htmlEl     = document.documentElement;
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu    = document.getElementById("navMenu");
+    const langToggle = document.getElementById("langToggle");
+    const ctaStart   = document.getElementById("ctaStart");
 
-    // i18n dictionary
-    const translations = { /* as before... */ };
+    const translations = {
+      fr:{
+        home:"Accueil", welcome:"Bienvenue", travel:"Voyage", accommodation:"Hébergement",
+        itinerary:"Itinéraire", lobola:"Lobola & Mariage", discover:"Découvrir",
+        gallery:"Galerie", emergency:"Urgence", lang:"🌍 FR",
+        hero:"Bienvenue en Afrique du Sud 🇿🇦", cta:"Commencez votre aventure",
+        welcomeTitle:"Bienvenue",
+        welcomeBody:"Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud.",
+        travelTitle:"Voyage et arrivée",
+        travelBody_part1:"Vol de Paris vers", travelBody_part2:"puis Gautrain jusqu'à",
+        accomTitle:"Hébergement",
+        accomItem1:"🏢 Sandton Sun Towers — 24–26 oct.",
+        accomItem2:"🦁 Bakubung Bush Lodge — 26–28 oct.",
+        accomItem3:"🏠 Private Apartment — 28–31 oct.",
+        itineraryTitle:"Itinéraire",
+        itineraryBody:"Un aperçu jour par jour de vos activités et temps forts.",
+        lobolaTitle:"Lobola & Mariage",
+        lobolaBody:"Cérémonie traditionnelle de Lobola suivie de notre célébration.",
+        discoverTitle:"Découvrir l'Afrique du Sud",
+        discoverBody:"Explorez paysages, safaris et culture locale pendant votre séjour.",
+        galleryTitle:"Galerie",
+        emergencyTitle:"Contacts d'urgence",
+        countdownTitle:"Jours restants avant le mariage",
+        days:"jours", hours:"heures", minutes:"minutes", seconds:"secondes"
+      },
+      en:{
+        home:"Home", welcome:"Welcome", travel:"Travel", accommodation:"Accommodation",
+        itinerary:"Itinerary", lobola:"Lobola & Wedding", discover:"Discover",
+        gallery:"Gallery", emergency:"Emergency", lang:"🌍 EN",
+        hero:"Welcome to South Africa 🇿🇦", cta:"Begin your adventure",
+        welcomeTitle:"Welcome",
+        welcomeBody:"We're delighted to welcome you to South Africa to celebrate our wedding.",
+        travelTitle:"Travel & Arrival",
+        travelBody_part1:"Flight from Paris to", travelBody_part2:"then Gautrain to",
+        accomTitle:"Accommodation",
+        accomItem1:"🏢 Sandton Sun Towers — 24–26 Oct",
+        accomItem2:"🦁 Bakubung Bush Lodge — 26–28 Oct",
+        accomItem3:"🏠 Private Apartment — 28–31 Oct",
+        itineraryTitle:"Itinerary",
+        itineraryBody:"A day-by-day overview of events and highlights.",
+        lobolaTitle:"Lobola & Wedding",
+        lobolaBody:"Traditional Lobola ceremony followed by our wedding celebration.",
+        discoverTitle:"Discover South Africa",
+        discoverBody:"Explore landscapes, safaris and local culture during your stay.",
+        galleryTitle:"Gallery",
+        emergencyTitle:"Emergency Contacts",
+        countdownTitle:"Days until the wedding",
+        days:"days", hours:"hours", minutes:"minutes", seconds:"seconds"
+      }
+    };
 
+    // Language setup
     function setLang(lang) {
       htmlEl.lang = lang;
       localStorage.setItem("lang", lang);
-      document.querySelectorAll("#navMenu a").forEach(a=>{
+      document.querySelectorAll("#navMenu a").forEach(a => {
         const key = a.dataset.key;
-        if(translations[lang][key]) a.textContent = translations[lang][key];
+        if (translations[lang][key]) a.textContent = translations[lang][key];
       });
-      document.querySelectorAll("[data-i18n]").forEach(el=>{
+      document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
-        if(translations[lang][key]) el.textContent = translations[lang][key];
+        if (translations[lang][key]) el.textContent = translations[lang][key];
       });
     }
     let currentLang = localStorage.getItem("lang") || "fr";
     setLang(currentLang);
-    langToggle.addEventListener("click", ()=>{
+    langToggle.addEventListener("click", () => {
       currentLang = currentLang === "fr" ? "en" : "fr";
       setLang(currentLang);
     });
 
-    // Mobile menu toggle + icon swap
+    // Mobile menu toggle
     menuToggle.addEventListener("click", () => {
-      const isOpen = navMenu.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", isOpen);
-      menuToggle.textContent = isOpen ? "✖" : "☰";
+      const open = navMenu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", open);
+      menuToggle.textContent = open ? "✖" : "☰";
     });
-
-    // Close menu on link click
     document.querySelectorAll("#navMenu a").forEach(link => {
       link.addEventListener("click", () => {
         navMenu.classList.remove("open");
@@ -394,29 +469,30 @@
 
     // Countdown
     const target = new Date("2025-11-01T10:00:00+02:00");
-    function tick(){
-      const now = Date.now(), diff = Math.max(target - now, 0);
+    function tick() {
+      const now = Date.now();
+      const diff = Math.max(target - now, 0);
       const d = Math.floor(diff / 86400000),
-            h = Math.floor(diff % 86400000 / 3600000),
-            m = Math.floor(diff % 3600000 / 60000),
-            s = Math.floor(diff % 60000 / 1000);
+            h = Math.floor((diff % 86400000) / 3600000),
+            m = Math.floor((diff % 3600000) / 60000),
+            s = Math.floor((diff % 60000) / 1000);
       document.getElementById("days").textContent    = d;
       document.getElementById("hours").textContent   = String(h).padStart(2,"0");
       document.getElementById("minutes").textContent = String(m).padStart(2,"0");
       document.getElementById("seconds").textContent = String(s).padStart(2,"0");
     }
-    setInterval(tick, 1000);
+    setInterval(tick,1000);
     tick();
 
     // Web Speech greetings
-    function speak(lang){
+    function speak(lang) {
       const msgs = {
         sepedi:  "Dumela, re a le amohela Afrika Borwa!",
         french:  "Bonjour et bienvenue en Afrique du Sud!",
         english: "Hello and welcome to South Africa!"
       };
       const u = new SpeechSynthesisUtterance(msgs[lang]);
-      u.lang = lang==="french" ? "fr-FR" : lang==="english" ? "en-US" : "nso-ZA";
+      u.lang = lang==="french"?"fr-FR":lang==="english"?"en-US":"nso-ZA";
       speechSynthesis.speak(u);
     }
     window.speak = speak;
