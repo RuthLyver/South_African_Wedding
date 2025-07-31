@@ -13,7 +13,7 @@
     rel="stylesheet"
   >
 
-  <!-- FontAwesome for icons -->
+  <!-- FontAwesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -74,6 +74,7 @@
       display:flex; flex-direction:column; padding:2rem 1rem;
       transform:translateX(-100%); transition:transform .35s ease;
       overflow-y:auto;
+      z-index:1001; /* ensure it sits above the hero */
     }
     nav.nav-menu.open { transform:translateX(0) }
     nav.nav-menu a, .lang-button {
@@ -86,6 +87,7 @@
       background:hsl(var(--gold)); color:white; transform:translateX(8px);
     }
 
+    /* Desktop nav */
     @media(min-width:768px){
       .hamburger { display:none }
       nav.nav-menu {
@@ -216,15 +218,15 @@
       aria-expanded="false"
     >☰</button>
     <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
-      <a href="#home" data-key="home">🏠 Accueil</a>
-      <a href="#welcome" data-key="welcome">💍 Bienvenue</a>
-      <a href="#travel" data-key="travel">✈️ Voyage</a>
+      <a href="#home"     data-key="home">🏠 Accueil</a>
+      <a href="#welcome"  data-key="welcome">💍 Bienvenue</a>
+      <a href="#travel"   data-key="travel">✈️ Voyage</a>
       <a href="#accommodation" data-key="accommodation">🏨 Hébergement</a>
       <a href="#itinerary" data-key="itinerary">📅 Itinéraire</a>
-      <a href="#lobola" data-key="lobola">💒 Lobola & Mariage</a>
+      <a href="#lobola"   data-key="lobola">💒 Lobola & Mariage</a>
       <a href="#discover" data-key="discover">🌍 Découvrir</a>
-      <a href="#gallery" data-key="gallery">📸 Galerie</a>
-      <a href="#emergency" data-key="emergency">🚨 Urgence</a>
+      <a href="#gallery"  data-key="gallery">📸 Galerie</a>
+      <a href="#emergency"data-key="emergency">🚨 Urgence</a>
       <button id="langToggle" class="lang-button" data-i18n="lang">🌍 FR</button>
     </nav>
   </header>
@@ -241,9 +243,7 @@
   <section id="welcome">
     <div class="card">
       <h2 data-i18n="welcomeTitle">Bienvenue</h2>
-      <p data-i18n="welcomeBody">
-        Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud.
-      </p>
+      <p data-i18n="welcomeBody">Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud.</p>
       <div>
         <button class="audio-button" onclick="speak('sepedi')">🎧 Sepedi</button>
         <button class="audio-button" onclick="speak('french')">🎧 Français</button>
@@ -363,10 +363,10 @@
     const langToggle = document.getElementById("langToggle");
     const ctaStart   = document.getElementById("ctaStart");
 
-    // Translations (trimmed for brevity—use your full dictionary)
+    // Fill in your full translations object here...
     const translations = {
-      fr: { /* … */ },
-      en: { /* … */ }
+      fr:{ /* … */ },
+      en:{ /* … */ }
     };
 
     function setLang(lang) {
@@ -374,11 +374,11 @@
       localStorage.setItem("lang", lang);
       document.querySelectorAll("#navMenu a").forEach(a => {
         const key = a.dataset.key;
-        a.textContent = translations[lang][key] || a.textContent;
+        if (translations[lang][key]) a.textContent = translations[lang][key];
       });
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
-        el.textContent = translations[lang][key] || el.textContent;
+        if (translations[lang][key]) el.textContent = translations[lang][key];
       });
     }
     let currentLang = localStorage.getItem("lang") || "fr";
@@ -388,13 +388,12 @@
       setLang(currentLang);
     });
 
-    // Mobile menu toggle + icon swap
+    // Mobile menu toggle + close on link click
     menuToggle.addEventListener("click", () => {
       const isOpen = navMenu.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", isOpen);
       menuToggle.textContent = isOpen ? "✖" : "☰";
     });
-    // Close on link click
     document.querySelectorAll("#navMenu a").forEach(link => {
       link.addEventListener("click", () => {
         navMenu.classList.remove("open");
@@ -403,12 +402,12 @@
       });
     });
 
-    // CTA scroll
+    // CTA smooth scroll
     ctaStart.addEventListener("click", () => {
       document.getElementById("welcome").scrollIntoView({ behavior: "smooth" });
     });
 
-    // Countdown clock
+    // Countdown
     const target = new Date("2025-11-01T10:00:00+02:00");
     function tick() {
       const now = Date.now(),
@@ -425,7 +424,7 @@
     setInterval(tick, 1000);
     tick();
 
-    // Speech greetings
+    // Web Speech greetings
     function speak(lang) {
       const msgs = {
         sepedi:  "Dumela, re a le amohela Afrika Borwa!",
