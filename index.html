@@ -4,10 +4,202 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>Cédric & Ruth – South African Wedding</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --gold: #d4af37;
+      --cream: #f9f7f1;
+      --dark: #2c2c2c;
+      --beige: #eaddcf;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: var(--cream);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--gold);
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      background: var(--cream);
+      border-top: 1px solid var(--gold);
+    }
+
+    .nav-menu.open {
+      display: flex;
+    }
+
+    .nav-menu a, .lang-button {
+      padding: 1rem;
+      text-align: center;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      border-bottom: 1px solid #eee;
+    }
+
+    .lang-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hero {
+      background: url('images/hero.jpg') no-repeat center/cover;
+      color: white;
+      text-align: center;
+      padding: 5rem 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .begin-journey {
+      background: var(--gold);
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 3rem 1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 1rem auto;
+      max-width: 800px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .card a {
+      color: #0077cc;
+      text-decoration: underline;
+    }
+
+    .audio-button {
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background: var(--gold);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    #countdownContainer {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .countdown-box {
+      background: var(--gold);
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1.2rem;
+    }
+
+    .floating-nav {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.8rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    .floating-nav a {
+      text-decoration: none;
+      font-size: 1.2rem;
+      color: var(--dark);
+    }
+  </style>
 </head>
 <body>
 
@@ -32,7 +224,7 @@
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-inner">
       <h1 id="heroTitle">Bienvenue en Afrique du Sud 🇿🇦</h1>
@@ -59,7 +251,7 @@
       <h2>Voyage et arrivée</h2>
       <p>
         Vol de Paris vers
-        <a href="https://maps.google.com?q=O.R.+Tambo+International+Airport" target="_blank">O.R. Tambo International Airport</a>,
+        <a href="https://maps.google.com?q=O.R.+Tambo+International+Airport" target="_blank">O.R. Tambo International Airport</a>,
         puis Gautrain jusqu'à
         <a href="https://maps.google.com?q=Sandton+Station" target="_blank">Sandton Station</a>.
       </p>
@@ -70,7 +262,7 @@
   <section id="accommodation">
     <div class="card">
       <h2>Hébergement</h2>
-      <ul class="accommodation-list">
+      <ul>
         <li><a href="#">🏢 Sandton Sun Towers — 24–26 oct.</a></li>
         <li><a href="#">🦁 Bakubung Bush Lodge — 26–28 oct.</a></li>
         <li><a href="#">🏠 Private Apartment — 28–31 oct.</a></li>
@@ -86,18 +278,18 @@
     </div>
   </section>
 
-  <!-- Lobola & Wedding -->
+  <!-- Lobola -->
   <section id="lobola">
     <div class="card">
       <h2>Lobola & Mariage</h2>
-      <p>Cérémonie traditionnelle de Lobola suivie de notre célébration.</p>
+      <p>Cérémonie traditionnelle de Lobola suivie de notre célébration à Franschhoek.</p>
     </div>
   </section>
 
   <!-- Discover -->
   <section id="discover">
     <div class="card">
-      <h2>Découvrir l'Afrique du Sud</h2>
+      <h2>Découvrir</h2>
       <p>Explorez paysages, safaris et culture locale pendant votre séjour.</p>
     </div>
   </section>
@@ -107,10 +299,9 @@
     <div class="card">
       <h2>Galerie</h2>
       <div class="gallery-grid">
-        <img src="images/safari1.jpg" alt="Safari 1" loading="lazy">
-        <img src="images/safari2.jpg" alt="Safari 2" loading="lazy">
-        <img src="images/safari3.jpg" alt="Safari 3" loading="lazy">
-        <img src="images/safari4.jpg" alt="Safari 4" loading="lazy">
+        <img src="images/safari1.jpg" alt="Safari 1">
+        <img src="images/safari2.jpg" alt="Safari 2">
+        <img src="images/safari3.jpg" alt="Safari 3">
       </div>
     </div>
   </section>
@@ -118,11 +309,9 @@
   <!-- Emergency -->
   <section id="emergency">
     <div class="card">
-      <h2>Contacts d'urgence</h2>
-      <div class="emergency-contacts">
-        <div class="contact-item"><strong>🚨 Police/Ambulance:</strong> 10111</div>
-        <div class="contact-item"><strong>📱 Local:</strong> +27 82 962 7848</div>
-      </div>
+      <h2>Urgence</h2>
+      <p><strong>📞 Ruth:</strong> <a href="tel:+27829627848">082 962 7848</a></p>
+      <p><strong>📧 Email:</strong> <a href="mailto:phaahlaruth@gmail.com">phaahlaruth@gmail.com</a></p>
     </div>
   </section>
 
@@ -137,7 +326,7 @@
     </div>
   </footer>
 
-  <!-- Floating Navigation Buttons -->
+  <!-- Floating Nav -->
   <div class="floating-nav">
     <a href="#home">🏠</a>
     <a href="#lobola">💍</a>
@@ -145,7 +334,7 @@
     <a href="mailto:phaahlaruth@gmail.com">✉️</a>
   </div>
 
-  <!-- Scripts -->
+  <!-- Script -->
   <script>
     const menuToggle = document.getElementById("menu-toggle");
     const navMenu = document.getElementById("navMenu");
