@@ -13,14 +13,14 @@
     rel="stylesheet"
   />
 
-  <!-- FontAwesome for icons -->
+  <!-- FontAwesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     crossorigin="anonymous"
   />
 
-  <!-- Preload hero background -->
+  <!-- Preload hero image -->
   <link rel="preload" as="image" href="images/safari01.jpg" />
 
   <style>
@@ -64,7 +64,7 @@
       cursor: pointer;
     }
 
-    /* Navigation menu wrapper */
+    /* Nav wrapper */
     nav.nav-menu {
       position: fixed;
       top: 60px; left: 0; right: 0; bottom: 0;
@@ -73,11 +73,9 @@
       display: flex; justify-content: center; align-items: start;
       z-index: 1100;
     }
-    nav.nav-menu.open {
-      transform: translateX(0);
-    }
+    nav.nav-menu.open { transform: translateX(0); }
 
-    /* Inner white container */
+    /* Inner white nav container */
     .nav-container {
       background: #fff;
       backdrop-filter: blur(20px);
@@ -95,12 +93,12 @@
       font-weight: 600;
       font-size: 1.1rem;
       transition: background var(--transition);
-      border: none;
-      background: none;
-      width: 100%;
-      text-align: left;
       border-radius: 8px;
       margin: .25rem 0;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
     }
     .nav-container a:hover,
     .nav-container .lang-button:hover {
@@ -127,7 +125,7 @@
       }
       .nav-container a,
       .nav-container .lang-button {
-        padding: 0.5rem 1rem;
+        padding: .5rem 1rem;
         border-radius: 25px;
         margin: 0;
       }
@@ -164,7 +162,7 @@
     }
 
     /* Welcome */
-    .card { /* reused by many sections */ }
+    .card { /* shared style */ }
     .welcome-headshot {
       width: 150px; height: 150px;
       border-radius: 50%; object-fit: cover;
@@ -175,7 +173,50 @@
       line-height: 1.6;
     }
 
-    /* Cards */
+    /* Accommodation grid */
+    .accommodation-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    @media(min-width:768px) {
+      .accommodation-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+    .accom-item {
+      background: white;
+      border: 1px solid hsl(var(--gold));
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+    .accom-item h3 {
+      font-size: 1.25rem;
+      margin-bottom: .5rem;
+      font-weight: 600;
+    }
+    .accom-item .details {
+      margin-bottom: 1rem;
+      line-height: 1.5;
+      font-size: .95rem;
+    }
+    .accom-item .map-link {
+      display: inline-block;
+      padding: .5rem 1rem;
+      background: hsl(var(--gold));
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .accom-item .map-link:hover {
+      background: hsl(var(--gold-strong));
+    }
+
+    /* Shared cards */
     .card {
       background: hsl(var(--gold));
       color: white;
@@ -188,8 +229,13 @@
     }
     .card:hover { transform: translateY(-5px) }
     .card h2 { margin-bottom: 1rem }
+    .card ul {
+      list-style: none;
+      text-align: left;
+      margin-top: 1rem;
+    }
 
-    /* Floating Nav */
+    /* Floating nav */
     .floating-nav {
       position: fixed; right: 1rem; bottom: 1rem;
       display: flex; flex-direction: column; gap: .75rem;
@@ -237,21 +283,21 @@
     >☰</button>
     <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
       <div class="nav-container">
-        <a href="#home"         data-fr="🏠 Accueil"                 data-en="🏠 Home">🏠 Accueil</a>
-        <a href="#welcome"      data-fr="💍 Bienvenue"              data-en="💍 Welcome">💍 Bienvenue</a>
-        <a href="#travel"       data-fr="✈️ Voyage & Arrivée"       data-en="✈️ Travel & Arrival">✈️ Voyage & Arrivée</a>
-        <a href="#accommodation"data-fr="🏨 Hébergement"            data-en="🏨 Accommodation">🏨 Hébergement</a>
-        <a href="#itinerary"    data-fr="📅 Itinéraire"             data-en="📅 Itinerary">📅 Itinéraire</a>
-        <a href="#lobola"       data-fr="💒 Lobola & Mariage"       data-en="💒 Lobola & Wedding">💒 Lobola & Mariage</a>
-        <a href="#discover"     data-fr="🌍 Découvrir l’Afrique du Sud" data-en="🌍 Discover South Africa">🌍 Découvrir l’Afrique du Sud</a>
-        <a href="#gallery"      data-fr="📸 Galerie"               data-en="📸 Gallery">📸 Galerie</a>
-        <a href="#emergency"    data-fr="🚨 Urgence"                data-en="🚨 Emergency">🚨 Urgence</a>
+        <a href="#home"         data-fr="🏠 Accueil" data-en="🏠 Home">🏠 Accueil</a>
+        <a href="#welcome"      data-fr="💍 Bienvenue" data-en="💍 Welcome">💍 Bienvenue</a>
+        <a href="#travel"       data-fr="✈️ Voyage & Arrivée" data-en="✈️ Travel & Arrival">✈️ Voyage & Arrivée</a>
+        <a href="#accommodation"data-fr="🏨 Hébergement" data-en="🏨 Accommodation">🏨 Hébergement</a>
+        <a href="#itinerary"    data-fr="📅 Itinéraire" data-en="📅 Itinerary">📅 Itinéraire</a>
+        <a href="#lobola"       data-fr="💒 Lobola & Mariage" data-en="💒 Lobola & Wedding">💒 Lobola & Mariage</a>
+        <a href="#discover"     data-fr="🌍 Découvrir" data-en="🌍 Discover">🌍 Découvrir</a>
+        <a href="#gallery"      data-fr="📸 Galerie" data-en="📸 Gallery">📸 Galerie</a>
+        <a href="#emergency"    data-fr="🚨 Urgence" data-en="🚨 Emergency">🚨 Urgence</a>
         <button id="langToggle" class="lang-button">🌍 FR</button>
       </div>
     </nav>
   </header>
 
-  <!-- 1️⃣ Hero / First Page Welcome -->
+  <!-- 1️⃣ Hero Welcome -->
   <section class="hero" id="home">
     <div>
       <h1
@@ -259,6 +305,7 @@
         data-fr="Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud."
         data-en="Welcome to Cedric and Ruth’s Traditional Wedding in South Africa."
       >Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud.</h1>
+
       <button class="begin-journey"
         data-fr="Commencez votre aventure"
         data-en="Begin your adventure"
@@ -283,47 +330,97 @@
   <section id="accommodation">
     <div class="card">
       <h2 data-fr="Hébergement" data-en="Accommodation">Hébergement</h2>
-      <ul>
-        <li>🏢 <strong>Sandton Sun & Towers</strong> <em>(24 – 26 Oct)</em><br>
+      <div class="accommodation-grid">
+        <div class="accom-item">
+          <h3 data-fr="Sandton Sun & Towers (24–26 Oct)" data-en="Sandton Sun & Towers (24–26 Oct)">Sandton Sun & Towers (24–26 Oct)</h3>
+          <p class="details">
             📍 Corner Fifth & Alice St, Sandton, Johannesburg<br>
             📞 +27 11 780 5000
-        </li>
-        <li>🦁 <strong>Bakubung Bush Lodge</strong> <em>(26 – 28 Oct)</em><br>
+          </p>
+          <a
+            class="map-link"
+            href="https://maps.google.com?q=Corner+Fifth+Alice+St,+Sandton"
+            target="_blank"
+            data-fr="Voir sur la carte"
+            data-en="View on map"
+          >Voir sur la carte</a>
+        </div>
+        <div class="accom-item">
+          <h3 data-fr="Bakubung Bush Lodge (26–28 Oct)" data-en="Bakubung Bush Lodge (26–28 Oct)">Bakubung Bush Lodge (26–28 Oct)</h3>
+          <p class="details">
             📍 Bakubung Gate, Pilanesberg Nat’l Park, Ledig
-        </li>
-        <li>🏠 <strong>Private Apartment</strong> <em>(28 – 31 Oct)</em><br>
+          </p>
+          <a
+            class="map-link"
+            href="https://maps.google.com?q=Bakubung+Gate,+Pilanesberg+National+Park"
+            target="_blank"
+            data-fr="Voir sur la carte"
+            data-en="View on map"
+          >Voir sur la carte</a>
+        </div>
+        <div class="accom-item">
+          <h3 data-fr="Private Apartment (28–31 Oct)" data-en="Private Apartment (28–31 Oct)">Private Apartment (28–31 Oct)</h3>
+          <p class="details">
             📍 15 West Road South, Sandton, Johannesburg
-        </li>
-        <li>🏰 <strong>Sandstone House</strong> <em>(31 Oct – 2 Nov)</em><br>
+          </p>
+          <a
+            class="map-link"
+            href="https://maps.google.com?q=15+West+Road+South,+Sandton"
+            target="_blank"
+            data-fr="Voir sur la carte"
+            data-en="View on map"
+          >Voir sur la carte</a>
+        </div>
+        <div class="accom-item">
+          <h3 data-fr="Sandstone House (31 Oct–2 Nov)" data-en="Sandstone House (31 Oct–2 Nov)">Sandstone House (31 Oct–2 Nov)</h3>
+          <p class="details">
             📍 Green Valley Road, Franschhoek
-        </li>
-        <li>🌆 <strong>Cape Royale Luxury Apartments</strong> <em>(2 – 3 Nov)</em><br>
+          </p>
+          <a
+            class="map-link"
+            href="https://maps.google.com?q=Green+Valley+Road,+Franschhoek"
+            target="_blank"
+            data-fr="Voir sur la carte"
+            data-en="View on map"
+          >Voir sur la carte</a>
+        </div>
+        <div class="accom-item">
+          <h3 data-fr="Cape Royale Luxury Apartments (2–3 Nov)" data-en="Cape Royale Luxury Apartments (2–3 Nov)">Cape Royale Luxury Apartments (2–3 Nov)</h3>
+          <p class="details">
             📍 47 Main Road, Green Point, Cape Town<br>
             📞 +27 79 326 2167
-        </li>
-      </ul>
+          </p>
+          <a
+            class="map-link"
+            href="https://maps.google.com?q=47+Main+Road,+Green+Point"
+            target="_blank"
+            data-fr="Voir sur la carte"
+            data-en="View on map"
+          >Voir sur la carte</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- 4️⃣ Travel & Arrival -->
   <section id="travel">
     <div class="card">
-      <h2 data-fr="Voyage et Arrivée – 24 Oct" data-en="Travel & Arrival – 24 Oct">Voyage et Arrivée – 24 Oct</h2>
+      <h2 data-fr="Voyage & Arrivée – 24 Oct" data-en="Travel & Arrival – 24 Oct">Voyage & Arrivée – 24 Oct</h2>
       <ul>
-        <li data-fr="Arrivée de la famille à 8h30 – Aéroport O.R. Tambo" data-en="Arrival by the family at 8:30 AM – OR Tambo International Airport">
-          Arrivée de la famille à 8h30 – Aéroport O.R. Tambo
+        <li data-fr="Arrivée de la famille à 8h30 – O.R. Tambo" data-en="Arrival by the family at 8:30 AM – OR Tambo Intl Airport">
+          Arrivée de la famille à 8h30 – O.R. Tambo Intl Airport
         </li>
         <li data-fr="Prise en charge par Ruth & Cédric" data-en="Pick-up by Ruth & Cedric">
           Prise en charge par Ruth & Cédric
         </li>
-        <li data-fr="Voyage jusqu’à Sandton via Gautrain (arrivée à Sandton Station)" data-en="Travel from airport to Sandton by Gautrain (arrival at Sandton Gautrain Station)">
-          Voyage jusqu’à Sandton via Gautrain (arrivée à Sandton Station)
+        <li data-fr="Gautrain jusqu’à Sandton Station" data-en="Travel from airport to Sandton by Gautrain">
+          Gautrain jusqu’à Sandton Station
         </li>
         <li data-fr="Brunch à Bryanston" data-en="Travel to Bryanston for brunch">
           Brunch à Bryanston
         </li>
-        <li data-fr="Check-in au Sandton Sun & Towers à 14h00" data-en="Check-in at Sandton Sun & Towers at 2 PM">
-          Check-in au Sandton Sun & Towers à 14h00
+        <li data-fr="Check-in Sandton Sun & Towers à 14h00" data-en="Check-in at Sandton Sun & Towers at 2 PM">
+          Check-in Sandton Sun & Towers à 14h00
         </li>
       </ul>
     </div>
@@ -352,7 +449,7 @@
   <!-- Discover -->
   <section id="discover">
     <div class="card">
-      <h2 data-fr="Découvrir l’Afrique du Sud" data-en="Discover South Africa">Découvrir l’Afrique du Sud</h2>
+      <h2 data-fr="Découvrir" data-en="Discover">Découvrir</h2>
       <p data-fr="Explorez paysages, safaris et culture locale pendant votre séjour." data-en="Explore landscapes, safaris and local culture during your stay.">
         Explorez paysages, safaris et culture locale pendant votre séjour.
       </p>
@@ -376,13 +473,14 @@
   <section id="emergency">
     <div class="card">
       <h2 data-fr="Contacts d’Urgence" data-en="Emergency Contacts">Contacts d’Urgence</h2>
-      <p data-fr="🚨 Police : 10111📱 Ruth : +27 82 962 7848✉️ phaahlaruth@gmail.com" data-en="🚨 Police: 10111 📱 Ruth: +27 82 962 7848 ✉️ phaahlaruth@gmail.com">
+      <p data-fr="🚨 Police : 10111 📱 Ruth : +27 82 962 7848 ✉️ phaahlaruth@gmail.com"
+         data-en="🚨 Police: 10111 📱 Ruth: +27 82 962 7848 ✉️ phaahlaruth@gmail.com">
         🚨 Police : 10111<br>📱 Ruth : +27 82 962 7848<br>✉️ phaahlaruth@gmail.com
       </p>
     </div>
   </section>
 
-  <!-- Floating Quick Links -->
+  <!-- Floating Links -->
   <div class="floating-nav">
     <a href="#home"    aria-label="Accueil">🏠</a>
     <a href="#welcome" aria-label="Bienvenue">💍</a>
@@ -406,7 +504,7 @@
       link.addEventListener("click", () => {
         navMenu.classList.remove("open");
         menuToggle.textContent = "☰";
-        menuToggle.setAttribute("aria-expanded", false);
+        menuToggle.setAttribute("aria-expanded", "false");
       })
     );
 
