@@ -161,17 +161,38 @@
       font-size: 1rem;
     }
 
+    /* Shared card style (white background, black text) */
+    .card {
+      background: #fff;
+      color: hsl(var(--dark));
+      padding: 2rem;
+      border: 1px solid hsl(var(--gold));
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      margin: auto;
+      transition: transform .25s ease;
+      text-align: left;
+    }
+    .card:hover { transform: translateY(-5px) }
+    .card h2 {
+      margin-bottom: 1rem;
+      color: hsl(var(--gold));
+    }
+    .card p,
+    .card li {
+      line-height: 1.6;
+      margin-bottom: .75rem;
+    }
+    .card ul { list-style: none; margin-left: 0; padding-left: 0; }
+
     /* Welcome */
-    .card { /* shared style */ }
     .welcome-headshot {
       width: 150px; height: 150px;
       border-radius: 50%; object-fit: cover;
       margin-bottom: 1rem;
     }
-    .welcome-text p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
+    .welcome-text p { margin-bottom: 1rem; }
 
     /* Accommodation grid */
     .accommodation-grid {
@@ -186,7 +207,8 @@
       }
     }
     .accom-item {
-      background: white;
+      background: #fff;
+      color: hsl(var(--dark));
       border: 1px solid hsl(var(--gold));
       border-radius: 12px;
       padding: 1rem;
@@ -195,11 +217,10 @@
     .accom-item h3 {
       font-size: 1.25rem;
       margin-bottom: .5rem;
-      font-weight: 600;
+      color: hsl(var(--gold));
     }
     .accom-item .details {
       margin-bottom: 1rem;
-      line-height: 1.5;
       font-size: .95rem;
     }
     .accom-item .map-link {
@@ -214,25 +235,6 @@
     }
     .accom-item .map-link:hover {
       background: hsl(var(--gold-strong));
-    }
-
-    /* Shared cards */
-    .card {
-      background: hsl(var(--gold));
-      color: white;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      max-width: 800px;
-      margin: auto;
-      transition: transform .25s ease;
-    }
-    .card:hover { transform: translateY(-5px) }
-    .card h2 { margin-bottom: 1rem }
-    .card ul {
-      list-style: none;
-      text-align: left;
-      margin-top: 1rem;
     }
 
     /* Floating nav */
@@ -297,7 +299,7 @@
     </nav>
   </header>
 
-  <!-- 1️⃣ Hero Welcome -->
+  <!-- Hero -->
   <section class="hero" id="home">
     <div>
       <h1
@@ -305,7 +307,6 @@
         data-fr="Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud."
         data-en="Welcome to Cedric and Ruth’s Traditional Wedding in South Africa."
       >Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud.</h1>
-
       <button class="begin-journey"
         data-fr="Commencez votre aventure"
         data-en="Begin your adventure"
@@ -313,7 +314,7 @@
     </div>
   </section>
 
-  <!-- 2️⃣ Welcome -->
+  <!-- Welcome -->
   <section id="welcome">
     <div class="card">
       <img src="images/image1.jpg" alt="Cédric & Ruth" class="welcome-headshot" />
@@ -326,11 +327,12 @@
     </div>
   </section>
 
-  <!-- 3️⃣ Accommodation -->
+  <!-- Accommodation -->
   <section id="accommodation">
     <div class="card">
       <h2 data-fr="Hébergement" data-en="Accommodation">Hébergement</h2>
       <div class="accommodation-grid">
+        <!-- accom-item blocks as above -->
         <div class="accom-item">
           <h3 data-fr="Sandton Sun & Towers (24–26 Oct)" data-en="Sandton Sun & Towers (24–26 Oct)">Sandton Sun & Towers (24–26 Oct)</h3>
           <p class="details">
@@ -402,12 +404,12 @@
     </div>
   </section>
 
-  <!-- 4️⃣ Travel & Arrival -->
+  <!-- Travel & Arrival -->
   <section id="travel">
     <div class="card">
       <h2 data-fr="Voyage & Arrivée – 24 Oct" data-en="Travel & Arrival – 24 Oct">Voyage & Arrivée – 24 Oct</h2>
       <ul>
-        <li data-fr="Arrivée de la famille à 8h30 – O.R. Tambo" data-en="Arrival by the family at 8:30 AM – OR Tambo Intl Airport">
+        <li data-fr="Arrivée de la famille à 8h30 – O.R. Tambo Intl Airport" data-en="Arrival by the family at 8:30 AM – OR Tambo Intl Airport">
           Arrivée de la famille à 8h30 – O.R. Tambo Intl Airport
         </li>
         <li data-fr="Prise en charge par Ruth & Cédric" data-en="Pick-up by Ruth & Cedric">
@@ -482,7 +484,7 @@
 
   <!-- Floating Links -->
   <div class="floating-nav">
-    <a href="#home"    aria-label="Accueil">🏠</a>
+    <a href="#home" aria-label="Accueil">🏠</a>
     <a href="#welcome" aria-label="Bienvenue">💍</a>
     <a href="https://wa.me/27829627848" target="_blank" aria-label="WhatsApp">📱</a>
     <a href="mailto:phaahlaruth@gmail.com" aria-label="Email">✉️</a>
@@ -494,7 +496,7 @@
     const langToggle = document.getElementById("langToggle");
     let isFr = true;
 
-    // Menu open/close
+    // Menu toggle
     menuToggle.addEventListener("click", () => {
       const open = navMenu.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", open);
