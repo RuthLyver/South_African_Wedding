@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Cédric & Ruth – South African Wedding</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- Hero Background Preload -->
+  <link rel="preload" as="image" href="images/safari01.jpg" />
+
+  <style>
+    :root {
+      --gold: 45 90% 45%;
+      --gold-strong: 45 95% 55%;
+      --beige: 35 20% 88%;
+      --dark: 30 8% 8%;
+      --shadow: 0 10px 30px hsl(45 40% 30% / 0.18);
+      --transition: all .3s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: hsl(var(--beige));
+      color: hsl(var(--dark));
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem;
+      background: hsl(0 0% 100% / 0.9);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: hsl(var(--gold));
+      font-weight: 700;
+    }
+    .hamburger {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: hsl(var(--gold));
+      cursor: pointer;
+    }
+
+    nav.nav-menu {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: hsl(0 0% 100% / 0.95);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      transform: translateX(-100%);
+      transition: transform 0.35s ease;
+      z-index: 1100;
+    }
+    nav.nav-menu.open { transform: translateX(0) }
+    nav.nav-menu a, .lang-button {
+      padding: 1rem;
+      text-decoration: none;
+      color: hsl(var(--dark));
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    @media(min-width: 768px) {
+      .hamburger { display: none }
+      nav.nav-menu {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        justify-content: center;
+        background: none;
+        padding: 0;
+      }
+      nav.nav-menu a {
+        padding: 1rem;
+      }
+    }
+
+    section { padding: 4rem 1rem; text-align: center }
+    .card {
+      background: hsl(var(--gold));
+      color: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      margin: auto;
+      transition: transform .25s ease;
+    }
+    .card:hover { transform: translateY(-5px) }
+    .card h2 { margin-bottom: 1rem }
+
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.1)), url('images/safari01.jpg') center/cover no-repeat;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 60px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      animation: fadeInUp 1s ease-out;
+    }
+    .begin-journey {
+      margin-top: 1rem;
+      background: hsl(var(--gold));
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .floating-nav {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      z-index: 999;
+    }
+    .floating-nav a {
+      background: hsl(var(--gold));
+      color: white;
+      padding: .75rem 1rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: .9rem;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: transform .3s;
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.02);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px) }
+      to   { opacity: 1; transform: translateY(0) }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">C&R</div>
+  <button id="menu-toggle" class="hamburger">☰</button>
+  <nav id="navMenu" class="nav-menu">
+    <a href="#home">🏠 Home</a>
+    <a href="#welcome">💍 Welcome</a>
+    <a href="#travel">✈️ Travel</a>
+    <a href="#accommodation">🏨 Accommodation</a>
+    <a href="#itinerary">📅 Itinerary</a>
+    <a href="#lobola">💒 Lobola</a>
+    <a href="#discover">🌍 Discover</a>
+    <a href="#gallery">📸 Gallery</a>
+    <a href="#emergency">🚨 Emergency</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <h1>Bienvenue en Afrique du Sud 🇿🇦</h1>
+    <button class="begin-journey">Commencez votre aventure</button>
+  </div>
+</section>
+
+<section id="welcome">
+  <div class="card">
+    <h2>Bienvenue</h2>
+    <p>Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud.</p>
+  </div>
+</section>
+
+<section id="travel">
+  <div class="card">
+    <h2>Voyage & Arrivée</h2>
+    <p>
+      Vol de Paris vers 
+      <a href="https://maps.google.com?q=O.R.+Tambo+International+Airport" target="_blank">O.R. Tambo International Airport</a>,
+      puis Gautrain jusqu'à
+      <a href="https://maps.google.com?q=Sandton+Station" target="_blank">Sandton Station</a>.
+    </p>
+  </div>
+</section>
+
+<section id="accommodation">
+  <div class="card">
+    <h2>Hébergement</h2>
+    <p>🏢 <strong>Sandton Sun Towers</strong> — 24–26 oct.<br>
+       🦁 <strong>Bakubung Bush Lodge</strong> — 26–28 oct.<br>
+       🏠 <strong>Private Apartment</strong> — 28–31 oct.
+    </p>
+  </div>
+</section>
+
+<section id="itinerary">
+  <div class="card">
+    <h2>Itinéraire</h2>
+    <p>Un aperçu jour par jour de vos activités et temps forts.</p>
+  </div>
+</section>
+
+<section id="lobola">
+  <div class="card">
+    <h2>Lobola & Mariage</h2>
+    <p>La cérémonie de Lobola aura lieu chez les parents de Ruth à Tzaneen. Arrivée des représentants à 10h00. Déjeuner à 13h00. Tenue traditionnelle demandée.</p>
+  </div>
+</section>
+
+<section id="discover">
+  <div class="card">
+    <h2>Découvrir l’Afrique du Sud</h2>
+    <p>Explorez la culture, les paysages et la faune incroyable pendant votre séjour.</p>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="card">
+    <h2>Galerie</h2>
+    <div class="gallery-grid">
+      <img src="images/safari1.jpg" alt="Safari 1" />
+      <img src="images/safari2.jpg" alt="Safari 2" />
+      <img src="images/safari3.jpg" alt="Safari 3" />
+    </div>
+  </div>
+</section>
+
+<section id="emergency">
+  <div class="card">
+    <h2>Contacts d’Urgence</h2>
+    <p>🚨 Police: 10111<br>📱 Ruth: +27 82 962 7848<br>✉️ phaahlaruth@gmail.com</p>
+  </div>
+</section>
+
+<!-- Floating Navigation -->
+<div class="floating-nav">
+  <a href="#home">↑ Home</a>
+  <a href="#wedding">💍 Wedding</a>
+  <a href="https://wa.me/27829627848" target="_blank">📱 WhatsApp</a>
+  <a href="mailto:phaahlaruth@gmail.com" target="_blank">✉️ Email</a>
+</div>
+
+<script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const navMenu = document.getElementById("navMenu");
+
+  menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("open");
+  });
+
+  const links = navMenu.querySelectorAll("a");
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("open");
+    });
+  });
+</script>
+
+</body>
+</html>
