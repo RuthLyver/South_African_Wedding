@@ -32,186 +32,200 @@
       --shadow: 0 10px 30px hsl(45 40% 30% / 0.18);
       --transition: all .3s ease;
     }
-    * { box-sizing:border-box; margin:0; padding:0 }
-    html { scroll-behavior:smooth }
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
     body {
-      font-family:'Inter',sans-serif;
-      background:hsl(var(--beige));
-      color:hsl(var(--dark));
-      overflow-x:hidden;
+      font-family: 'Inter', sans-serif;
+      background: hsl(var(--beige));
+      color: hsl(var(--dark));
+      overflow-x: hidden;
     }
 
     /* Header */
     header {
-      position:fixed; top:0; left:0; right:0;
-      display:flex; justify-content:space-between; align-items:center;
-      padding:1rem;
-      background:hsl(0 0% 100%/.9);
-      backdrop-filter:blur(15px);
-      z-index:1000;
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem;
+      background: hsl(0 0% 100% / 0.9);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
     }
     .logo {
-      font-family:'Playfair Display',serif;
-      font-size:1.6rem;
-      color:hsl(var(--gold));
-      font-weight:700;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: hsl(var(--gold));
+      font-weight: 700;
     }
     .hamburger {
-      font-size:1.5rem;
-      background:none; border:none;
-      color:hsl(var(--gold));
-      cursor:pointer;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: hsl(var(--gold));
+      cursor: pointer;
     }
 
     /* Navigation menu wrapper */
     nav.nav-menu {
-      position:fixed;
-      top:60px; left:0; right:0; bottom:0;
-      transform:translateX(-100%);
-      transition:transform .35s ease;
-      display:flex; justify-content:center; align-items:start;
-      z-index:1100;
+      position: fixed;
+      top: 60px; left: 0; right: 0; bottom: 0;
+      transform: translateX(-100%);
+      transition: transform .35s ease;
+      display: flex; justify-content: center; align-items: start;
+      z-index: 1100;
     }
-    nav.nav-menu.open { transform:translateX(0) }
+    nav.nav-menu.open {
+      transform: translateX(0);
+    }
 
     /* Inner white container */
     .nav-container {
-      background:#fff;
-      backdrop-filter:blur(20px);
-      padding:2rem 1rem;
-      border-radius:0 0 12px 12px;
-      width:100%; max-width:320px;
-      box-shadow:var(--shadow);
+      background: #fff;
+      backdrop-filter: blur(20px);
+      padding: 2rem 1rem;
+      border-radius: 0 0 12px 12px;
+      width: 100%; max-width: 320px;
+      box-shadow: var(--shadow);
     }
     .nav-container a,
     .nav-container .lang-button {
-      display:block;
-      padding:1rem;
-      text-decoration:none;
-      color:hsl(var(--dark));
-      font-weight:600;
-      font-size:1.1rem;
-      transition:background var(--transition);
-      background:none; border:none;
-      width:100%; text-align:left;
-      border-radius:8px; margin:.25rem 0;
+      display: block;
+      padding: 1rem;
+      text-decoration: none;
+      color: hsl(var(--dark));
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background var(--transition);
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      border-radius: 8px;
+      margin: .25rem 0;
     }
     .nav-container a:hover,
     .nav-container .lang-button:hover {
-      background:hsl(var(--gold));
-      color:white;
+      background: hsl(var(--gold));
+      color: white;
     }
 
     @media(min-width:768px) {
-      .hamburger { display:none }
+      .hamburger { display: none }
       nav.nav-menu {
-        position:static; transform:none; padding:0;
+        position: static;
+        transform: none;
+        padding: 0;
       }
       .nav-container {
-        background:none; backdrop-filter:none; box-shadow:none;
-        padding:0; max-width:none;
-        display:flex; justify-content:center; gap:1rem;
+        background: none;
+        backdrop-filter: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: none;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
       }
       .nav-container a,
       .nav-container .lang-button {
-        padding:.5rem 1rem;
-        border-radius:25px; margin:0;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        margin: 0;
       }
       .nav-container a:hover,
       .nav-container .lang-button:hover {
-        transform:translateY(-2px);
+        transform: translateY(-2px);
       }
     }
 
     /* Hero */
-    section { padding:4rem 1rem; text-align:center }
+    section { padding: 4rem 1rem; text-align: center }
     .hero {
-      min-height:100vh; padding-top:60px;
+      min-height: 100vh; padding-top: 60px;
       background:
-        linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.1)),
+        linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.1)),
         url('images/safari01.jpg') center/cover no-repeat;
-      color:white;
-      display:flex; justify-content:center; align-items:center;
+      color: white;
+      display: flex; justify-content: center; align-items: center;
     }
     .hero h1 {
-      font-family:'Playfair Display',serif;
-      font-size:2.5rem;
-      animation:fadeInUp 1s ease-out;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      animation: fadeInUp 1s ease-out;
     }
     .begin-journey {
-      margin-top:1rem;
-      background:hsl(var(--gold));
-      color:white;
-      padding:1rem 2rem;
-      border:none;
-      border-radius:50px;
-      cursor:pointer;
-      font-size:1rem;
+      margin-top: 1rem;
+      background: hsl(var(--gold));
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1rem;
     }
 
-    /* Headshot */
-    .headshot {
-      width:120px;
-      height:120px;
-      border-radius:50%;
-      object-fit:cover;
-      margin:0 auto 1rem;
-      display:block;
-      box-shadow:var(--shadow);
+    /* Welcome */
+    .card { /* reused by many sections */ }
+    .welcome-headshot {
+      width: 150px; height: 150px;
+      border-radius: 50%; object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    .welcome-text p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
     }
 
     /* Cards */
     .card {
-      background:hsl(var(--gold));
-      color:white;
-      padding:2rem;
-      border-radius:20px;
-      box-shadow:var(--shadow);
-      max-width:800px;
-      margin:auto;
-      transition:transform .25s ease;
+      background: hsl(var(--gold));
+      color: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      margin: auto;
+      transition: transform .25s ease;
     }
-    .card:hover { transform:translateY(-5px) }
-    .card h2 { margin-bottom:1rem }
+    .card:hover { transform: translateY(-5px) }
+    .card h2 { margin-bottom: 1rem }
 
     /* Floating Nav */
     .floating-nav {
-      position:fixed; right:1rem; bottom:1rem;
-      display:flex; flex-direction:column; gap:.75rem;
-      z-index:999;
+      position: fixed; right: 1rem; bottom: 1rem;
+      display: flex; flex-direction: column; gap: .75rem;
+      z-index: 999;
     }
     .floating-nav a {
-      background:hsl(var(--gold));
-      color:white;
-      padding:.75rem 1rem;
-      border-radius:25px;
-      text-decoration:none;
-      font-size:.9rem;
-      box-shadow:var(--shadow);
+      background: hsl(var(--gold));
+      color: white;
+      padding: .75rem 1rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: .9rem;
+      box-shadow: var(--shadow);
     }
 
     /* Gallery */
     .gallery-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:1rem;
-      margin-top:2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem; margin-top: 2rem;
     }
     .gallery-grid img {
-      width:100%; height:250px;
-      object-fit:cover; border-radius:16px;
-      transition:transform .3s;
+      width: 100%; height: 250px;
+      object-fit: cover; border-radius: 16px;
+      transition: transform .3s;
     }
-    .gallery-grid img:hover { transform:scale(1.02) }
+    .gallery-grid img:hover { transform: scale(1.02) }
 
     @keyframes fadeInUp {
-      from { opacity:0; transform:translateY(30px) }
-      to   { opacity:1; transform:translateY(0) }
+      from { opacity: 0; transform: translateY(30px) }
+      to   { opacity: 1; transform: translateY(0) }
     }
   </style>
 </head>
-
 <body>
+
   <header>
     <div class="logo">C&R</div>
     <button
@@ -223,157 +237,187 @@
     >☰</button>
     <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
       <div class="nav-container">
-        <a href="#home"          data-fr="🏠 Accueil"     data-en="🏠 Home">🏠 Accueil</a>
-        <a href="#welcome"       data-fr="💍 Bienvenue"   data-en="💍 Welcome">💍 Bienvenue</a>
-        <a href="#travel"        data-fr="✈️ Voyage"      data-en="✈️ Travel">✈️ Voyage</a>
-        <a href="#accommodation" data-fr="🏨 Hébergement" data-en="🏨 Accommodation">🏨 Hébergement</a>
-        <a href="#itinerary"     data-fr="📅 Itinéraire"  data-en="📅 Itinerary">📅 Itinéraire</a>
-        <a href="#lobola"        data-fr="💒 Lobola"      data-en="💒 Lobola">💒 Lobola</a>
-        <a href="#discover"      data-fr="🌍 Découvrir"    data-en="🌍 Discover">🌍 Découvrir</a>
-        <a href="#gallery"       data-fr="📸 Galerie"     data-en="📸 Gallery">📸 Galerie</a>
-        <a href="#emergency"     data-fr="🚨 Urgence"     data-en="🚨 Emergency">🚨 Urgence</a>
+        <a href="#home"         data-fr="🏠 Accueil"                 data-en="🏠 Home">🏠 Accueil</a>
+        <a href="#welcome"      data-fr="💍 Bienvenue"              data-en="💍 Welcome">💍 Bienvenue</a>
+        <a href="#travel"       data-fr="✈️ Voyage & Arrivée"       data-en="✈️ Travel & Arrival">✈️ Voyage & Arrivée</a>
+        <a href="#accommodation"data-fr="🏨 Hébergement"            data-en="🏨 Accommodation">🏨 Hébergement</a>
+        <a href="#itinerary"    data-fr="📅 Itinéraire"             data-en="📅 Itinerary">📅 Itinéraire</a>
+        <a href="#lobola"       data-fr="💒 Lobola & Mariage"       data-en="💒 Lobola & Wedding">💒 Lobola & Mariage</a>
+        <a href="#discover"     data-fr="🌍 Découvrir l’Afrique du Sud" data-en="🌍 Discover South Africa">🌍 Découvrir l’Afrique du Sud</a>
+        <a href="#gallery"      data-fr="📸 Galerie"               data-en="📸 Gallery">📸 Galerie</a>
+        <a href="#emergency"    data-fr="🚨 Urgence"                data-en="🚨 Emergency">🚨 Urgence</a>
         <button id="langToggle" class="lang-button">🌍 FR</button>
       </div>
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- 1️⃣ Hero / First Page Welcome -->
   <section class="hero" id="home">
     <div>
-      <h1 id="heroTitle"
-          data-fr="Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud."
-          data-en="Welcome to Cedric and Ruth’s Traditional Wedding in South Africa."
-      >
-        Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud.
-      </h1>
-      <button
-        class="begin-journey"
-        id="ctaBtn"
+      <h1
+        id="heroText"
+        data-fr="Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud."
+        data-en="Welcome to Cedric and Ruth’s Traditional Wedding in South Africa."
+      >Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud.</h1>
+      <button class="begin-journey"
         data-fr="Commencez votre aventure"
         data-en="Begin your adventure"
-      >
-        Commencez votre aventure
-      </button>
+      >Commencez votre aventure</button>
     </div>
   </section>
 
-  <!-- Welcome -->
+  <!-- 2️⃣ Welcome -->
   <section id="welcome">
     <div class="card">
-      <img src="images/image1.jpg" alt="Cédric & Ruth" class="headshot" />
-      <h2
-        id="welcomeHeading"
-        data-fr="Chère famille, Deux cultures, une seule histoire d’amour. Merci d’avoir voyagé de si loin pour écrire avec nous ce chapitre inoubliable de notre vie. C’est avec une immense joie que nous vous accueillons en Afrique du Sud pour célébrer notre mariage traditionnel."
-        data-en="Dear family, Two cultures, one love story. Thank you for travelling from afar to write this unforgettable chapter of our life with us. It is with great joy that we welcome you to South Africa to celebrate our traditional wedding."
-      >
-        Chère famille, Deux cultures, une seule histoire d’amour. Merci d’avoir voyagé de si loin pour écrire avec nous ce chapitre inoubliable de notre vie. C’est avec une immense joie que nous vous accueillons en Afrique du Sud pour célébrer notre mariage traditionnel.
-      </h2>
+      <img src="images/image1.jpg" alt="Cédric & Ruth" class="welcome-headshot" />
+      <div class="welcome-text">
+        <p
+          data-fr="Chère famille, Deux cultures, une seule histoire d’amour. Merci d’avoir voyagé de si loin pour écrire avec nous ce chapitre inoubliable de notre vie. C’est avec une immense joie que nous vous accueillons en Afrique du Sud pour célébrer notre mariage traditionnel."
+          data-en="Dear family, Two cultures, one love story. Thank you for travelling from afar to write this unforgettable chapter of our life with us. It is with great joy that we welcome you to South Africa to celebrate our traditional wedding."
+        >Chère famille, Deux cultures, une seule histoire d’amour. Merci d’avoir voyagé de si loin pour écrire avec nous ce chapitre inoubliable de notre vie. C’est avec une immense joie que nous vous accueillons en Afrique du Sud pour célébrer notre mariage traditionnel.</p>
+      </div>
     </div>
   </section>
 
-  <!-- Accommodation -->
+  <!-- 3️⃣ Accommodation -->
   <section id="accommodation">
     <div class="card">
-      <h2 id="accomTitle" data-fr="Hébergement" data-en="Accommodation">Hébergement</h2>
+      <h2 data-fr="Hébergement" data-en="Accommodation">Hébergement</h2>
       <ul>
-        <li>
-          <strong>Sandton Sun &amp; Towers</strong> (24–26 Oct)<br>
-          📍 Corner Fifth and Alice Streets, Sandton, 2146, Johannesburg<br>
-          📞 +27 11 780 5000
+        <li>🏢 <strong>Sandton Sun & Towers</strong> <em>(24 – 26 Oct)</em><br>
+            📍 Corner Fifth & Alice St, Sandton, Johannesburg<br>
+            📞 +27 11 780 5000
         </li>
-        <li>
-          <strong>Bakubung Bush Lodge</strong> (26–28 Oct)<br>
-          📍 Bakubung Gate, Pilanesberg National Park, 0300, Ledig, South Africa
+        <li>🦁 <strong>Bakubung Bush Lodge</strong> <em>(26 – 28 Oct)</em><br>
+            📍 Bakubung Gate, Pilanesberg Nat’l Park, Ledig
         </li>
-        <li>
-          <strong>Private Apartment</strong> (28–31 Oct)<br>
-          📍 15 West Road South, Sandton, 2057, Johannesburg
+        <li>🏠 <strong>Private Apartment</strong> <em>(28 – 31 Oct)</em><br>
+            📍 15 West Road South, Sandton, Johannesburg
         </li>
-        <li>
-          <strong>Sandstone House</strong> (31 Oct–2 Nov)<br>
-          📍 Green Valley Road, Franschhoek, 7690
+        <li>🏰 <strong>Sandstone House</strong> <em>(31 Oct – 2 Nov)</em><br>
+            📍 Green Valley Road, Franschhoek
         </li>
-        <li>
-          <strong>Cape Royale Luxury Apartments</strong> (2–3 Nov)<br>
-          📍 47 Main Road, Green Point, 8051, Cape Town<br>
-          📞 +27 79 326 2167
+        <li>🌆 <strong>Cape Royale Luxury Apartments</strong> <em>(2 – 3 Nov)</em><br>
+            📍 47 Main Road, Green Point, Cape Town<br>
+            📞 +27 79 326 2167
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- Travel & Arrival -->
+  <!-- 4️⃣ Travel & Arrival -->
   <section id="travel">
     <div class="card">
-      <h2 id="travelTitle" data-fr="Voyage et Arrivée (24 Oct)" data-en="Travel &amp; Arrival (24 Oct)">
-        Voyage et Arrivée (24 Oct)
-      </h2>
+      <h2 data-fr="Voyage et Arrivée – 24 Oct" data-en="Travel & Arrival – 24 Oct">Voyage et Arrivée – 24 Oct</h2>
       <ul>
-        <li>Arrival by the family at <strong>8:30 AM</strong> – OR Tambo International Airport</li>
-        <li>Pick-up by <strong>Ruth &amp; Cedric</strong></li>
-        <li>Travel from airport to Sandton by <strong>Gautrain</strong> (arrival at Sandton Gautrain Station)</li>
-        <li>Travel to <strong>Bryanston for brunch</strong></li>
-        <li>Check-in at <strong>Sandton Sun &amp; Towers</strong> at <strong>2 PM</strong></li>
+        <li data-fr="Arrivée de la famille à 8h30 – Aéroport O.R. Tambo" data-en="Arrival by the family at 8:30 AM – OR Tambo International Airport">
+          Arrivée de la famille à 8h30 – Aéroport O.R. Tambo
+        </li>
+        <li data-fr="Prise en charge par Ruth & Cédric" data-en="Pick-up by Ruth & Cedric">
+          Prise en charge par Ruth & Cédric
+        </li>
+        <li data-fr="Voyage jusqu’à Sandton via Gautrain (arrivée à Sandton Station)" data-en="Travel from airport to Sandton by Gautrain (arrival at Sandton Gautrain Station)">
+          Voyage jusqu’à Sandton via Gautrain (arrivée à Sandton Station)
+        </li>
+        <li data-fr="Brunch à Bryanston" data-en="Travel to Bryanston for brunch">
+          Brunch à Bryanston
+        </li>
+        <li data-fr="Check-in au Sandton Sun & Towers à 14h00" data-en="Check-in at Sandton Sun & Towers at 2 PM">
+          Check-in au Sandton Sun & Towers à 14h00
+        </li>
       </ul>
     </div>
   </section>
 
-  <!-- (Other sections unchanged…) -->
+  <!-- Itinéraire -->
+  <section id="itinerary">
+    <div class="card">
+      <h2 data-fr="Itinéraire" data-en="Itinerary">Itinéraire</h2>
+      <p data-fr="Un aperçu jour par jour de vos activités et temps forts." data-en="A day-by-day overview of events and highlights.">
+        Un aperçu jour par jour de vos activités et temps forts.
+      </p>
+    </div>
+  </section>
 
+  <!-- Lobola & Wedding -->
+  <section id="lobola">
+    <div class="card">
+      <h2 data-fr="Lobola & Mariage" data-en="Lobola & Wedding">Lobola & Mariage</h2>
+      <p data-fr="Cérémonie traditionnelle suivie de notre célébration." data-en="Traditional Lobola ceremony followed by our celebration.">
+        Cérémonie traditionnelle suivie de notre célébration.
+      </p>
+    </div>
+  </section>
+
+  <!-- Discover -->
+  <section id="discover">
+    <div class="card">
+      <h2 data-fr="Découvrir l’Afrique du Sud" data-en="Discover South Africa">Découvrir l’Afrique du Sud</h2>
+      <p data-fr="Explorez paysages, safaris et culture locale pendant votre séjour." data-en="Explore landscapes, safaris and local culture during your stay.">
+        Explorez paysages, safaris et culture locale pendant votre séjour.
+      </p>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="card">
+      <h2 data-fr="Galerie" data-en="Gallery">Galerie</h2>
+      <div class="gallery-grid">
+        <img src="images/safari1.jpg" alt="Safari 1" />
+        <img src="images/safari2.jpg" alt="Safari 2" />
+        <img src="images/safari3.jpg" alt="Safari 3" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency -->
+  <section id="emergency">
+    <div class="card">
+      <h2 data-fr="Contacts d’Urgence" data-en="Emergency Contacts">Contacts d’Urgence</h2>
+      <p data-fr="🚨 Police : 10111📱 Ruth : +27 82 962 7848✉️ phaahlaruth@gmail.com" data-en="🚨 Police: 10111 📱 Ruth: +27 82 962 7848 ✉️ phaahlaruth@gmail.com">
+        🚨 Police : 10111<br>📱 Ruth : +27 82 962 7848<br>✉️ phaahlaruth@gmail.com
+      </p>
+    </div>
+  </section>
+
+  <!-- Floating Quick Links -->
   <div class="floating-nav">
-    <a href="#home" aria-label="Accueil">🏠</a>
+    <a href="#home"    aria-label="Accueil">🏠</a>
     <a href="#welcome" aria-label="Bienvenue">💍</a>
     <a href="https://wa.me/27829627848" target="_blank" aria-label="WhatsApp">📱</a>
     <a href="mailto:phaahlaruth@gmail.com" aria-label="Email">✉️</a>
   </div>
 
   <script>
-    const menuToggle   = document.getElementById("menu-toggle");
-    const navMenu      = document.getElementById("navMenu");
-    const langToggle   = document.getElementById("langToggle");
-    const heroTitle    = document.getElementById("heroTitle");
-    const ctaBtn       = document.getElementById("ctaBtn");
-    const welcomeHeading = document.getElementById("welcomeHeading");
-    const accomTitle   = document.getElementById("accomTitle");
-    const travelTitle  = document.getElementById("travelTitle");
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu    = document.getElementById("navMenu");
+    const langToggle = document.getElementById("langToggle");
     let isFr = true;
 
-    // Hamburger toggle
+    // Menu open/close
     menuToggle.addEventListener("click", () => {
       const open = navMenu.classList.toggle("open");
       menuToggle.setAttribute("aria-expanded", open);
       menuToggle.textContent = open ? "✖" : "☰";
     });
-
-    // Close on link click
     navMenu.querySelectorAll("a").forEach(link =>
-      link.addEventListener("click", () => navMenu.classList.remove("open"))
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
+        menuToggle.textContent = "☰";
+        menuToggle.setAttribute("aria-expanded", false);
+      })
     );
 
     // Language toggle
     langToggle.addEventListener("click", () => {
       isFr = !isFr;
       langToggle.textContent = isFr ? "🌍 FR" : "🌍 EN";
-
-      // Nav links
-      navMenu.querySelectorAll("a").forEach(a => {
-        a.textContent = isFr ? a.dataset.fr : a.dataset.en;
+      document.querySelectorAll("[data-fr]").forEach(el => {
+        el.textContent = isFr
+          ? el.getAttribute("data-fr")
+          : el.getAttribute("data-en");
       });
-
-      // Hero
-      heroTitle.textContent = isFr ? heroTitle.dataset.fr : heroTitle.dataset.en;
-
-      // CTA
-      ctaBtn.textContent = isFr ? ctaBtn.dataset.fr : ctaBtn.dataset.en;
-
-      // Welcome
-      welcomeHeading.textContent = isFr
-        ? welcomeHeading.dataset.fr
-        : welcomeHeading.dataset.en;
-
-      // Section headings
-      accomTitle.textContent = isFr ? accomTitle.dataset.fr : accomTitle.dataset.en;
-      travelTitle.textContent = isFr ? travelTitle.dataset.fr : travelTitle.dataset.en;
     });
   </script>
 </body>
