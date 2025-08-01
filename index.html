@@ -245,21 +245,27 @@
       border: none;
     }
 
-    /* Floating nav */
-    .floating-nav {
-      position: fixed; right: 1rem; bottom: 1rem;
-      display: flex; flex-direction: column; gap: .75rem;
-      z-index: 999;
-    }
-    .floating-nav a {
-      background: hsl(var(--gold));
-      color: white;
-      padding: .75rem 1rem;
-      border-radius: 25px;
-      text-decoration: none;
-      font-size: .9rem;
-      box-shadow: var(--shadow);
-    }
+/* Floating nav */
+.floating-nav {
+  position: fixed;
+  /* move from right to left */
+  left: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  z-index: 999;
+}
+.floating-nav a {
+  background: hsl(var(--gold));
+  color: white;
+  padding: .75rem 1rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: .9rem;
+  box-shadow: var(--shadow);
+}
+
 
     /* Gallery grid */
     .gallery-grid {
