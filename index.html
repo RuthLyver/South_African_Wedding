@@ -3,25 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>Cédric &amp; Ruth – South African Wedding</title>
+  <title>Cédric & Ruth – South African Wedding</title>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- FontAwesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    crossorigin="anonymous"
-  />
-
-  <!-- Preload hero image -->
-  <link rel="preload" as="image" href="images/safari01.jpg" />
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <style>
     :root {
@@ -35,9 +23,10 @@
     * { box-sizing: border-box; margin: 0; padding: 0 }
     html { scroll-behavior: smooth }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: Inter, sans-serif;
       background: hsl(var(--beige));
       color: hsl(var(--dark));
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
@@ -45,422 +34,286 @@
     header {
       position: fixed; top: 0; left: 0; right: 0;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem;
-      background: hsl(0 0% 100% / 0.9);
+      padding: 1rem; background: hsl(0 0% 100% / 0.9);
       backdrop-filter: blur(15px);
+      border-bottom: 1px solid hsl(35 15% 85%);
       z-index: 1000;
     }
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      color: hsl(var(--gold));
+      font-size: 1.75rem;
       font-weight: 700;
+      color: hsl(var(--gold));
     }
     .hamburger {
       font-size: 1.5rem;
       background: none;
       border: none;
-      color: hsl(var(--gold));
       cursor: pointer;
+      color: hsl(var(--gold));
+      padding: .5rem;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    .hamburger:hover {
+      background: hsl(var(--gold) / 0.1);
+      transform: scale(1.1);
     }
 
-    /* Nav wrapper */
+    /* Navigation */
     nav.nav-menu {
       position: fixed;
-      top: 60px; left: 0; right: 0; bottom: 0;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: hsl(0 0% 100% / 0.95);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
       transform: translateX(-100%);
       transition: transform .35s ease;
-      display: flex; justify-content: center; align-items: start;
+      overflow-y: auto;
       z-index: 1100;
     }
-    nav.nav-menu.open { transform: translateX(0); }
-
-    /* Inner white nav container */
-    .nav-container {
-      background: #fff;
-      backdrop-filter: blur(20px);
-      padding: 2rem 1rem;
-      border-radius: 0 0 12px 12px;
-      width: 100%; max-width: 320px;
-      box-shadow: var(--shadow);
+    nav.nav-menu.open {
+      transform: translateX(0);
     }
-    .nav-container a,
-    .nav-container .lang-button {
-      display: block;
-      padding: 1rem;
+    nav.nav-menu a, .lang-button {
+      padding: 1.25rem 1rem;
       text-decoration: none;
       color: hsl(var(--dark));
       font-weight: 600;
       font-size: 1.1rem;
-      transition: background var(--transition);
-      border-radius: 8px;
+      border-radius: 12px;
       margin: .25rem 0;
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      transition: var(--transition);
     }
-    .nav-container a:hover,
-    .nav-container .lang-button:hover {
+    nav.nav-menu a:hover, .lang-button:hover {
       background: hsl(var(--gold));
       color: white;
+      transform: translateX(8px);
     }
 
-    @media(min-width:768px) {
-      .hamburger { display: none }
+    @media(min-width: 768px) {
+      .hamburger { display: none; }
       nav.nav-menu {
         position: static;
         transform: none;
-        padding: 0;
-      }
-      .nav-container {
+        flex-direction: row;
+        justify-content: space-evenly;
         background: none;
         backdrop-filter: none;
-        box-shadow: none;
         padding: 0;
-        max-width: none;
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
       }
-      .nav-container a,
-      .nav-container .lang-button {
-        padding: .5rem 1rem;
-        border-radius: 25px;
+      nav.nav-menu a, .lang-button {
+        background: hsl(0 0% 100% / 0.9);
         margin: 0;
+        border-radius: 25px;
       }
-      .nav-container a:hover,
-      .nav-container .lang-button:hover {
+      nav.nav-menu a:hover, .lang-button:hover {
         transform: translateY(-2px);
       }
     }
 
-.hero {
-  min-height: 100vh;
-  padding-top: 60px;
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.1)),
-    url('images/safari01.jpg') center/cover no-repeat;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} /* ← close the .hero rule here */
-
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: 0.02em;
-  max-width: 70ch;
-  margin: 0 auto 1rem;
-  text-align: center;
-}
-
-
-
-    /* Shared card style (white background, black text) */
-    .card {
-      background: #fff;
-      color: hsl(var(--dark));
-      padding: 2rem;
-      border: 1px solid hsl(var(--gold));
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      max-width: 800px;
-      margin: auto;
-      transition: transform .25s ease;
-      text-align: left;
+    /* Hero */
+    .hero {
+      padding-top: 60px;
+      min-height: 100svh;
+      background:
+        linear-gradient(to bottom, hsl(0 0% 0% / 0.4), hsl(0 0% 0% / 0.2) 50%, transparent 80%),
+        url('images/safari01.jpg') center/cover no-repeat;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
-    .card:hover { transform: translateY(-5px) }
-    .card h2 {
-      margin-bottom: 1rem;
-      color: hsl(var(--gold));
+    .hero-inner {
+      max-width: 90ch;
+      padding: 2rem 1rem;
     }
-    .card p,
-    .card li {
-      line-height: 1.6;
-      margin-bottom: .75rem;
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 6vw, 3.5rem);
+      line-height: 1.2;
+      text-shadow: 2px 2px 4px hsl(0 0% 0% / 0.7);
+      animation: fadeInUp 1s ease-out;
     }
-    .card ul { list-style: none; margin-left: 0; padding-left: 0; }
-
-    /* Welcome */
-    .welcome-headshot {
-      width: 150px; height: 150px;
-      border-radius: 50%; object-fit: cover;
-      display: block;
-      margin: 0 auto 1rem;
-    }
-    .welcome-text p { margin-bottom: 1rem; }
-
-    /* Accommodation grid */
-    .accommodation-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    @media(min-width:768px) {
-      .accommodation-grid {
-        grid-template-columns: repeat(2,1fr);
-      }
-    }
-    .accom-item {
-      background: #fff;
-      color: hsl(var(--dark));
-      border: 1px solid hsl(var(--gold));
-      border-radius: 12px;
-      padding: 1rem;
-      box-shadow: var(--shadow);
-    }
-    .accom-item h3 {
-      font-size: 1.25rem;
-      margin-bottom: .5rem;
-      color: hsl(var(--gold));
-    }
-    .accom-item .details {
-      margin-bottom: 1rem;
-      font-size: .95rem;
-    }
-    .accom-item .map-link {
-      display: inline-block;
-      padding: .5rem 1rem;
+    .begin-journey {
+      margin-top: 1.5rem;
       background: hsl(var(--gold));
       color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow);
+      border: none;
+      cursor: pointer;
       transition: var(--transition);
     }
-    .accom-item .map-link:hover {
-      background: hsl(var(--gold-strong));
+    .begin-journey:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px hsl(45 40% 30% / 0.3);
     }
 
-    /* Gallery card override */
-    #gallery .card {
+    /* Section & Cards */
+    section {
+      padding: 3rem 1rem;
+      text-align: center;
+      scroll-margin-top: 80px;
+    }
+    .card {
       background: hsl(var(--gold));
       color: white;
-      border: none;
+      padding: 2rem;
+      margin: 1rem auto;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      min-height: 200px;
+      transition: transform .25s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+    }
+    .card h2 {
+      margin-bottom: 1rem;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+    .card p {
+      font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+      line-height: 1.7;
     }
 
-/* Floating nav */
-.floating-nav {
-  position: fixed;
-  /* move from right to left */
-  left: 1rem;
-  bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
-  z-index: 999;
-}
-.floating-nav a {
-  background: hsl(var(--gold));
-  color: white;
-  padding: .75rem 1rem;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: .9rem;
-  box-shadow: var(--shadow);
-}
-
-
-    /* Gallery grid */
-    .gallery-grid {
+    /* Footer Countdown */
+    footer {
+      background: hsl(var(--beige));
+      padding: 3rem 1rem 5rem;
+      text-align: center;
+    }
+    #countdownContainer {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem; margin-top: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 400px;
+      margin: 0 auto;
     }
-    .gallery-grid img {
-      width: 100%; height: 250px;
-      object-fit: cover; border-radius: 16px;
-      transition: transform .3s;
+    .countdown-box {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      text-align: center;
     }
-    .gallery-grid img:hover { transform: scale(1.02) }
+    .countdown-box span {
+      font-size: clamp(1.25rem, 4vw, 1.75rem);
+      font-weight: 700;
+      color: hsl(var(--gold));
+    }
+    .countdown-box small {
+      display: block;
+      margin-top: 0.25rem;
+      color: hsl(var(--dark));
+    }
 
+    /* Animation */
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px) }
-      to   { opacity: 1; transform: translateY(0) }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header>
     <div class="logo">C&R</div>
-    <button
-      id="menu-toggle"
-      class="hamburger"
-      aria-label="Open menu"
-      aria-controls="navMenu"
-      aria-expanded="false"
-    >☰</button>
+    <button id="menu-toggle" class="hamburger" aria-controls="navMenu" aria-expanded="false">☰</button>
     <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
-      <div class="nav-container">
-        <a href="#home"          data-fr="🏠 Accueil"                 data-en="🏠 Home">🏠 Accueil</a>
-        <a href="#welcome"       data-fr="💍 Bienvenue"              data-en="💍 Welcome">💍 Bienvenue</a>
-        <a href="#travel"        data-fr="✈️ Voyage & Arrivée"       data-en="✈️ Travel & Arrival">✈️ Voyage & Arrivée</a>
-        <a href="#accommodation" data-fr="🏨 Hébergement"            data-en="🏨 Accommodation">🏨 Hébergement</a>
-        <a href="#itinerary"     data-fr="📅 Itinéraire"             data-en="📅 Itinerary">📅 Itinéraire</a>
-        <a href="#lobola"        data-fr="💒 Lobola & Mariage"       data-en="💒 Lobola & Wedding">💒 Lobola & Mariage</a>
-        <a href="#discover"      data-fr="🌍 Découvrir"              data-en="🌍 Discover">🌍 Découvrir</a>
-        <a href="#gallery"       data-fr="📸 Galerie"               data-en="📸 Gallery">📸 Galerie</a>
-        <a href="#emergency"     data-fr="🚨 Urgence"                data-en="🚨 Emergency">🚨 Urgence</a>
-        <button id="langToggle" class="lang-button">🌍 FR</button>
-      </div>
+      <a href="#home">🏠 Accueil</a>
+      <a href="#welcome">💍 Bienvenue</a>
+      <a href="#travel">✈️ Voyage</a>
+      <a href="#accommodation">🏨 Hébergement</a>
+      <a href="#itinerary">📅 Itinéraire</a>
+      <a href="#lobola">💒 Lobola</a>
+      <a href="#discover">🌍 Découvrir</a>
+      <a href="#gallery">📸 Galerie</a>
+      <a href="#emergency">🚨 Urgence</a>
+      <button id="langToggle" class="lang-button">🌍 FR</button>
     </nav>
   </header>
 
   <!-- Hero -->
   <section class="hero" id="home">
-    <div>
-      <h1
-        id="heroText"
-        data-fr="Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud."
-        data-en="Welcome to Cedric and Ruth’s Traditional Wedding in South Africa."
-      >Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud.</h1>
-      <button class="begin-journey"
-        data-fr="Commencez votre aventure"
-        data-en="Begin your adventure"
-      >Commencez votre aventure</button>
+    <div class="hero-inner">
+      <h1 id="heroTitle">Bienvenue en Afrique du Sud 🇿🇦</h1>
+      <button class="begin-journey" id="ctaStart">Commencez votre aventure</button>
     </div>
   </section>
 
-  <!-- Welcome -->
+  <!-- Example Section -->
   <section id="welcome">
     <div class="card">
-      <img src="images/image1.jpg" alt="Cédric & Ruth" class="welcome-headshot" />
-      <div class="welcome-text">
-        <p
-          data-fr="Chère famille, Deux cultures, une seule histoire d’amour. Merci d’avoir voyagé de si loin pour écrire avec nous ce chapitre inoubliable de notre vie. C’est avec une immense joie que nous vous accueillons en Afrique du Sud pour célébrer notre mariage traditionnel."
-          data-en="Dear family, Two cultures, one love story. Thank you for travelling from afar to write this unforgettable chapter of our life with us. It is with great joy that we welcome you to South Africa to celebrate our traditional wedding."
-        >Chère famille, Deux cultures, une seule histoire d’amour. Merci d’avoir voyagé de si loin pour écrire avec nous ce chapitre inoubliable de notre vie. C’est avec une immense joie que nous vous accueillons en Afrique du Sud pour célébrer notre mariage traditionnel.</p>
-      </div>
+      <h2>Bienvenue</h2>
+      <p>Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud.</p>
     </div>
   </section>
 
-  <!-- Accommodation -->
-  <section id="accommodation">
-    <div class="card">
-      <h2 data-fr="Hébergement" data-en="Accommodation">Hébergement</h2>
-      <div class="accommodation-grid">
-        <!-- accom-item blocks... -->
-      </div>
+  <!-- Countdown -->
+  <footer>
+    <h2>Jours restants avant le mariage</h2>
+    <div id="countdownContainer">
+      <div class="countdown-box"><span id="days">0</span><small>jours</small></div>
+      <div class="countdown-box"><span id="hours">00</span><small>heures</small></div>
+      <div class="countdown-box"><span id="minutes">00</span><small>minutes</small></div>
+      <div class="countdown-box"><span id="seconds">00</span><small>secondes</small></div>
     </div>
-  </section>
+  </footer>
 
-  <!-- Travel & Arrival -->
-  <section id="travel">
-    <div class="card">
-      <h2 data-fr="Voyage & Arrivée – 24 Oct" data-en="Travel & Arrival – 24 Oct">Voyage & Arrivée – 24 Oct</h2>
-      <ul>
-        <li data-fr="Arrivée de la famille à 8h30 – O.R. Tambo Intl Airport" data-en="Arrival by the family at 8:30 AM – OR Tambo Intl Airport">
-          Arrivée de la famille à 8h30 – O.R. Tambo Intl Airport
-        </li>
-        <!-- more items... -->
-      </ul>
-    </div>
-  </section>
-
-  <!-- Itinéraire -->
-  <section id="itinerary">
-    <div class="card">
-      <h2 data-fr="Itinéraire" data-en="Itinerary">Itinéraire</h2>
-      <p data-fr="Un aperçu jour par jour de vos activités et temps forts." data-en="A day-by-day overview of events and highlights.">
-        Un aperçu jour par jour de vos activités et temps forts.
-      </p>
-    </div>
-  </section>
-
-  <!-- Lobola & Wedding -->
-  <section id="lobola">
-    <div class="card">
-      <h2 data-fr="Lobola & Mariage" data-en="Lobola & Wedding">Lobola & Mariage</h2>
-      <p data-fr="Cérémonie traditionnelle suivie de notre célébration." data-en="Traditional Lobola ceremony followed by our celebration.">
-        Cérémonie traditionnelle suivie de notre célébration.
-      </p>
-    </div>
-  </section>
-
-  <!-- Discover -->
-  <section id="discover">
-    <div class="card">
-      <h2 data-fr="Découvrir" data-en="Discover">Découvrir</h2>
-      <p data-fr="Explorez paysages, safaris et culture locale pendant votre séjour." data-en="Explore landscapes, safaris and local culture during your stay.">
-        Explorez paysages, safaris et culture locale pendant votre séjour.
-      </p>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery">
-    <div class="card">
-      <h2 data-fr="Galerie" data-en="Gallery">Galerie</h2>
-      <div class="gallery-grid">
-        <img src="images/safari1.jpg" alt="Safari 1" />
-        <img src="images/safari2.jpg" alt="Safari 2" />
-        <img src="images/safari3.jpg" alt="Safari 3" />
-        <img src="images/safari4.jpg" alt="Safari 4" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Emergency -->
-  <section id="emergency">
-    <div class="card">
-      <h2 data-fr="Contacts d’Urgence" data-en="Emergency Contacts">Contacts d’Urgence</h2>
-      <p data-fr="🚨 Police : 10111 📱 Ruth : +27 82 962 7848 ✉️ phaahlaruth@gmail.com" data-en="🚨 Police: 10111 📱 Ruth: +27 82 962 7848 ✉️ phaahlaruth@gmail.com">
-        🚨 Police : 10111<br>📱 Ruth : +27 82 962 7848<br>✉️ phaahlaruth@gmail.com
-      </p>
-    </div>
-  </section>
-
-  <!-- Floating Quick Links -->
-  <div class="floating-nav">
-    <a href="#home"        aria-label="Accueil">🏠</a>
-    <a href="#welcome"     aria-label="Bienvenue">💍</a>
-    <a href="#travel"      aria-label="Voyage">✈️</a>
-    <a href="#accommodation"aria-label="Hébergement">🏨</a>
-    <a href="#itinerary"   aria-label="Itinéraire">📅</a>
-    <a href="#lobola"      aria-label="Lobola">💒</a>
-    <a href="#discover"    aria-label="Découvrir">🌍</a>
-    <a href="#gallery"     aria-label="Galerie">📸</a>
-    <a href="#emergency"   aria-label="Urgence">🚨</a>
-    <a href="https://wa.me/27829627848" target="_blank" aria-label="WhatsApp">📱</a>
-    <a href="mailto:phaahlaruth@gmail.com" aria-label="Email">✉️</a>
-  </div>
-
+  <!-- JavaScript -->
   <script>
-    const menuToggle = document.getElementById("menu-toggle");
-    const navMenu    = document.getElementById("navMenu");
-    const langToggle = document.getElementById("langToggle");
-    let isFr = true;
-
-    // Menu toggle
-    menuToggle.addEventListener("click", () => {
-      const open = navMenu.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", open);
-      menuToggle.textContent = open ? "✖" : "☰";
+    // Hamburger toggle
+    const toggleBtn = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("navMenu");
+    toggleBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("open");
+      toggleBtn.setAttribute("aria-expanded", navMenu.classList.contains("open"));
     });
-    navMenu.querySelectorAll("a").forEach(link =>
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("open");
-        menuToggle.textContent = "☰";
-        menuToggle.setAttribute("aria-expanded", "false");
-      })
-    );
 
-    // Language toggle
-    langToggle.addEventListener("click", () => {
-      isFr = !isFr;
-      langToggle.textContent = isFr ? "🌍 FR" : "🌍 EN";
-      document.querySelectorAll("[data-fr]").forEach(el => {
-        el.textContent = isFr
-          ? el.getAttribute("data-fr")
-          : el.getAttribute("data-en");
+    // Auto-close nav on link click (mobile)
+    document.querySelectorAll("nav.nav-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (navMenu.classList.contains("open")) {
+          navMenu.classList.remove("open");
+          toggleBtn.setAttribute("aria-expanded", "false");
+        }
       });
     });
+
+    // Countdown timer
+    const countdown = () => {
+      const weddingDate = new Date("2025-11-01T00:00:00Z").getTime();
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+    };
+    setInterval(countdown, 1000);
   </script>
 </body>
 </html>
