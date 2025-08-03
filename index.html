@@ -5,12 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Cédric & Ruth – South African Wedding</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <style>
     :root {
       --gold: 45 90% 45%;
@@ -57,11 +53,14 @@
     }
 
     .hamburger {
-      font-size: 1.5rem;
-      background: none;
+      font-size: 1.75rem;
+      background: hsl(var(--gold));
+      color: white;
       border: none;
+      border-radius: 10px;
+      padding: 0.5rem 1rem;
       cursor: pointer;
-      color: hsl(var(--gold));
+      transition: var(--transition);
     }
 
     nav.nav-menu {
@@ -77,28 +76,33 @@
       transition: var(--transition);
       display: flex;
       flex-direction: column;
-      padding: 4rem 2rem;
+      padding: 6rem 2rem 2rem;
+      overflow-y: auto;
     }
 
     nav.nav-menu.open {
       transform: translateX(0);
     }
 
-    nav.nav-menu a, .lang-button {
+    nav.nav-menu a,
+    .lang-button {
+      margin: 0.75rem 0;
       padding: 1rem;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 600;
       text-decoration: none;
       color: hsl(var(--dark));
-      margin: 0.25rem 0;
-      border-radius: 12px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
       transition: var(--transition);
     }
 
-    nav.nav-menu a:hover, .lang-button:hover {
+    nav.nav-menu a:hover,
+    .lang-button:hover {
+      transform: translateX(6px);
       background: hsl(var(--gold));
       color: white;
-      transform: translateX(10px);
     }
 
     .hero {
@@ -211,10 +215,11 @@
 </head>
 
 <body>
+  <!-- Header -->
   <header>
     <div class="logo">C&R</div>
     <button class="hamburger" id="menu-toggle" aria-label="Menu">☰</button>
-    <nav id="navMenu" class="nav-menu" role="navigation">
+    <nav id="navMenu" class="nav-menu">
       <a href="#home">🏠 Accueil</a>
       <a href="#welcome">💍 Bienvenue</a>
       <a href="#travel">✈️ Voyage</a>
@@ -228,27 +233,33 @@
     </nav>
   </header>
 
+  <!-- Hero -->
   <section class="hero" id="home">
     <h1>Bienvenue en Afrique du Sud 🇿🇦</h1>
-    <button class="begin-journey">Commencez votre aventure</button>
+    <button class="begin-journey" onclick="document.getElementById('welcome').scrollIntoView({behavior:'smooth'});">
+      Commencez votre aventure
+    </button>
   </section>
 
+  <!-- Floating Nav Buttons -->
   <div class="floating-nav">
-    <a href="#home">🏠</a>
-    <a href="#lobola">💒</a>
-    <a href="https://wa.me/27829627848" target="_blank">📱</a>
-    <a href="mailto:phaahlaruth@gmail.com">✉️</a>
+    <a href="#home" title="Accueil">🏠</a>
+    <a href="#lobola" title="Lobola">💒</a>
+    <a href="https://wa.me/27829627848" target="_blank" title="WhatsApp">📱</a>
+    <a href="mailto:phaahlaruth@gmail.com" title="Email">✉️</a>
   </div>
 
+  <!-- Section Samples -->
   <section id="welcome"><div class="card"><h2>Bienvenue</h2><p>Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.</p></div></section>
   <section id="travel"><div class="card"><h2>Voyage</h2><p>Vol Paris > JHB. Gautrain à Sandton. Transfert assuré.</p></div></section>
   <section id="accommodation"><div class="card"><h2>Hébergement</h2><p>Sandton, Bakubung, puis retour à Sandton.</p></div></section>
-  <section id="itinerary"><div class="card"><h2>Itinéraire</h2><p>Suivez le programme de la semaine, entre famille, culture, et amour 💕</p></div></section>
+  <section id="itinerary"><div class="card"><h2>Itinéraire</h2><p>Suivez le programme de la semaine.</p></div></section>
   <section id="lobola"><div class="card"><h2>Lobola & Mariage</h2><p>Cérémonie traditionnelle suivie de la célébration à Franschhoek.</p></div></section>
-  <section id="discover"><div class="card"><h2>Découvrir l’Afrique du Sud</h2><p>Explorez les merveilles, la nature, et l’hospitalité sud-africaine.</p></div></section>
+  <section id="discover"><div class="card"><h2>Découvrir</h2><p>Explorez les merveilles, la nature, et l’hospitalité sud-africaine.</p></div></section>
   <section id="gallery"><div class="card"><h2>Galerie</h2><p>Photos de safari, d’amour, et de souvenirs magiques.</p></div></section>
   <section id="emergency"><div class="card"><h2>Urgence</h2><p>📞 Police: 10111 — 📱 Ruth: +27 82 962 7848</p></div></section>
 
+  <!-- Footer Countdown -->
   <footer>
     <h2>Jours restants avant le mariage</h2>
     <div class="countdown-box"><span id="days">00</span><small>jours</small></div>
@@ -257,18 +268,23 @@
     <div class="countdown-box"><span id="seconds">00</span><small>secondes</small></div>
   </footer>
 
+  <!-- Script -->
   <script>
-    // Menu Toggle
     const menuBtn = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('navMenu');
+
     menuBtn.onclick = () => {
       navMenu.classList.toggle('open');
+      menuBtn.textContent = navMenu.classList.contains('open') ? '✖' : '☰';
     };
+
     navMenu.querySelectorAll('a').forEach(link => {
-      link.onclick = () => navMenu.classList.remove('open');
+      link.onclick = () => {
+        navMenu.classList.remove('open');
+        menuBtn.textContent = '☰';
+      };
     });
 
-    // Countdown Timer
     const targetDate = new Date("2025-11-01T00:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
