@@ -1,234 +1,319 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Ecstasy Retreat - Mobile Massage Therapists</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Cédric & Ruth – South African Wedding</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
   <style>
     :root {
-      --gold: #d4af37;
-      --dark: #111;
-      --light: #fff;
+      --gold: 45 90% 45%;
+      --gold-strong: 45 95% 55%;
+      --beige: 35 20% 88%;
+      --dark: 30 8% 8%;
+      --shadow: 0 10px 30px hsl(45 40% 30% / 0.18);
+      --transition: all .3s ease;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark);
-      color: var(--light);
+      font-family: Inter, sans-serif;
+      background: hsl(var(--beige));
+      color: hsl(var(--dark));
+      line-height: 1.6;
       overflow-x: hidden;
     }
 
+    /* Header */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      background: var(--dark);
-      color: var(--gold);
-      z-index: 999;
-      position: relative;
-    }
-
-    header .logo {
-      height: 40px;
-    }
-
-    .overlay-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: white;
-      color: black;
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem; background: hsl(0 0% 100% / 0.9);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid hsl(35 15% 85%);
       z-index: 1000;
-      padding-top: 80px;
-      text-align: center;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: hsl(var(--gold));
+    }
+    .hamburger {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: hsl(var(--gold));
+      padding: .5rem;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    .hamburger:hover {
+      background: hsl(var(--gold) / 0.1);
+      transform: scale(1.1);
     }
 
-    .overlay-menu.active {
-      display: block;
-    }
-
-    .overlay-menu ul { list-style: none; }
-    .overlay-menu li { margin: 20px 0; font-size: 1.2rem; }
-
-    .hero {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .slide.active {
-      opacity: 1;
-    }
-
-    .hero-text {
-      position: absolute;
-      bottom: 50px;
-      left: 20px;
-      z-index: 10;
-      color: white;
-      text-shadow: 1px 1px 5px black;
-    }
-
-    section {
-      padding: 2rem;
-    }
-
-    footer {
-      background: var(--dark);
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    footer .social-icons a {
-      margin: 0 10px;
-      color: var(--gold);
-    }
-
-    .credit {
-      margin-top: 1rem;
-      color: var(--gold);
-    }
-
-    .fab-btn {
+    /* Navigation */
+    nav.nav-menu {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 2000;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: hsl(0 0% 100% / 0.95);
+      backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      padding: 2rem 1rem;
+      transform: translateX(-100%);
+      transition: transform .35s ease;
+      overflow-y: auto;
+      z-index: 1100;
+    }
+    nav.nav-menu.open {
+      transform: translateX(0);
+    }
+    nav.nav-menu a, .lang-button {
+      padding: 1.25rem 1rem;
+      text-decoration: none;
+      color: hsl(var(--dark));
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      margin: .25rem 0;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      transition: var(--transition);
+    }
+    nav.nav-menu a:hover, .lang-button:hover {
+      background: hsl(var(--gold));
+      color: white;
+      transform: translateX(8px);
     }
 
-    .fab-btn a {
-      background: var(--gold);
-      color: #000;
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 1.3rem;
+    @media(min-width: 768px) {
+      .hamburger { display: none; }
+      nav.nav-menu {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-evenly;
+        background: none;
+        backdrop-filter: none;
+        padding: 0;
+      }
+      nav.nav-menu a, .lang-button {
+        background: hsl(0 0% 100% / 0.9);
+        margin: 0;
+        border-radius: 25px;
+      }
+      nav.nav-menu a:hover, .lang-button:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 60px;
+      min-height: 100svh;
+      background:
+        linear-gradient(to bottom, hsl(0 0% 0% / 0.4), hsl(0 0% 0% / 0.2) 50%, transparent 80%),
+        url('images/safari01.jpg') center/cover no-repeat;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+    }
+    .hero-inner {
+      max-width: 90ch;
+      padding: 2rem 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 6vw, 3.5rem);
+      line-height: 1.2;
+      text-shadow: 2px 2px 4px hsl(0 0% 0% / 0.7);
+      animation: fadeInUp 1s ease-out;
+    }
+    .begin-journey {
+      margin-top: 1.5rem;
+      background: hsl(var(--gold));
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .begin-journey:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px hsl(45 40% 30% / 0.3);
+    }
+
+    /* Section & Cards */
+    section {
+      padding: 3rem 1rem;
+      text-align: center;
+      scroll-margin-top: 80px;
+    }
+    .card {
+      background: hsl(var(--gold));
+      color: white;
+      padding: 2rem;
+      margin: 1rem auto;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      max-width: 800px;
+      min-height: 200px;
+      transition: transform .25s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+    }
+    .card h2 {
+      margin-bottom: 1rem;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+    .card p {
+      font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+      line-height: 1.7;
+    }
+
+    /* Footer Countdown */
+    footer {
+      background: hsl(var(--beige));
+      padding: 3rem 1rem 5rem;
+      text-align: center;
+    }
+    #countdownContainer {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .countdown-box {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .countdown-box span {
+      font-size: clamp(1.25rem, 4vw, 1.75rem);
+      font-weight: 700;
+      color: hsl(var(--gold));
+    }
+    .countdown-box small {
+      display: block;
+      margin-top: 0.25rem;
+      color: hsl(var(--dark));
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div><i class="fas fa-share-alt" onclick="shareWebsite()"></i></div>
-  <div><img src="https://via.placeholder.com/100x40?text=Logo" alt="Logo" class="logo" /></div>
-  <div><i class="fas fa-bars" onclick="toggleMenu()"></i></div>
-</header>
+  <!-- Header -->
+  <header>
+    <div class="logo">C&R</div>
+    <button id="menu-toggle" class="hamburger" aria-controls="navMenu" aria-expanded="false">☰</button>
+    <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
+      <a href="#home">🏠 Accueil</a>
+      <a href="#welcome">💍 Bienvenue</a>
+      <a href="#travel">✈️ Voyage</a>
+      <a href="#accommodation">🏨 Hébergement</a>
+      <a href="#itinerary">📅 Itinéraire</a>
+      <a href="#lobola">💒 Lobola</a>
+      <a href="#discover">🌍 Découvrir</a>
+      <a href="#gallery">📸 Galerie</a>
+      <a href="#emergency">🚨 Urgence</a>
+      <button id="langToggle" class="lang-button">🌍 FR</button>
+    </nav>
+  </header>
 
-<!-- Overlay Fullscreen Menu -->
-<div id="overlayMenu" class="overlay-menu">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="booking.html">Booking</a></li>
-    <li><a href="image-gallery.html">Gallery</a></li>
-    <li><a href="join-therapist.html">Join as Therapist</a></li>
-    <li><a href="therapists.html">Therapists</a></li>
-    <li><a href="#" onclick="toggleMenu()">Close</a></li>
-  </ul>
-</div>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <h1 id="heroTitle">Bienvenue en Afrique du Sud 🇿🇦</h1>
+      <button class="begin-journey" id="ctaStart">Commencez votre aventure</button>
+    </div>
+  </section>
 
-<!-- Hero Slideshow -->
-<section class="hero">
-  <div class="slide active" style="background-image: url('https://via.placeholder.com/1920x1080?text=Slide+1');"></div>
-  <div class="slide" style="background-image: url('https://via.placeholder.com/1920x1080?text=Slide+2');"></div>
-  <div class="slide" style="background-image: url('https://via.placeholder.com/1920x1080?text=Slide+3');"></div>
-  <div class="hero-text">
-    <h1>Ecstasy Retreat</h1>
-    <p>Premium Mobile Massage Services in South Africa</p>
-  </div>
-</section>
+  <!-- Example Section -->
+  <section id="welcome">
+    <div class="card">
+      <h2>Bienvenue</h2>
+      <p>Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud.</p>
+    </div>
+  </section>
 
-<!-- Main Content -->
-<section>
-  <h2>Welcome</h2>
-  <p>We bring premium massage therapy to your doorstep. Enjoy deep relaxation with our certified therapists.</p>
-</section>
+  <!-- Countdown -->
+  <footer>
+    <h2>Jours restants avant le mariage</h2>
+    <div id="countdownContainer">
+      <div class="countdown-box"><span id="days">0</span><small>jours</small></div>
+      <div class="countdown-box"><span id="hours">00</span><small>heures</small></div>
+      <div class="countdown-box"><span id="minutes">00</span><small>minutes</small></div>
+      <div class="countdown-box"><span id="seconds">00</span><small>secondes</small></div>
+    </div>
+  </footer>
 
-<section>
-  <h2>Our Services</h2>
-  <ul>
-    <li>Deep Tissue Massage</li>
-    <li>Swedish Relaxation</li>
-    <li>Aromatherapy</li>
-    <li>Couples Massage</li>
-  </ul>
-</section>
+  <!-- JavaScript -->
+  <script>
+    // Hamburger toggle
+    const toggleBtn = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("navMenu");
+    toggleBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("open");
+      toggleBtn.setAttribute("aria-expanded", navMenu.classList.contains("open"));
+    });
 
-<section>
-  <h2>Client Reviews</h2>
-  <blockquote>“The most professional massage I've ever had!”</blockquote>
-  <blockquote>“Highly recommended. Great service, very friendly.”</blockquote>
-</section>
-
-<!-- Floating Buttons -->
-<div class="fab-btn">
-  <a href="mailto:bookings@ecstasyretreat.com"><i class="fas fa-envelope"></i></a>
-  <a href="https://wa.me/1234567890"><i class="fab fa-whatsapp"></i></a>
-</div>
-
-<!-- Footer -->
-<footer>
-  <div class="social-icons">
-    <a href="#"><i class="fas fa-envelope"></i></a>
-    <a href="#"><i class="fab fa-whatsapp"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-tiktok"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-  </div>
-  <div class="credit">
-    <a href="https://virtualwarecloud.github.io/services/" target="_blank">
-      <i class="fas fa-paper-plane"></i> Designed by VirtualWareCloud
-    </a>
-  </div>
-</footer>
-
-<script>
-  function toggleMenu() {
-    document.getElementById("overlayMenu").classList.toggle("active");
-  }
-
-  async function shareWebsite() {
-    if (navigator.share) {
-      await navigator.share({
-        title: 'Ecstasy Retreat',
-        text: 'Book luxury mobile massage services with us.',
-        url: window.location.href
+    // Auto-close nav on link click (mobile)
+    document.querySelectorAll("nav.nav-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (navMenu.classList.contains("open")) {
+          navMenu.classList.remove("open");
+          toggleBtn.setAttribute("aria-expanded", "false");
+        }
       });
-    } else {
-      alert("Sharing not supported on this device.");
-    }
-  }
+    });
 
-  const slides = document.querySelectorAll('.slide');
-  let current = 0;
+    // Countdown timer
+    const countdown = () => {
+      const weddingDate = new Date("2025-11-01T00:00:00Z").getTime();
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
 
-  function fadeSlides() {
-    slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
-    slides[current].classList.add('active');
-  }
+      if (diff <= 0) return;
 
-  setInterval(fadeSlides, 4000);
-</script>
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+    };
+    setInterval(countdown, 1000);
+  </script>
 </body>
 </html>
