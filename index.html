@@ -2,318 +2,260 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Cédric & Ruth – South African Wedding</title>
 
-  <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p0fK2xWj9g0g4pL+4OaG0s6G8dgw5Uhdj+irqmu4LkQnkdg0nV+g9cXW4n5Ui8O2Q2KZcRtyNYf8X+XrA3vYhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     :root {
-      --gold: 45 90% 45%;
-      --gold-strong: 45 95% 55%;
-      --beige: 35 20% 88%;
-      --dark: 30 8% 8%;
+      --gold: hsl(45, 90%, 45%);
+      --beige: hsl(35, 20%, 88%);
+      --dark: hsl(30, 8%, 8%);
       --shadow: 0 10px 30px hsl(45 40% 30% / 0.18);
-      --transition: all .3s ease;
+      --transition: all 0.3s ease;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0 }
-    html { scroll-behavior: smooth }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Inter, sans-serif;
-      background: hsl(var(--beige));
-      color: hsl(var(--dark));
+      background: var(--beige);
+      color: var(--dark);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* Header */
     header {
-      position: fixed; top: 0; left: 0; right: 0;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem; background: hsl(0 0% 100% / 0.9);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid hsl(35 15% 85%);
-      z-index: 1000;
-    }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: hsl(var(--gold));
-    }
-    .hamburger {
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: hsl(var(--gold));
-      padding: .5rem;
-      border-radius: 8px;
-      transition: var(--transition);
-    }
-    .hamburger:hover {
-      background: hsl(var(--gold) / 0.1);
-      transform: scale(1.1);
+      position: fixed;
+      top: 1rem; right: 1rem;
+      z-index: 1001;
     }
 
-    /* Navigation */
+    .hamburger {
+      font-size: 2rem;
+      background: var(--gold);
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .hamburger:hover {
+      transform: scale(1.05);
+    }
+
     nav.nav-menu {
       position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: hsl(0 0% 100% / 0.95);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
-      padding: 2rem 1rem;
-      transform: translateX(-100%);
-      transition: transform .35s ease;
-      overflow-y: auto;
-      z-index: 1100;
-    }
-    nav.nav-menu.open {
-      transform: translateX(0);
-    }
-    nav.nav-menu a, .lang-button {
-      padding: 1.25rem 1rem;
-      text-decoration: none;
-      color: hsl(var(--dark));
-      font-weight: 600;
-      font-size: 1.1rem;
-      border-radius: 12px;
-      margin: .25rem 0;
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      transition: var(--transition);
-    }
-    nav.nav-menu a:hover, .lang-button:hover {
-      background: hsl(var(--gold));
-      color: white;
-      transform: translateX(8px);
-    }
-
-    @media(min-width: 768px) {
-      .hamburger { display: none; }
-      nav.nav-menu {
-        position: static;
-        transform: none;
-        flex-direction: row;
-        justify-content: space-evenly;
-        background: none;
-        backdrop-filter: none;
-        padding: 0;
-      }
-      nav.nav-menu a, .lang-button {
-        background: hsl(0 0% 100% / 0.9);
-        margin: 0;
-        border-radius: 25px;
-      }
-      nav.nav-menu a:hover, .lang-button:hover {
-        transform: translateY(-2px);
-      }
-    }
-
-    /* Hero */
-    .hero {
-      padding-top: 60px;
-      min-height: 100svh;
-      background:
-        linear-gradient(to bottom, hsl(0 0% 0% / 0.4), hsl(0 0% 0% / 0.2) 50%, transparent 80%),
-        url('images/safari01.jpg') center/cover no-repeat;
-      color: white;
-      display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
+      transform: translateY(-100%);
+      transition: transform 0.35s ease;
+      z-index: 1000;
     }
-    .hero-inner {
-      max-width: 90ch;
-      padding: 2rem 1rem;
+
+    nav.nav-menu.open {
+      transform: translateY(0);
     }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.75rem, 6vw, 3.5rem);
-      line-height: 1.2;
-      text-shadow: 2px 2px 4px hsl(0 0% 0% / 0.7);
-      animation: fadeInUp 1s ease-out;
-    }
-    .begin-journey {
-      margin-top: 1.5rem;
-      background: hsl(var(--gold));
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      font-size: 1.1rem;
-      box-shadow: var(--shadow);
-      border: none;
-      cursor: pointer;
+
+    nav.nav-menu a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: bold;
+      font-size: 1.5rem;
+      padding: 1rem;
       transition: var(--transition);
     }
-    .begin-journey:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 32px hsl(45 40% 30% / 0.3);
+
+    nav.nav-menu a:hover {
+      color: white;
+      background: var(--gold);
+      border-radius: 10px;
     }
 
-    /* Section & Cards */
-    section {
-      padding: 3rem 1rem;
-      text-align: center;
-      scroll-margin-top: 80px;
+    .floating-nav {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 999;
     }
+
+    .floating-nav a {
+      background: var(--gold);
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .floating-nav a:hover {
+      transform: translateY(-3px);
+    }
+
+    section {
+      padding: 5rem 1rem;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
     .card {
-      background: hsl(var(--gold));
+      background: var(--gold);
       color: white;
       padding: 2rem;
-      margin: 1rem auto;
       border-radius: 20px;
       box-shadow: var(--shadow);
-      max-width: 800px;
-      min-height: 200px;
-      transition: transform .25s;
+      margin-bottom: 2rem;
     }
-    .card:hover {
-      transform: translateY(-2px);
-    }
+
     .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
       margin-bottom: 1rem;
-      font-size: clamp(1.5rem, 5vw, 2rem);
     }
+
     .card p {
-      font-size: clamp(0.95rem, 3.5vw, 1.1rem);
-      line-height: 1.7;
+      font-size: 1rem;
     }
 
-    /* Footer Countdown */
     footer {
-      background: hsl(var(--beige));
-      padding: 3rem 1rem 5rem;
       text-align: center;
-    }
-    #countdownContainer {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    .countdown-box {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
-    .countdown-box span {
-      font-size: clamp(1.25rem, 4vw, 1.75rem);
-      font-weight: 700;
-      color: hsl(var(--gold));
-    }
-    .countdown-box small {
-      display: block;
-      margin-top: 0.25rem;
-      color: hsl(var(--dark));
-    }
-
-    /* Animation */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      padding: 2rem;
+      background: var(--beige);
+      margin-top: 4rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header and Navigation -->
   <header>
-    <div class="logo">C&R</div>
-    <button id="menu-toggle" class="hamburger" aria-controls="navMenu" aria-expanded="false">☰</button>
-    <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
-      <a href="#home">🏠 Accueil</a>
-      <a href="#welcome">💍 Bienvenue</a>
-      <a href="#travel">✈️ Voyage</a>
-      <a href="#accommodation">🏨 Hébergement</a>
-      <a href="#itinerary">📅 Itinéraire</a>
-      <a href="#lobola">💒 Lobola</a>
-      <a href="#discover">🌍 Découvrir</a>
-      <a href="#gallery">📸 Galerie</a>
-      <a href="#emergency">🚨 Urgence</a>
-      <button id="langToggle" class="lang-button">🌍 FR</button>
-    </nav>
+    <button class="hamburger" id="menuToggle">☰</button>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="hero-inner">
-      <h1 id="heroTitle">Bienvenue en Afrique du Sud 🇿🇦</h1>
-      <button class="begin-journey" id="ctaStart">Commencez votre aventure</button>
-    </div>
-  </section>
+  <nav class="nav-menu" id="navMenu">
+    <a href="#home">🏠 Accueil</a>
+    <a href="#welcome">💍 Bienvenue</a>
+    <a href="#travel">✈️ Voyage</a>
+    <a href="#accommodation">🏨 Hébergement</a>
+    <a href="#itinerary">📅 Itinéraire</a>
+    <a href="#lobola">💒 Lobola</a>
+    <a href="#discover">🌍 Découvrir</a>
+    <a href="#gallery">📸 Galerie</a>
+    <a href="#emergency">🚨 Urgence</a>
+  </nav>
 
-  <!-- Example Section -->
-  <section id="welcome">
+  <!-- Floating Buttons -->
+  <div class="floating-nav">
+    <a href="#home">🏠</a>
+    <a href="https://wa.me/27829627848" target="_blank">📱</a>
+    <a href="mailto:phaahlaruth@gmail.com">✉️</a>
+    <a href="#gallery">📷</a>
+  </div>
+
+  <!-- Sections -->
+  <section id="home">
     <div class="card">
       <h2>Bienvenue</h2>
-      <p>Nous sommes ravis de vous accueillir pour célébrer notre mariage en Afrique du Sud.</p>
+      <p>Bienvenue en Afrique du Sud pour le mariage de Cédric & Ruth.</p>
     </div>
   </section>
 
-  <!-- Countdown -->
-  <footer>
-    <h2>Jours restants avant le mariage</h2>
-    <div id="countdownContainer">
-      <div class="countdown-box"><span id="days">0</span><small>jours</small></div>
-      <div class="countdown-box"><span id="hours">00</span><small>heures</small></div>
-      <div class="countdown-box"><span id="minutes">00</span><small>minutes</small></div>
-      <div class="countdown-box"><span id="seconds">00</span><small>secondes</small></div>
+  <section id="welcome">
+    <div class="card">
+      <h2>Message de Bienvenue</h2>
+      <p>Merci de vous joindre à nous pour ce moment spécial.</p>
     </div>
+  </section>
+
+  <section id="travel">
+    <div class="card">
+      <h2>Voyage et Arrivée</h2>
+      <p>Vol depuis Paris jusqu’à Johannesburg, puis Gautrain vers Sandton.</p>
+    </div>
+  </section>
+
+  <section id="accommodation">
+    <div class="card">
+      <h2>Hébergement</h2>
+      <p>Sandton Towers, Bakubung Lodge et plus.</p>
+    </div>
+  </section>
+
+  <section id="itinerary">
+    <div class="card">
+      <h2>Itinéraire</h2>
+      <p>Planning quotidien de votre séjour.</p>
+    </div>
+  </section>
+
+  <section id="lobola">
+    <div class="card">
+      <h2>Lobola et Mariage</h2>
+      <p>Cérémonie traditionnelle et célébration.</p>
+    </div>
+  </section>
+
+  <section id="discover">
+    <div class="card">
+      <h2>Découvrir l’Afrique du Sud</h2>
+      <p>Savourez la culture, nature et hospitalité locale.</p>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="card">
+      <h2>Galerie</h2>
+      <p>Photos de notre safari et fiançailles.</p>
+    </div>
+  </section>
+
+  <section id="emergency">
+    <div class="card">
+      <h2>Urgence</h2>
+      <p>Police: 10111<br> Ruth: +27 82 962 7848</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Cédric & Ruth – Tous droits réservés.</p>
   </footer>
 
   <!-- JavaScript -->
   <script>
-    // Hamburger toggle
-    const toggleBtn = document.getElementById("menu-toggle");
-    const navMenu = document.getElementById("navMenu");
-    toggleBtn.addEventListener("click", () => {
-      navMenu.classList.toggle("open");
-      toggleBtn.setAttribute("aria-expanded", navMenu.classList.contains("open"));
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = navMenu.querySelectorAll('a');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
     });
 
-    // Auto-close nav on link click (mobile)
-    document.querySelectorAll("nav.nav-menu a").forEach(link => {
-      link.addEventListener("click", () => {
-        if (navMenu.classList.contains("open")) {
-          navMenu.classList.remove("open");
-          toggleBtn.setAttribute("aria-expanded", "false");
-        }
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
       });
     });
-
-    // Countdown timer
-    const countdown = () => {
-      const weddingDate = new Date("2025-11-01T00:00:00Z").getTime();
-      const now = new Date().getTime();
-      const diff = weddingDate - now;
-
-      if (diff <= 0) return;
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
-      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
-      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
-    };
-    setInterval(countdown, 1000);
   </script>
 </body>
 </html>
