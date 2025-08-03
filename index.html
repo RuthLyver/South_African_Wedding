@@ -4,12 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Cédric & Ruth – South African Wedding</title>
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
   <style>
-    /* Root colors & global reset */
     :root {
       --gold: hsl(45, 90%, 45%);
       --beige: hsl(35, 20%, 88%);
@@ -23,9 +19,7 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -34,7 +28,6 @@
       overflow-x: hidden;
     }
 
-    /* ================= HEADER & MENU TOGGLE ================= */
     header {
       position: fixed;
       top: 0;
@@ -45,7 +38,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 9999; /* ensure always on top */
+      z-index: 9999;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
@@ -56,40 +49,35 @@
     }
 
     .hamburger {
-      font-size: 2rem;
+      font-size: 1.8rem;
       background: var(--gold);
       color: white;
       border: none;
       border-radius: 8px;
-      padding: 0.4rem 1rem;
+      padding: 0.4rem 0.9rem;
       cursor: pointer;
     }
 
-    /* =================== FULLSCREEN NAVIGATION MENU =================== */
     .nav-menu {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255,255,255,0.98);
       backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 1.2rem;
       transform: translateX(-100%);
       transition: transform 0.3s ease-in-out;
-      z-index: 9998; /* sit above content, just below header */
+      z-index: 9998;
     }
 
-    .nav-menu.open {
-      transform: translateX(0);
-    }
+    .nav-menu.open { transform: translateX(0); }
 
-    .nav-menu a,
-    .lang-button {
+    .nav-menu a, .lang-button {
       padding: 1rem 2rem;
       background: var(--white);
       border-radius: 16px;
@@ -97,31 +85,28 @@
       color: var(--dark);
       text-decoration: none;
       font-size: 1.1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: 0.3s;
+      margin: 0.5rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
     }
 
-    .nav-menu a:hover {
-      background: var(--gold);
-      color: white;
-    }
+    .nav-menu a:hover { background: var(--gold); color: white; }
 
-    /* ================= HERO SECTION ================= */
     .hero {
       height: 100vh;
-      background: url('images/safari01.jpg') center/cover no-repeat;
+      background: url('images/image1.jpg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 4rem 1rem 2rem;
+      padding: 5rem 1rem 2rem;
       text-align: center;
       color: white;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     }
 
@@ -137,7 +122,6 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
 
-    /* ================== FLOATING NAVIGATION BUTTONS ================== */
     .floating-nav {
       position: fixed;
       bottom: 1.5rem;
@@ -162,9 +146,8 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-    /* ================ SECTIONS ================ */
     section {
-      padding: 4rem 1.5rem;
+      padding: 4.5rem 1.5rem 3rem;
     }
 
     .card {
@@ -175,9 +158,35 @@
       padding: 2rem;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      text-align: center;
     }
 
-    /* ================ FOOTER ================ */
+    .card img {
+      margin: 1rem auto;
+      width: 180px;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+
     footer {
       padding: 2rem;
       background: var(--beige);
@@ -201,15 +210,13 @@
     }
   </style>
 </head>
-
 <body>
-  <!-- HEADER & TOGGLER -->
+
   <header>
     <div class="logo">C&R</div>
     <button class="hamburger" id="menu-toggle">☰</button>
   </header>
 
-  <!-- FULLSCREEN NAVIGATION MENU -->
   <nav id="navMenu" class="nav-menu">
     <a href="#home">🏠 Accueil</a>
     <a href="#welcome">💍 Bienvenue</a>
@@ -220,16 +227,14 @@
     <a href="#discover">🌍 Découvrir</a>
     <a href="#gallery">📸 Galerie</a>
     <a href="#emergency">🚨 Urgence</a>
-    <button class="lang-button">🌍 FR</button>
+    <button class="lang-button" id="lang-toggle">🌍 FR</button>
   </nav>
 
-  <!-- HERO SECTION -->
   <section class="hero" id="home">
-    <h1>Bienvenue en Afrique du Sud 🇿🇦</h1>
-    <button class="begin-journey" onclick="document.getElementById('welcome').scrollIntoView({behavior:'smooth'})">Commencez votre aventure</button>
+    <h1 id="hero-title">Bienvenue en Afrique du Sud 🇿🇦</h1>
+    <button class="begin-journey" onclick="document.getElementById('welcome').scrollIntoView({behavior:'smooth'})" id="journey-btn">Commencez votre aventure</button>
   </section>
 
-  <!-- FLOATING NAV BUTTONS -->
   <div class="floating-nav">
     <a href="#home" title="Accueil">🏠</a>
     <a href="#lobola" title="Lobola">💒</a>
@@ -237,17 +242,58 @@
     <a href="mailto:phaahlaruth@gmail.com" title="Email">✉️</a>
   </div>
 
-  <!-- PAGE SECTIONS -->
-  <section id="welcome"><div class="card"><h2>Bienvenue</h2><p>Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.</p></div></section>
-  <section id="travel"><div class="card"><h2>Voyage</h2><p>Vol Paris > JHB. Gautrain à Sandton. Transfert assuré.</p></div></section>
-  <section id="accommodation"><div class="card"><h2>Hébergement</h2><p>Sandton Sun Towers, Bakubung, Appartement privé.</p></div></section>
-  <section id="itinerary"><div class="card"><h2>Itinéraire</h2><p>Explorez le programme du séjour jour par jour.</p></div></section>
-  <section id="lobola"><div class="card"><h2>Lobola & Mariage</h2><p>Cérémonie traditionnelle et réception à Franschhoek.</p></div></section>
-  <section id="discover"><div class="card"><h2>Découvrir</h2><p>Culture sud-africaine, safaris, paysages et plus.</p></div></section>
-  <section id="gallery"><div class="card"><h2>Galerie</h2><p>Photos de safari et moments précieux à venir.</p></div></section>
-  <section id="emergency"><div class="card"><h2>Urgence</h2><p>📞 Police: 10111 — 📱 Ruth: +27 82 962 7848</p></div></section>
+  <section id="welcome">
+    <div class="card">
+      <h2 id="welcome-title">💍 Bienvenue</h2>
+      <img src="images/image1.jpg" alt="Ruth & Cedric">
+      <p id="welcome-text">Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.</p>
+    </div>
+  </section>
 
-  <!-- FOOTER -->
+  <section id="travel">
+    <div class="card">
+      <h2>✈️ Voyage</h2>
+      <p>Vol Paris → OR Tambo  
+        <br><a href="https://www.google.com/maps?q=OR+Tambo+International+Airport" target="_blank">Voir sur la carte</a>  
+        <br>Gautrain jusqu’à Sandton  
+        <br><a href="https://www.google.com/maps?q=Gautrain+OR+Tambo" target="_blank">Voir Gautrain</a>  
+        <br>Brunch à Villa P, Bryanston
+      </p>
+    </div>
+  </section>
+
+  <section id="accommodation">
+    <div class="card">
+      <h2>🏨 Hébergement</h2>
+      <p>
+        Sandton Sun Towers (24–26 Oct)  
+        <br>📍 Fifth & Alice St, Sandton | 📞 +27 11 780 5000  
+        <br>Bakubung Lodge (26–28 Oct) – Pilanesberg  
+        <br>Private Apartment (28–31 Oct) – 15 West Rd South  
+        <br>Sandstone House (31 Oct–2 Nov), Franschhoek  
+        <br>Cape Royale (2–3 Nov), Green Point | 📞 +27 79 326 2167
+      </p>
+    </div>
+  </section>
+
+  <section id="itinerary"><div class="card"><h2>📅 Itinéraire</h2><p>Explorez le programme jour par jour.</p></div></section>
+  <section id="lobola"><div class="card"><h2>💒 Lobola & Mariage</h2><p>Cérémonie traditionnelle & réception à Franschhoek.</p></div></section>
+  <section id="discover"><div class="card"><h2>🌍 Découvrir</h2><p>Culture sud-africaine, paysages & safari.</p></div></section>
+
+  <section id="gallery">
+    <div class="card">
+      <h2>📸 Galerie</h2>
+      <div class="gallery-grid">
+        <a href="images/safari1.jpg" target="_blank"><img src="images/safari1.jpg" alt="Safari 1"></a>
+        <a href="images/safari2.jpg" target="_blank"><img src="images/safari2.jpg" alt="Safari 2"></a>
+        <a href="images/safari3.jpg" target="_blank"><img src="images/safari3.jpg" alt="Safari 3"></a>
+        <a href="images/safari4.jpg" target="_blank"><img src="images/safari4.jpg" alt="Safari 4"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="emergency"><div class="card"><h2>🚨 Urgence</h2><p>📞 Police: 10111 — 📱 Ruth: +27 82 962 7848</p></div></section>
+
   <footer>
     <h3>Jours avant le mariage</h3>
     <div class="countdown-box"><span id="days">--</span><small>jours</small></div>
@@ -256,18 +302,14 @@
     <div class="countdown-box"><span id="seconds">--</span><small>secondes</small></div>
   </footer>
 
-  <!-- SCRIPT -->
   <script>
-    // Navigation menu toggle script
+    // Menu toggle
     const toggleBtn = document.getElementById("menu-toggle");
     const nav = document.getElementById("navMenu");
-
     toggleBtn.onclick = () => {
       nav.classList.toggle("open");
       toggleBtn.textContent = nav.classList.contains("open") ? "✖" : "☰";
     };
-
-    // Auto-close nav when clicking any link
     document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove("open");
@@ -289,6 +331,20 @@
       document.getElementById("minutes").textContent = m;
       document.getElementById("seconds").textContent = s;
     }, 1000);
+
+    // Language toggle
+    const langBtn = document.getElementById("lang-toggle");
+    let isFrench = true;
+    langBtn.onclick = () => {
+      isFrench = !isFrench;
+      langBtn.textContent = isFrench ? "🌍 FR" : "🌍 EN";
+      document.getElementById("hero-title").textContent = isFrench ? "Bienvenue en Afrique du Sud 🇿🇦" : "Welcome to South Africa 🇿🇦";
+      document.getElementById("journey-btn").textContent = isFrench ? "Commencez votre aventure" : "Begin Your Journey";
+      document.getElementById("welcome-title").textContent = isFrench ? "💍 Bienvenue" : "💍 Welcome";
+      document.getElementById("welcome-text").textContent = isFrench
+        ? "Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage."
+        : "We are delighted to welcome you to South Africa for our wedding.";
+    };
   </script>
 </body>
 </html>
