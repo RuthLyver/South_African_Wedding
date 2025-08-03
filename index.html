@@ -7,241 +7,229 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
   <style>
+    /* Root colors & global reset */
     :root {
-      --gold: 45 90% 45%;
-      --beige: 35 20% 88%;
-      --dark: 30 8% 8%;
-      --transition: all 0.3s ease;
+      --gold: hsl(45, 90%, 45%);
+      --beige: hsl(35, 20%, 88%);
+      --dark: hsl(30, 8%, 8%);
+      --white: #fff;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: hsl(var(--beige));
-      color: hsl(var(--dark));
+      background: var(--beige);
+      color: var(--dark);
       overflow-x: hidden;
     }
 
+    /* ================= HEADER & MENU TOGGLE ================= */
     header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 2000;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #ddd;
+      z-index: 9999; /* ensure always on top */
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
-      color: hsl(var(--gold));
-      font-weight: bold;
+      font-size: 1.6rem;
+      color: var(--gold);
     }
 
     .hamburger {
-      font-size: 1.75rem;
-      background: hsl(var(--gold));
+      font-size: 2rem;
+      background: var(--gold);
       color: white;
       border: none;
-      border-radius: 10px;
-      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      padding: 0.4rem 1rem;
       cursor: pointer;
-      transition: var(--transition);
     }
 
-    nav.nav-menu {
+    /* =================== FULLSCREEN NAVIGATION MENU =================== */
+    .nav-menu {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1900;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      transform: translateX(-100%);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      padding: 6rem 2rem 2rem;
-      overflow-y: auto;
-    }
-
-    nav.nav-menu.open {
-      transform: translateX(0);
-    }
-
-    nav.nav-menu a,
-    .lang-button {
-      margin: 0.75rem 0;
-      padding: 1rem;
-      font-size: 1.2rem;
-      font-weight: 600;
-      text-decoration: none;
-      color: hsl(var(--dark));
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-      transition: var(--transition);
-    }
-
-    nav.nav-menu a:hover,
-    .lang-button:hover {
-      transform: translateX(6px);
-      background: hsl(var(--gold));
-      color: white;
-    }
-
-    .hero {
-      background: url('images/safari01.jpg') center/cover no-repeat;
-      min-height: 100vh;
-      color: white;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding-top: 80px;
+      gap: 1.2rem;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 9998; /* sit above content, just below header */
+    }
+
+    .nav-menu.open {
+      transform: translateX(0);
+    }
+
+    .nav-menu a,
+    .lang-button {
+      padding: 1rem 2rem;
+      background: var(--white);
+      border-radius: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: 0.3s;
+    }
+
+    .nav-menu a:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    /* ================= HERO SECTION ================= */
+    .hero {
+      height: 100vh;
+      background: url('images/safari01.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 1rem 2rem;
       text-align: center;
-      position: relative;
+      color: white;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      font-size: 2.4rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     }
 
     .begin-journey {
       margin-top: 1.5rem;
-      background: hsl(var(--gold));
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1rem;
+      background: var(--gold);
       color: white;
-      border-radius: 25px;
+      font-size: 1rem;
+      padding: 0.9rem 1.5rem;
+      border: none;
+      border-radius: 30px;
       cursor: pointer;
-      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
 
-    .begin-journey:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 18px hsl(var(--gold)/0.4);
-    }
-
+    /* ================== FLOATING NAVIGATION BUTTONS ================== */
     .floating-nav {
       position: fixed;
-      bottom: 1rem;
+      bottom: 1.5rem;
       right: 1rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      z-index: 1800;
+      z-index: 9997;
     }
 
     .floating-nav a {
-      background: hsl(var(--gold));
-      color: white;
-      text-decoration: none;
-      padding: 0.75rem;
-      border-radius: 50%;
-      font-size: 1rem;
-      text-align: center;
-      width: 45px;
-      height: 45px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px hsl(var(--gold)/0.3);
-      transition: var(--transition);
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: white;
+      font-size: 1.1rem;
+      text-decoration: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-    .floating-nav a:hover {
-      transform: translateY(-4px);
-    }
-
+    /* ================ SECTIONS ================ */
     section {
-      padding: 3rem 1.5rem;
-      text-align: center;
+      padding: 4rem 1.5rem;
     }
 
     .card {
-      background: hsl(var(--gold));
+      background: var(--gold);
       color: white;
-      padding: 2rem;
-      border-radius: 20px;
       max-width: 800px;
       margin: auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
 
+    /* ================ FOOTER ================ */
     footer {
-      background: hsl(var(--beige));
-      padding: 3rem 1rem;
+      padding: 2rem;
+      background: var(--beige);
       text-align: center;
     }
 
     .countdown-box {
       display: inline-block;
-      background: white;
-      padding: 1rem;
-      border-radius: 12px;
       margin: 0.5rem;
-    }
-
-    .countdown-box span {
-      font-size: 1.5rem;
+      background: white;
+      color: var(--gold);
+      padding: 1rem;
+      border-radius: 10px;
       font-weight: bold;
-      color: hsl(var(--gold));
     }
 
     .countdown-box small {
       display: block;
-      color: hsl(var(--dark));
+      font-size: 0.8rem;
+      color: var(--dark);
     }
   </style>
 </head>
 
 <body>
-  <!-- Header -->
+  <!-- HEADER & TOGGLER -->
   <header>
     <div class="logo">C&R</div>
-    <button class="hamburger" id="menu-toggle" aria-label="Menu">☰</button>
-    <nav id="navMenu" class="nav-menu">
-      <a href="#home">🏠 Accueil</a>
-      <a href="#welcome">💍 Bienvenue</a>
-      <a href="#travel">✈️ Voyage</a>
-      <a href="#accommodation">🏨 Hébergement</a>
-      <a href="#itinerary">📅 Itinéraire</a>
-      <a href="#lobola">💒 Lobola & Mariage</a>
-      <a href="#discover">🌍 Découvrir</a>
-      <a href="#gallery">📸 Galerie</a>
-      <a href="#emergency">🚨 Urgence</a>
-      <button id="langToggle" class="lang-button">🌍 FR</button>
-    </nav>
+    <button class="hamburger" id="menu-toggle">☰</button>
   </header>
 
-  <!-- Hero -->
+  <!-- FULLSCREEN NAVIGATION MENU -->
+  <nav id="navMenu" class="nav-menu">
+    <a href="#home">🏠 Accueil</a>
+    <a href="#welcome">💍 Bienvenue</a>
+    <a href="#travel">✈️ Voyage</a>
+    <a href="#accommodation">🏨 Hébergement</a>
+    <a href="#itinerary">📅 Itinéraire</a>
+    <a href="#lobola">💒 Lobola & Mariage</a>
+    <a href="#discover">🌍 Découvrir</a>
+    <a href="#gallery">📸 Galerie</a>
+    <a href="#emergency">🚨 Urgence</a>
+    <button class="lang-button">🌍 FR</button>
+  </nav>
+
+  <!-- HERO SECTION -->
   <section class="hero" id="home">
     <h1>Bienvenue en Afrique du Sud 🇿🇦</h1>
-    <button class="begin-journey" onclick="document.getElementById('welcome').scrollIntoView({behavior:'smooth'});">
-      Commencez votre aventure
-    </button>
+    <button class="begin-journey" onclick="document.getElementById('welcome').scrollIntoView({behavior:'smooth'})">Commencez votre aventure</button>
   </section>
 
-  <!-- Floating Nav Buttons -->
+  <!-- FLOATING NAV BUTTONS -->
   <div class="floating-nav">
     <a href="#home" title="Accueil">🏠</a>
     <a href="#lobola" title="Lobola">💒</a>
@@ -249,50 +237,53 @@
     <a href="mailto:phaahlaruth@gmail.com" title="Email">✉️</a>
   </div>
 
-  <!-- Section Samples -->
+  <!-- PAGE SECTIONS -->
   <section id="welcome"><div class="card"><h2>Bienvenue</h2><p>Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.</p></div></section>
   <section id="travel"><div class="card"><h2>Voyage</h2><p>Vol Paris > JHB. Gautrain à Sandton. Transfert assuré.</p></div></section>
-  <section id="accommodation"><div class="card"><h2>Hébergement</h2><p>Sandton, Bakubung, puis retour à Sandton.</p></div></section>
-  <section id="itinerary"><div class="card"><h2>Itinéraire</h2><p>Suivez le programme de la semaine.</p></div></section>
-  <section id="lobola"><div class="card"><h2>Lobola & Mariage</h2><p>Cérémonie traditionnelle suivie de la célébration à Franschhoek.</p></div></section>
-  <section id="discover"><div class="card"><h2>Découvrir</h2><p>Explorez les merveilles, la nature, et l’hospitalité sud-africaine.</p></div></section>
-  <section id="gallery"><div class="card"><h2>Galerie</h2><p>Photos de safari, d’amour, et de souvenirs magiques.</p></div></section>
+  <section id="accommodation"><div class="card"><h2>Hébergement</h2><p>Sandton Sun Towers, Bakubung, Appartement privé.</p></div></section>
+  <section id="itinerary"><div class="card"><h2>Itinéraire</h2><p>Explorez le programme du séjour jour par jour.</p></div></section>
+  <section id="lobola"><div class="card"><h2>Lobola & Mariage</h2><p>Cérémonie traditionnelle et réception à Franschhoek.</p></div></section>
+  <section id="discover"><div class="card"><h2>Découvrir</h2><p>Culture sud-africaine, safaris, paysages et plus.</p></div></section>
+  <section id="gallery"><div class="card"><h2>Galerie</h2><p>Photos de safari et moments précieux à venir.</p></div></section>
   <section id="emergency"><div class="card"><h2>Urgence</h2><p>📞 Police: 10111 — 📱 Ruth: +27 82 962 7848</p></div></section>
 
-  <!-- Footer Countdown -->
+  <!-- FOOTER -->
   <footer>
-    <h2>Jours restants avant le mariage</h2>
-    <div class="countdown-box"><span id="days">00</span><small>jours</small></div>
-    <div class="countdown-box"><span id="hours">00</span><small>heures</small></div>
-    <div class="countdown-box"><span id="minutes">00</span><small>minutes</small></div>
-    <div class="countdown-box"><span id="seconds">00</span><small>secondes</small></div>
+    <h3>Jours avant le mariage</h3>
+    <div class="countdown-box"><span id="days">--</span><small>jours</small></div>
+    <div class="countdown-box"><span id="hours">--</span><small>heures</small></div>
+    <div class="countdown-box"><span id="minutes">--</span><small>minutes</small></div>
+    <div class="countdown-box"><span id="seconds">--</span><small>secondes</small></div>
   </footer>
 
-  <!-- Script -->
+  <!-- SCRIPT -->
   <script>
-    const menuBtn = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('navMenu');
+    // Navigation menu toggle script
+    const toggleBtn = document.getElementById("menu-toggle");
+    const nav = document.getElementById("navMenu");
 
-    menuBtn.onclick = () => {
-      navMenu.classList.toggle('open');
-      menuBtn.textContent = navMenu.classList.contains('open') ? '✖' : '☰';
+    toggleBtn.onclick = () => {
+      nav.classList.toggle("open");
+      toggleBtn.textContent = nav.classList.contains("open") ? "✖" : "☰";
     };
 
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.onclick = () => {
-        navMenu.classList.remove('open');
-        menuBtn.textContent = '☰';
-      };
+    // Auto-close nav when clicking any link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove("open");
+        toggleBtn.textContent = "☰";
+      });
     });
 
-    const targetDate = new Date("2025-11-01T00:00:00").getTime();
+    // Countdown
+    const target = new Date("2025-11-01T00:00:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
-      const distance = targetDate - now;
-      const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const s = Math.floor((distance % (1000 * 60)) / 1000);
+      const diff = target - now;
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const m = Math.floor((diff / (1000 * 60)) % 60);
+      const s = Math.floor((diff / 1000) % 60);
       document.getElementById("days").textContent = d;
       document.getElementById("hours").textContent = h;
       document.getElementById("minutes").textContent = m;
