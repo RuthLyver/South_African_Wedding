@@ -1,295 +1,172 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Cédric & Ruth – South African Wedding</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --gold: hsl(45, 90%, 45%);
-      --beige: hsl(35, 20%, 88%);
-      --dark: hsl(30, 8%, 8%);
-      --white: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Dialer (All-in-One)</title>
+    <style>
+        /* CSS for styling the dialer */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        .dialer-container {
+            width: 300px;
+            background-color: #2c2c2c;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
 
-    html {
-      scroll-behavior: smooth;
-    }
+        .display {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 10px;
+        }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--beige);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
+        #phoneNumber {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2.5em;
+            text-align: right;
+            padding: 5px 0;
+            box-sizing: border-box;
+            font-weight: 300;
+        }
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.96);
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 9999;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
 
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      color: var(--gold);
-    }
+        .key {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 65px; /* Fixed height for consistency */
+            width: 65px;  /* Fixed width for consistency */
+            font-size: 1.8em;
+            background-color: #505050;
+            color: #fff;
+            border-radius: 50%; /* Makes keys circular */
+            cursor: pointer;
+            transition: background-color 0.2s;
+            user-select: none; /* Prevents text selection on click */
+            font-weight: 400;
+        }
 
-    .hamburger {
-      font-size: 1.8rem;
-      background: var(--gold);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 0.4rem 0.9rem;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
+        .key:active {
+            background-color: #777; /* Visual feedback on click */
+        }
+        
+        .key.action {
+            background-color: #34c759;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .key.action:active {
+            background-color: #2da349;
+        }
 
-    .nav-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(255,255,255,0.98);
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease-in-out;
-      z-index: 9998;
-    }
+        .key.function {
+            background-color: transparent;
+            font-size: 1.5em;
+            border: none;
+        }
+        
+        .key.function:active {
+            background-color: #505050;
+        }
+        
+        /* Center the call and backspace buttons */
+        #call {
+            grid-column: 2 / 3;
+        }
+        #backspace {
+            grid-column: 3 / 4;
+        }
 
-    .nav-menu.open {
-      transform: translateX(0);
-    }
-
-    .nav-menu a, .lang-button {
-      padding: 1rem 2rem;
-      background: var(--white);
-      border-radius: 16px;
-      font-weight: 600;
-      color: var(--dark);
-      text-decoration: none;
-      font-size: 1.1rem;
-      margin: 0.5rem 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: background 0.3s ease;
-    }
-
-    .nav-menu a:hover {
-      background: var(--gold);
-      color: white;
-    }
-
-    .hero {
-      height: 100vh;
-      background: url('images/image1.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 5rem 1rem 2rem;
-      text-align: center;
-      color: white;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.6rem;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    }
-
-    .begin-journey {
-      margin-top: 1.5rem;
-      background: var(--gold);
-      color: white;
-      font-size: 1rem;
-      padding: 0.9rem 1.5rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    }
-
-    .floating-nav {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      z-index: 9997;
-    }
-
-    .floating-nav a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      background: var(--gold);
-      color: white;
-      font-size: 1.1rem;
-      text-decoration: none;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    section {
-      padding: 4.5rem 1.5rem 3rem;
-    }
-
-    .card {
-      background: var(--gold);
-      color: white;
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      text-align: center;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .gallery-grid img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    footer {
-      padding: 2rem;
-      background: var(--beige);
-      text-align: center;
-    }
-
-    .countdown-box {
-      display: inline-block;
-      margin: 0.5rem;
-      background: white;
-      color: var(--gold);
-      padding: 1rem;
-      border-radius: 10px;
-      font-weight: bold;
-    }
-
-    .countdown-box small {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--dark);
-    }
-  </style>
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">C&R</div>
-    <button class="hamburger" id="menu-toggle">☰</button>
-  </header>
-
-  <nav id="navMenu" class="nav-menu">
-    <a href="#home">🏠 Accueil</a>
-    <a href="#welcome">💍 Bienvenue</a>
-    <a href="#travel">✈️ Voyage</a>
-    <a href="#accommodation">🏨 Hébergement</a>
-    <a href="#itinerary">📅 Itinéraire</a>
-    <a href="#lobola">💒 Lobola & Mariage</a>
-    <a href="#discover">🌍 Découvrir</a>
-    <a href="#gallery">📸 Galerie</a>
-    <a href="#emergency">🚨 Urgence</a>
-    <button class="lang-button">🌍 FR</button>
-  </nav>
-
-  <section class="hero" id="home">
-    <h1>Bienvenue en Afrique du Sud 🇿🇦</h1>
-    <button class="begin-journey" onclick="document.getElementById('welcome').scrollIntoView({behavior:'smooth'})">Commencez votre aventure</button>
-  </section>
-
-  <div class="floating-nav">
-    <a href="#home" title="Accueil">🏠</a>
-    <a href="#lobola" title="Lobola">💒</a>
-    <a href="https://wa.me/27829627848" target="_blank" title="WhatsApp">📱</a>
-    <a href="mailto:phaahlaruth@gmail.com" title="Email">✉️</a>
-  </div>
-
-  <section id="welcome"><div class="card"><h2>💍 Bienvenue</h2><p>Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.</p></div></section>
-  <section id="travel"><div class="card"><h2>✈️ Voyage</h2><p>Vol Paris > JHB. Gautrain à Sandton. Transfert assuré.</p></div></section>
-  <section id="accommodation"><div class="card"><h2>🏨 Hébergement</h2><p>Sandton Sun Towers, Bakubung, Appartement privé.</p></div></section>
-  <section id="itinerary"><div class="card"><h2>📅 Itinéraire</h2><p>Explorez le programme du séjour jour par jour.</p></div></section>
-  <section id="lobola"><div class="card"><h2>💒 Lobola & Mariage</h2><p>Cérémonie traditionnelle et réception à Franschhoek.</p></div></section>
-  <section id="discover"><div class="card"><h2>🌍 Découvrir</h2><p>Culture sud-africaine, safaris, paysages et plus.</p></div></section>
-  <section id="gallery"><div class="card"><h2>📸 Galerie</h2>
-    <div class="gallery-grid">
-      <img src="images/safari1.jpg" alt="Safari 1">
-      <img src="images/safari2.jpg" alt="Safari 2">
-      <img src="images/safari3.jpg" alt="Safari 3">
-      <img src="images/safari4.jpg" alt="Safari 4">
+    <div class="dialer-container">
+        <div class="display">
+            <input type="text" id="phoneNumber" readonly>
+        </div>
+        <div class="keypad">
+            <!-- Number Keys. Each has a 'data-value' used by JavaScript -->
+            <div class="key" data-value="1">1</div>
+            <div class="key" data-value="2">2</div>
+            <div class="key" data-value="3">3</div>
+            <div class="key" data-value="4">4</div>
+            <div class="key" data-value="5">5</div>
+            <div class="key" data-value="6">6</div>
+            <div class="key" data-value="7">7</div>
+            <div class="key" data-value="8">8</div>
+            <div class="key" data-value="9">9</div>
+            <div class="key" data-value="*">*</div>
+            <div class="key" data-value="0">0</div>
+            <div class="key" data-value="#">#</div>
+            
+            <!-- Function Keys -->
+            <div></div> <!-- Empty div for spacing -->
+            <div id="call" class="key action">📞</div>
+            <div id="backspace" class="key function">⌫</div>
+        </div>
     </div>
-  </div></section>
-  <section id="emergency"><div class="card"><h2>🚨 Urgence</h2><p>📞 Police: 10111 — 📱 Ruth: +27 82 962 7848</p></div></section>
 
-  <footer>
-    <h3>Jours avant le mariage</h3>
-    <div class="countdown-box"><span id="days">--</span><small>jours</small></div>
-    <div class="countdown-box"><span id="hours">--</span><small>heures</small></div>
-    <div class="countdown-box"><span id="minutes">--</span><small>minutes</small></div>
-    <div class="countdown-box"><span id="seconds">--</span><small>secondes</small></div>
-  </footer>
+    <script>
+        // JavaScript to make the dialer interactive
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneNumberInput = document.getElementById('phoneNumber');
+            const keypad = document.querySelector('.keypad');
+            const callButton = document.getElementById('call');
+            const backspaceButton = document.getElementById('backspace');
 
-  <script>
-    const toggleBtn = document.getElementById("menu-toggle");
-    const nav = document.getElementById("navMenu");
+            // --- Main logic for populating the display ---
+            keypad.addEventListener('click', (event) => {
+                const target = event.target;
+                
+                // Check if the clicked element is a key with a 'data-value'
+                if (target.dataset.value) {
+                    // Append that key's value to the display input field
+                    phoneNumberInput.value += target.dataset.value;
+                }
+            });
 
-    toggleBtn.onclick = () => {
-      nav.classList.toggle("open");
-      toggleBtn.textContent = nav.classList.contains("open") ? "✖" : "☰";
-    };
+            // --- Logic for the backspace button ---
+            backspaceButton.addEventListener('click', () => {
+                // Remove the last character from the input's value
+                phoneNumberInput.value = phoneNumberInput.value.slice(0, -1);
+            });
 
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove("open");
-        toggleBtn.textContent = "☰";
-      });
-    });
+            // --- Logic for the call button ---
+            callButton.addEventListener('click', () => {
+                const phoneNumber = phoneNumberInput.value;
+                if (phoneNumber) {
+                    // On a mobile device, this will attempt to open the native dialer
+                    window.location.href = `tel:${phoneNumber}`;
+                } else {
+                    // Optional: alert the user if the number is empty
+                    alert("Please enter a number to call.");
+                }
+            });
+        });
+    </script>
 
-    const target = new Date("2025-11-01T00:00:00").getTime();
-    setInterval(() => {
-      const now = new Date().getTime();
-      const diff = target - now;
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const m = Math.floor((diff / (1000 * 60)) % 60);
-      const s = Math.floor((diff / 1000) % 60);
-      document.getElementById("days").textContent = d;
-      document.getElementById("hours").textContent = h;
-      document.getElementById("minutes").textContent = m;
-      document.getElementById("seconds").textContent = s;
-    }, 1000);
-  </script>
 </body>
 </html>
