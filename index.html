@@ -8,9 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    /* =========================================================
-       2025 Design System
-       ========================================================= */
+    /* ================= 2025 Design System ================= */
     :root{
       --gold-h:45; --gold-s:90%; --gold-l:45%;
       --gold: hsl(var(--gold-h),var(--gold-s),var(--gold-l));
@@ -32,9 +30,8 @@
       --ease: cubic-bezier(.21,.88,.24,1);
     }
 
-    /* Base Reset */
     * { box-sizing: border-box; margin:0; padding:0 }
-    html { scroll-behavior:smooth }
+    html { scroll-behavior:smooth; color-scheme: light } /* force light scheme */
     body {
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--dark);
@@ -45,19 +42,17 @@
       overflow-x: hidden;
     }
 
-    /* ======================= Header ======================= */
-    /* CHANGE 1: White header, gold text; remove header text label; logo has no background container */
+    /* ================= Header (WHITE + GOLD) ================= */
     header{
       position:fixed; inset:0 0 auto 0;
       display:flex; align-items:center; justify-content:space-between;
       padding: 14px 18px;
-      background: #fff;                    /* <- white header */
-      color: var(--gold-600);              /* <- gold text */
+      background:#fff;                 /* white header */
+      color: var(--gold-600);          /* gold text */
       border-bottom: 1px solid hsl(35 15% 85%);
       z-index: 9999;
     }
-    .brand{
-      /* Logo is now plain text (no capsule/background) */
+    .brand{                             /* plain gold text logo, no background chip */
       font-family:'Playfair Display', serif;
       font-weight:700;
       letter-spacing:.4px;
@@ -66,8 +61,6 @@
       line-height:1;
       user-select:none;
     }
-
-    /* Hamburger */
     .hamburger{
       border:0; cursor:pointer; outline:none;
       background: linear-gradient(145deg, #fff, #f6f6f6);
@@ -75,14 +68,12 @@
       border-radius: 12px;
       padding: .55rem .8rem;
       font-size: 1.4rem;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.7),
-        0 10px 20px rgba(0,0,0,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 10px 20px rgba(0,0,0,.08);
       transition: transform .2s var(--ease), box-shadow .2s var(--ease);
     }
     .hamburger:active{ transform: translateY(1px) scale(.99) }
 
-    /* ================== Fullscreen Floating Nav ================== */
+    /* ================= Fullscreen Navigation ================= */
     .nav-menu{
       position: fixed; inset:0;
       display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
@@ -102,30 +93,23 @@
       background: #fff;
       color: var(--dark); text-decoration:none; font-weight:600;
       border-radius: 16px;
-      box-shadow:
-        0 1.5px 0 rgba(255,255,255,.9) inset,
-        0 12px 28px rgba(0,0,0,.12),
-        0 2px 8px rgba(0,0,0,.06);
+      box-shadow: 0 1.5px 0 rgba(255,255,255,.9) inset, 0 12px 28px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
       transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s;
     }
     .nav-chip:hover{
       background: linear-gradient(180deg, #fff, #faf7ef);
       transform: translateY(-2px);
-      box-shadow:
-        0 2px 0 rgba(255,255,255,1) inset,
-        0 22px 44px rgba(0,0,0,.16),
-        0 6px 16px rgba(0,0,0,.08);
+      box-shadow: 0 2px 0 rgba(255,255,255,1) inset, 0 22px 44px rgba(0,0,0,.16), 0 6px 16px rgba(0,0,0,.08);
     }
     .lang-button{ cursor:pointer; border:0; font: inherit; }
 
-    /* ========================= Hero ========================= */
+    /* ================= Hero ================= */
     .hero{
       min-height: 100svh;
       display:grid; place-items:center;
       padding: calc(68px + 3vh) 16px 24px;
       color:#fff; text-align:center;
-      position: relative;
-      isolation: isolate;
+      position: relative; isolation: isolate;
       background:
         radial-gradient(1200px 800px at 50% -10%, rgba(0,0,0,.45), transparent 60%),
         url('images/safari01.jpg') center/cover no-repeat fixed;
@@ -135,38 +119,27 @@
       background: radial-gradient(60% 60% at 50% 40%, transparent 40%, rgba(0,0,0,.35) 100%);
       z-index:-1;
     }
-    .hero-inner{
-      max-width: var(--container);
-      display:grid; gap:18px;
-      animation: rise .9s var(--ease) .1s both;
-    }
-    @keyframes rise { from { opacity:0; transform: translateY(12px) } to { opacity:1; transform: translateY(0) } }
+    .hero-inner{ max-width: var(--container); display:grid; gap:18px; animation: rise .9s var(--ease) .1s both }
+    @keyframes rise { from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:translateY(0)} }
     h1.hero-title{
-      font-family:'Playfair Display', serif;
-      font-weight:700;
+      font-family:'Playfair Display', serif; font-weight:700;
       font-size: clamp(28px, 5.2vw, 54px);
       text-shadow: 0 14px 28px rgba(0,0,0,.35);
       letter-spacing:.2px;
-      text-align:center; /* CHANGE 3: center headings */
+      text-align:center; /* center heading */
     }
     .cta{
-      justify-self:center;
-      border:0; cursor:pointer; outline:none;
-      padding: .95rem 1.4rem;
-      border-radius: var(--radius-pill);
-      font-weight:700;
-      color:#fff;
+      justify-self:center; border:0; cursor:pointer; outline:none;
+      padding: .95rem 1.4rem; border-radius: var(--radius-pill);
+      font-weight:700; color:#fff;
       background: linear-gradient(135deg, var(--gold), var(--gold-400));
       box-shadow: var(--shadow-elev-3);
       transition: transform .2s var(--ease), box-shadow .2s var(--ease);
     }
     .cta:hover{ transform: translateY(-2px); box-shadow: 0 30px 60px rgba(0,0,0,.25) }
 
-    /* ===================== Floating Quick Buttons ===================== */
-    .floating-nav{
-      position: fixed; right: 14px; bottom: 16px; display:flex; flex-direction:column; gap:.7rem;
-      z-index: 9997;
-    }
+    /* ================= Floating Quick Buttons ================= */
+    .floating-nav{ position: fixed; right: 14px; bottom: 16px; display:flex; flex-direction:column; gap:.7rem; z-index: 9997 }
     .fab{
       width:52px; height:52px; border-radius:50%;
       display:grid; place-items:center; color:#fff; text-decoration:none;
@@ -176,15 +149,15 @@
     }
     .fab:hover{ transform: translateY(-2px); box-shadow: var(--shadow-elev-3) }
 
-    /* ===================== Sections & Cards ===================== */
+    /* ================= Sections & Cards ================= */
     section{ padding: var(--section-pad-y) 0 }
     .wrap{ width: var(--container); margin: 0 auto; padding: 0 8px }
 
-    /* CHANGE 2: Cards are GOLD; h2 white; body text black; links blue + underlined */
+    /* GOLD cards, white h2, black body text, blue links */
     .card{
-      background: linear-gradient(145deg, var(--gold-400), var(--gold-600)); /* gold surface */
+      background: linear-gradient(145deg, var(--gold-400), var(--gold-600));
       border: 1px solid rgba(255,255,255,.35);
-      color: #111; /* default text color for inside the card (body) */
+      color: #111;
       border-radius: var(--radius-lg);
       padding: clamp(22px, 3.6vw, 36px);
       box-shadow: var(--shadow-elev-2);
@@ -196,24 +169,14 @@
       font-family:'Playfair Display', serif;
       font-size: clamp(22px, 3.6vw, 30px);
       margin-bottom: 12px;
-      color: #fff;               /* white header text */
-      text-align:center;         /* CHANGE 3: center all section headings */
+      color: #fff;                 /* white header text */
+      text-align:center;           /* centered headings */
     }
-    .meta{
-      opacity:1;                 /* solid opacity for contrast on gold */
-      line-height:1.65;
-      color:#111;                /* black body text */
-      text-align:center;         /* center paragraphs for a neat layout */
-    }
-    /* Blue underlined links inside cards */
-    .card a{
-      color:#0b5fff;              /* accessible blue */
-      text-decoration: underline; /* underline */
-      font-weight:600;
-    }
-    .card a:hover{ text-decoration: underline wavy; }
+    .meta{ opacity:1; line-height:1.65; color:#111; text-align:center }
+    .card a{ color:#0b5fff; text-decoration: underline; font-weight:600 }
+    .card a:hover{ text-decoration: underline wavy }
 
-    /* Headshot (round) */
+    /* Round headshot in Welcome (uses images/image1.jpg) */
     .headshot{
       width: 180px; height: 180px; border-radius: 50%;
       object-fit: cover; object-position: center;
@@ -222,12 +185,8 @@
       border: 4px solid #fff;
     }
 
-    /* ===================== Gallery ===================== */
-    .gallery-grid{
-      display:grid; gap: 14px;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      margin-top: 8px;
-    }
+    /* ================= Gallery ================= */
+    .gallery-grid{ display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top:8px }
     .gallery-grid img{
       width:100%; height:220px; object-fit:cover; border-radius: 14px; cursor:pointer;
       box-shadow: var(--shadow-elev-1);
@@ -236,70 +195,30 @@
     .gallery-grid img:hover{ transform: translateY(-3px) scale(1.02); box-shadow: var(--shadow-elev-2) }
 
     /* Lightbox */
-    .lightbox{
-      position: fixed; inset:0; background: rgba(0,0,0,.8);
-      display:none; align-items:center; justify-content:center; gap:18px;
-      z-index: 99999;
-    }
+    .lightbox{ position: fixed; inset:0; background: rgba(0,0,0,.8); display:none; align-items:center; justify-content:center; gap:18px; z-index: 99999 }
     .lightbox.open{ display:flex }
-    .lightbox img{
-      max-width: min(92vw, 1200px); max-height: 86vh; border-radius: 12px;
-      box-shadow: 0 40px 80px rgba(0,0,0,.45);
-    }
-    .lb-btn{
-      cursor:pointer; border:0; background: rgba(255,255,255,.12); color:#fff;
-      width:48px; height:48px; border-radius: 50%; font-size:22px;
-      display:grid; place-items:center;
-      transition: background .2s var(--ease);
-    }
+    .lightbox img{ max-width: min(92vw, 1200px); max-height: 86vh; border-radius: 12px; box-shadow: 0 40px 80px rgba(0,0,0,.45) }
+    .lb-btn{ cursor:pointer; border:0; background: rgba(255,255,255,.12); color:#fff; width:48px; height:48px; border-radius: 50%; font-size:22px; display:grid; place-items:center; transition: background .2s var(--ease) }
     .lb-btn:hover{ background: rgba(255,255,255,.22) }
 
-    /* ===================== Footer ===================== */
-    footer{
-      padding: 36px 0 64px; text-align:center;
-      background: linear-gradient(180deg, #fbfaf4, #f4efe3);
-    }
-    footer h2{ text-align:center } /* keep headings centered */
-    .count{
-      display:inline-grid; grid-auto-flow:column; gap:10px; align-items:end;
-      margin-top: 10px;
-    }
-    .count-box{
-      background:#fff; color: var(--gold-600);
-      border-radius: 12px; padding: 14px 16px; min-width:84px;
-      box-shadow: var(--shadow-elev-1);
-      font-weight:700;
-    }
+    /* ================= Footer ================= */
+    footer{ padding: 36px 0 64px; text-align:center; background: linear-gradient(180deg, #fbfaf4, #f4efe3) }
+    footer h2{ text-align:center }
+    .count{ display:inline-grid; grid-auto-flow:column; gap:10px; align-items:end; margin-top: 10px }
+    .count-box{ background:#fff; color: var(--gold-600); border-radius: 12px; padding: 14px 16px; min-width:84px; box-shadow: var(--shadow-elev-1); font-weight:700 }
     .count-box small{ display:block; color: var(--dark); opacity:.7; font-weight:600 }
-
-    /* ===================== Reveal Animations ===================== */
-    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .7s var(--ease), transform .7s var(--ease) }
-    .reveal.in{ opacity:1; transform: translateY(0) }
-
-    /* Optional: Dark mode adjustments just in case */
-    @media (prefers-color-scheme: dark){
-      body{ background:#12100e }
-      header{ background:#1c1a17; color:#ffd782; border-bottom-color: rgba(255,255,255,.08) }
-      .nav-menu{ background: rgba(20,18,16,.92) }
-      .nav-chip{ background:#fff; color:#111 }
-      /* Gold cards remain gold; ensure link is still readable */
-      .card a{ color:#6aa8ff }
-      footer{ background:#161310 }
-      .count-box{ background:#1f1b17; color:#ffd782 }
-      .count-box small{ color:#d5d0c8 }
-    }
   </style>
 </head>
 
 <body>
-  <!-- ===================== Header ===================== -->
-  <!-- CHANGE 1 applied here: plain text logo; removed “Cédric & Ruth” label; no logo background container -->
+  <!-- ================= Header ================= -->
+  <!-- White header; plain gold text logo; no background chip -->
   <header>
     <div class="brand" aria-label="Cédric & Ruth">C&R</div>
     <button id="menu-toggle" class="hamburger" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">☰</button>
   </header>
 
-  <!-- ===================== Fullscreen Nav ===================== -->
+  <!-- ================= Fullscreen Nav ================= -->
   <nav id="navMenu" class="nav-menu" role="navigation" aria-label="Primary">
     <a class="nav-chip" href="#home">🏠 Accueil</a>
     <a class="nav-chip" href="#welcome">💍 Bienvenue</a>
@@ -313,7 +232,7 @@
     <button id="langToggle" class="nav-chip lang-button" type="button">🌍 FR</button>
   </nav>
 
-  <!-- ===================== Hero ===================== -->
+  <!-- ================= Hero ================= -->
   <section id="home" class="hero">
     <div class="hero-inner">
       <h1 id="heroTitle" class="hero-title">Bienvenue en Afrique du Sud 🇿🇦</h1>
@@ -321,7 +240,7 @@
     </div>
   </section>
 
-  <!-- ===================== Floating Quick Buttons ===================== -->
+  <!-- ================= Floating Quick Buttons ================= -->
   <div class="floating-nav">
     <a class="fab" href="#home" title="Accueil">🏠</a>
     <a class="fab" href="#lobola" title="Lobola">💒</a>
@@ -329,12 +248,12 @@
     <a class="fab" href="mailto:phaahlaruth@gmail.com" title="Email">✉️</a>
   </div>
 
-  <!-- ===================== Sections ===================== -->
+  <!-- ================= Sections ================= -->
   <section id="welcome">
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2 id="welcomeTitle">💍 Bienvenue</h2>
-        <!-- Round headshot using images/image1.jpg -->
+        <!-- Round headshot now using images/image1.jpg -->
         <img class="headshot" src="images/image1.jpg" alt="Portrait de Ruth & Cédric">
         <p id="welcomeText" class="meta">
           Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.
@@ -423,7 +342,7 @@
     </div>
   </section>
 
-  <!-- ===================== Footer / Countdown ===================== -->
+  <!-- ================= Footer / Countdown ================= -->
   <footer>
     <div class="wrap">
       <h2 style="font-family:'Playfair Display',serif; color:var(--gold-600); margin-bottom:10px; text-align:center;">Jours avant le mariage</h2>
@@ -436,7 +355,7 @@
     </div>
   </footer>
 
-  <!-- ===================== Lightbox ===================== -->
+  <!-- ================= Lightbox ================= -->
   <div id="lightbox" class="lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
     <button class="lb-btn" id="lbPrev" aria-label="Previous">‹</button>
     <img id="lbImg" src="" alt="">
@@ -445,11 +364,11 @@
   </div>
 
   <script>
-    // =============== Helpers ===============
+    // -------- Helpers --------
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
 
-    // =============== Menu Toggle (overlays everything) ===============
+    // -------- Menu Toggle --------
     const menuBtn = $('#menu-toggle');
     const navMenu = $('#navMenu');
     const langToggle = $('#langToggle');
@@ -459,32 +378,19 @@
       menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
       menuBtn.textContent = open ? '✖' : '☰';
     };
-
     menuBtn.addEventListener('click', () => setMenu(!navMenu.classList.contains('open')));
+    $$('.nav-chip[href^="#"]').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-    // Close when clicking any nav link
-    $$('.nav-chip[href^="#"]').forEach(a => {
-      a.addEventListener('click', () => setMenu(false));
-    });
-
-    // =============== Language Toggle (and close menu after) ===============
+    // -------- Language Toggle (also closes menu) --------
     const t = {
-      fr: {
-        hero: "Bienvenue en Afrique du Sud 🇿🇦",
-        cta: "Commencez votre aventure",
-        welcomeTitle: "💍 Bienvenue",
-        welcomeText: "Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.",
-        langBtn: "🌍 FR",
-        nav: ["🏠 Accueil","💍 Bienvenue","✈️ Voyage","🏨 Hébergement","📅 Itinéraire","💒 Lobola & Mariage","🌍 Découvrir","📸 Galerie","🚨 Urgence"]
-      },
-      en: {
-        hero: "Welcome to South Africa 🇿🇦",
-        cta: "Begin Your Journey",
-        welcomeTitle: "💍 Welcome",
-        welcomeText: "We are delighted to welcome you to South Africa for our wedding.",
-        langBtn: "🌍 EN",
-        nav: ["🏠 Home","💍 Welcome","✈️ Travel","🏨 Accommodation","📅 Itinerary","💒 Lobola & Wedding","🌍 Discover","📸 Gallery","🚨 Emergency"]
-      }
+      fr: { hero:"Bienvenue en Afrique du Sud 🇿🇦", cta:"Commencez votre aventure",
+            welcomeTitle:"💍 Bienvenue", welcomeText:"Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.",
+            langBtn:"🌍 FR",
+            nav:["🏠 Accueil","💍 Bienvenue","✈️ Voyage","🏨 Hébergement","📅 Itinéraire","💒 Lobola & Mariage","🌍 Découvrir","📸 Galerie","🚨 Urgence"] },
+      en: { hero:"Welcome to South Africa 🇿🇦", cta:"Begin Your Journey",
+            welcomeTitle:"💍 Welcome", welcomeText:"We are delighted to welcome you to South Africa for our wedding.",
+            langBtn:"🌍 EN",
+            nav:["🏠 Home","💍 Welcome","✈️ Travel","🏨 Accommodation","📅 Itinerary","💒 Lobola & Wedding","🌍 Discover","📸 Gallery","🚨 Emergency"] }
     };
     let lang = 'fr';
     const applyLang = () => {
@@ -498,19 +404,12 @@
       navLabels.forEach((el, i) => el.textContent = L.nav[i] || el.textContent);
     };
     applyLang();
+    langToggle.addEventListener('click', () => { lang = (lang==='fr') ? 'en' : 'fr'; applyLang(); setMenu(false); });
 
-    langToggle.addEventListener('click', () => {
-      lang = (lang === 'fr') ? 'en' : 'fr';
-      applyLang();
-      setMenu(false); // close menu after translating
-    });
+    // -------- CTA scroll --------
+    $('#ctaStart').addEventListener('click', () => { $('#welcome').scrollIntoView({ behavior:'smooth', block:'start' }); });
 
-    // =============== CTA Scroll ===============
-    $('#ctaStart').addEventListener('click', () => {
-      $('#welcome').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-
-    // =============== Countdown ===============
+    // -------- Countdown --------
     const target = new Date("2025-11-01T10:00:00+02:00");
     const tick = () => {
       const now = new Date();
@@ -526,17 +425,15 @@
     };
     tick(); setInterval(tick, 1000);
 
-    // =============== Scroll Reveal (IntersectionObserver) ===============
+    // -------- Reveal Animation --------
     const io = ('IntersectionObserver' in window)
       ? new IntersectionObserver(entries=>{
-          entries.forEach(e=>{
-            if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-          })
+          entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
         }, {threshold:.15})
       : null;
     if(io){ $$('.reveal').forEach(el=> io.observe(el)) } else { $$('.reveal').forEach(el=> el.classList.add('in')) }
 
-    // =============== Hover Tilt (subtle 3D on cards) ===============
+    // -------- Subtle 3D hover tilt on cards --------
     const applyTilt = (card) => {
       let rect;
       const onMove = (e) => {
@@ -551,38 +448,20 @@
     };
     $$('.card[data-tilt]').forEach(applyTilt);
 
-    // =============== Gallery Lightbox ===============
-    const lb = $('#lightbox');
-    const lbImg = $('#lbImg');
-    const lbPrev = $('#lbPrev');
-    const lbNext = $('#lbNext');
-    const lbClose = $('#lbClose');
-    const thumbs = $$('#galleryGrid img');
-    let idx = 0;
+    // -------- Gallery Lightbox --------
+    const lb = $('#lightbox'), lbImg = $('#lbImg'), lbPrev = $('#lbPrev'), lbNext = $('#lbNext'), lbClose = $('#lbClose');
+    const thumbs = $$('#galleryGrid img'); let idx = 0;
 
-    const openLB = (i) => {
-      idx = i;
-      lbImg.src = thumbs[idx].dataset.full || thumbs[idx].src;
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    };
+    const openLB = (i) => { idx = i; lbImg.src = thumbs[idx].dataset.full || thumbs[idx].src; lb.classList.add('open'); document.body.style.overflow = 'hidden'; };
     const closeLB = () => { lb.classList.remove('open'); document.body.style.overflow = '' };
-    const step = (dir) => {
-      idx = (idx + dir + thumbs.length) % thumbs.length;
-      lbImg.src = thumbs[idx].dataset.full || thumbs[idx].src;
-    };
+    const step = (dir) => { idx = (idx + dir + thumbs.length) % thumbs.length; lbImg.src = thumbs[idx].dataset.full || thumbs[idx].src; };
 
     thumbs.forEach((img, i)=> img.addEventListener('click', ()=> openLB(i)));
     lbClose.addEventListener('click', closeLB);
     lbPrev.addEventListener('click', ()=> step(-1));
     lbNext.addEventListener('click', ()=> step(1));
     lb.addEventListener('click', (e)=> { if(e.target === lb) closeLB() });
-    window.addEventListener('keydown', (e)=>{
-      if(!lb.classList.contains('open')) return;
-      if(e.key === 'Escape') closeLB();
-      if(e.key === 'ArrowLeft') step(-1);
-      if(e.key === 'ArrowRight') step(1);
-    });
+    window.addEventListener('keydown', (e)=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLB(); if(e.key==='ArrowLeft') step(-1); if(e.key==='ArrowRight') step(1); });
   </script>
 </body>
 </html>
