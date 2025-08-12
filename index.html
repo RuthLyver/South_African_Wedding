@@ -31,7 +31,7 @@
     }
 
     * { box-sizing: border-box; margin:0; padding:0 }
-    html { scroll-behavior:smooth; color-scheme: light } /* force light scheme */
+    html { scroll-behavior:smooth; color-scheme: light }
     body {
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--dark);
@@ -52,7 +52,7 @@
       border-bottom: 1px solid hsl(35 15% 85%);
       z-index: 9999;
     }
-    .brand{                             /* plain gold text logo, no background chip */
+    .brand{ /* plain gold text logo, no background chip */
       font-family:'Playfair Display', serif;
       font-weight:700;
       letter-spacing:.4px;
@@ -126,7 +126,7 @@
       font-size: clamp(28px, 5.2vw, 54px);
       text-shadow: 0 14px 28px rgba(0,0,0,.35);
       letter-spacing:.2px;
-      text-align:center; /* center heading */
+      text-align:center;
     }
     .cta{
       justify-self:center; border:0; cursor:pointer; outline:none;
@@ -137,6 +137,18 @@
       transition: transform .2s var(--ease), box-shadow .2s var(--ease);
     }
     .cta:hover{ transform: translateY(-2px); box-shadow: 0 30px 60px rgba(0,0,0,.25) }
+
+    /* Small white glass chip for hero message */
+    .hero-msg{
+      margin-top:.5rem;
+      background: rgba(255,255,255,.92);
+      color:#111;
+      border-radius: 14px;
+      padding: .8rem 1rem;
+      box-shadow: var(--shadow-elev-2);
+      max-width:min(760px, 90vw);
+      margin-inline:auto;
+    }
 
     /* ================= Floating Quick Buttons ================= */
     .floating-nav{ position: fixed; right: 14px; bottom: 16px; display:flex; flex-direction:column; gap:.7rem; z-index: 9997 }
@@ -153,7 +165,7 @@
     section{ padding: var(--section-pad-y) 0 }
     .wrap{ width: var(--container); margin: 0 auto; padding: 0 8px }
 
-    /* GOLD cards, white h2, black body text, blue links */
+    /* Outer GOLD card */
     .card{
       background: linear-gradient(145deg, var(--gold-400), var(--gold-600));
       border: 1px solid rgba(255,255,255,.35);
@@ -168,19 +180,31 @@
     .card h2{
       font-family:'Playfair Display', serif;
       font-size: clamp(22px, 3.6vw, 30px);
-      margin-bottom: 12px;
-      color: #fff;                 /* white header text */
-      text-align:center;           /* centered headings */
+      margin-bottom: 14px;
+      color: #fff;                 /* keep headings white */
+      text-align:center;
     }
-    .meta{ opacity:1; line-height:1.65; color:#111; text-align:center }
-    .card a{ color:#0b5fff; text-decoration: underline; font-weight:600 }
-    .card a:hover{ text-decoration: underline wavy }
 
-    /* Round headshot in Welcome (uses images/image1.jpg) */
+    /* NEW: Inner white 3D container for body content */
+    .inner{
+      background:#fff;
+      color:#111;
+      border-radius: 14px;
+      padding: clamp(16px, 2.8vw, 22px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.8),
+        0 16px 34px rgba(0,0,0,.14);
+    }
+    .inner p{ line-height:1.65; margin: .35rem 0 }
+    .inner ul{ margin:.3rem 0 .2rem 1.1rem }
+    .inner li{ margin:.25rem 0 }
+    .inner a{ color:#0b5fff; text-decoration: underline; font-weight:600 }
+
+    /* Round headshot */
     .headshot{
       width: 180px; height: 180px; border-radius: 50%;
       object-fit: cover; object-position: center;
-      display:block; margin: 14px auto 10px auto;
+      display:block; margin: 10px auto 12px auto;
       box-shadow: 0 14px 28px rgba(0,0,0,.25);
       border: 4px solid #fff;
     }
@@ -212,7 +236,6 @@
 
 <body>
   <!-- ================= Header ================= -->
-  <!-- White header; plain gold text logo; no background chip -->
   <header>
     <div class="brand" aria-label="Cédric & Ruth">C&R</div>
     <button id="menu-toggle" class="hamburger" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">☰</button>
@@ -236,6 +259,11 @@
   <section id="home" class="hero">
     <div class="hero-inner">
       <h1 id="heroTitle" class="hero-title">Bienvenue en Afrique du Sud 🇿🇦</h1>
+      <!-- NEW: First Page – Welcome Message (FR/EN) -->
+      <div class="hero-msg">
+        <div data-lang="fr">Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud.</div>
+        <div data-lang="en" style="display:none">Welcome to Cedric and Ruth’s Traditional Wedding in South Africa.</div>
+      </div>
       <button class="cta" id="ctaStart">Commencez votre aventure</button>
     </div>
   </section>
@@ -253,11 +281,23 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2 id="welcomeTitle">💍 Bienvenue</h2>
-        <!-- Round headshot now using images/image1.jpg -->
         <img class="headshot" src="images/image1.jpg" alt="Portrait de Ruth & Cédric">
-        <p id="welcomeText" class="meta">
-          Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.
-        </p>
+
+        <!-- NEW inner white container with FR/EN content -->
+        <div class="inner">
+          <div data-lang="fr">
+            <p>Chère famille,</p>
+            <p>Deux cultures, une seule histoire d’amour.</p>
+            <p>Merci d’avoir voyagé de si loin pour écrire avec nous ce chapitre inoubliable de notre vie.</p>
+            <p>C’est avec une immense joie que nous vous accueillons en Afrique du Sud pour célébrer notre mariage traditionnel.</p>
+          </div>
+          <div data-lang="en" style="display:none">
+            <p>Dear family,</p>
+            <p>Two cultures, one love story.</p>
+            <p>Thank you for travelling from afar to write this unforgettable chapter of our life with us.</p>
+            <p>It is with great joy that we welcome you to South Africa to celebrate our traditional wedding.</p>
+          </div>
+        </div>
       </article>
     </div>
   </section>
@@ -266,13 +306,21 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>✈️ Voyage & Arrivée</h2>
-        <p class="meta">
-          Vol Paris → OR Tambo<br>
-          <a href="https://www.google.com/maps?q=OR+Tambo+International+Airport" target="_blank">Voir OR Tambo sur la carte</a><br>
-          Gautrain jusqu’à Sandton<br>
-          <a href="https://www.google.com/maps?q=Gautrain+OR+Tambo" target="_blank">Voir Gautrain (OR Tambo)</a><br>
-          Brunch à Villa P, Bryanston
-        </p>
+
+        <!-- NEW inner white container with timeline & links -->
+        <div class="inner">
+          <ul>
+            <li>🛬 <strong>08:30</strong> — Arrival at <a href="https://maps.google.com/?q=OR+Tambo+International+Airport" target="_blank">OR Tambo International Airport</a></li>
+            <li>🤝 Pick-up by Ruth &amp; Cedric</li>
+            <li>🚆 Gautrain to Sandton — arrive at <a href="https://maps.google.com/?q=Sandton+Gautrain+Station" target="_blank">Sandton Gautrain Station</a></li>
+            <li>🍽️ Travel to Bryanston for brunch (<a href="https://maps.google.com/?q=Bryanston+Johannesburg" target="_blank">map</a>)</li>
+            <li>🏨 14:00 — Check-in at <a href="https://maps.google.com/?q=Sandton+Sun+%26+Towers" target="_blank">Sandton Sun &amp; Towers</a></li>
+          </ul>
+
+          <p style="margin-top:.5rem">
+            Useful: 🗺️ <a href="https://www.gautrain.co.za/" target="_blank">Gautrain site</a> • ✈️ <a href="https://www.airports.co.za/airports/or-tambo-international-airport" target="_blank">OR Tambo info</a>
+          </p>
+        </div>
       </article>
     </div>
   </section>
@@ -281,13 +329,34 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>🏨 Hébergement</h2>
-        <p class="meta">
-          Sandton Sun & Towers (24–26 Oct) – 📍 Corner Fifth & Alice St, Sandton • 📞 +27 11 780 5000<br>
-          Bakubung Bush Lodge (26–28 Oct) – Pilanesberg<br>
-          Private Apartment (28–31 Oct) – 📍 15 West Road South, Sandton<br>
-          Sandstone House (31 Oct–2 Nov) – 📍 Franschhoek<br>
-          Cape Royale (2–3 Nov) – 📍 Green Point, Cape Town • 📞 +27 79 326 2167
-        </p>
+
+        <!-- NEW inner white container with detailed list & links -->
+        <div class="inner">
+          <ol>
+            <li>
+              🏨 <strong>Sandton Sun &amp; Towers</strong> (24–26 Oct)<br/>
+              📍 <a href="https://maps.google.com/?q=Corner+Fifth+and+Alice+Streets,+Sandton,+2146,+Johannesburg" target="_blank">Corner Fifth &amp; Alice Streets, Sandton, Johannesburg</a><br/>
+              📞 <a href="tel:+27117805000">+27 11 780 5000</a>
+            </li>
+            <li style="margin-top:.6rem">
+              🏨 <strong>Bakubung Bush Lodge</strong> (26–28 Oct)<br/>
+              📍 <a href="https://maps.google.com/?q=Bakubung+Gate,+Pilanesberg+National+Park,+0300,+Ledig" target="_blank">Bakubung Gate, Pilanesberg National Park, Ledig</a>
+            </li>
+            <li style="margin-top:.6rem">
+              🏠 <strong>Private Apartment</strong> (28–31 Oct)<br/>
+              📍 <a href="https://maps.google.com/?q=15+West+Road+South,+Sandton,+2057,+Johannesburg" target="_blank">15 West Road South, Sandton, Johannesburg</a>
+            </li>
+            <li style="margin-top:.6rem">
+              🏡 <strong>Sandstone House</strong> (31 Oct–2 Nov)<br/>
+              📍 <a href="https://maps.google.com/?q=Green+Valley+Road,+Franschhoek,+7690" target="_blank">Green Valley Road, Franschhoek</a>
+            </li>
+            <li style="margin-top:.6rem">
+              🏨 <strong>Cape Royale Luxury Apartments</strong> (2–3 Nov)<br/>
+              📍 <a href="https://maps.google.com/?q=47+Main+Road,+Green+Point,+8051,+Cape+Town" target="_blank">47 Main Road, Green Point, Cape Town</a><br/>
+              📞 <a href="tel:+27793262167">+27 79 326 2167</a>
+            </li>
+          </ol>
+        </div>
       </article>
     </div>
   </section>
@@ -296,7 +365,12 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>📅 Itinéraire</h2>
-        <p class="meta">Explorez le programme du séjour jour par jour.</p>
+
+        <!-- NEW inner white container placeholder (you can extend day-by-day later) -->
+        <div class="inner">
+          <p data-lang="fr">Explorez le programme du séjour jour par jour (détails à venir).</p>
+          <p data-lang="en" style="display:none">Explore the day-by-day schedule (details coming soon).</p>
+        </div>
       </article>
     </div>
   </section>
@@ -305,7 +379,13 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>💒 Lobola & Mariage</h2>
-        <p class="meta">Cérémonie traditionnelle suivie de notre célébration.</p>
+
+        <!-- NEW inner white container -->
+        <div class="inner">
+          <p data-lang="fr">Cérémonie traditionnelle suivie de notre célébration.</p>
+          <p data-lang="en" style="display:none">Traditional ceremony followed by our celebration.</p>
+          <p>💬 Learn more about Lobola: <a href="https://en.wikipedia.org/wiki/Lobolo" target="_blank">Wikipedia</a></p>
+        </div>
       </article>
     </div>
   </section>
@@ -314,7 +394,13 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>🌍 Découvrir</h2>
-        <p class="meta">Culture sud-africaine, safaris, paysages et plus encore.</p>
+
+        <!-- NEW inner white container -->
+        <div class="inner">
+          <p data-lang="fr">Culture sud-africaine, safaris, paysages et plus encore.</p>
+          <p data-lang="en" style="display:none">South African culture, safaris, landscapes and more.</p>
+          <p>🦁 Parks: <a href="https://www.sanparks.org/" target="_blank">SANParks</a> • 🍷 <a href="https://www.franschhoek.org.za/" target="_blank">Franschhoek</a></p>
+        </div>
       </article>
     </div>
   </section>
@@ -323,11 +409,15 @@
     <div class="wrap">
       <article class="card reveal">
         <h2>📸 Galerie</h2>
-        <div class="gallery-grid" id="galleryGrid">
-          <img src="images/safari1.jpg" alt="Safari 1" data-full="images/safari1.jpg">
-          <img src="images/safari2.jpg" alt="Safari 2" data-full="images/safari2.jpg">
-          <img src="images/safari3.jpg" alt="Safari 3" data-full="images/safari3.jpg">
-          <img src="images/safari4.jpg" alt="Safari 4" data-full="images/safari4.jpg">
+
+        <!-- NEW inner white container around the grid for consistent styling -->
+        <div class="inner">
+          <div class="gallery-grid" id="galleryGrid">
+            <img src="images/safari1.jpg" alt="Safari 1" data-full="images/safari1.jpg">
+            <img src="images/safari2.jpg" alt="Safari 2" data-full="images/safari2.jpg">
+            <img src="images/safari3.jpg" alt="Safari 3" data-full="images/safari3.jpg">
+            <img src="images/safari4.jpg" alt="Safari 4" data-full="images/safari4.jpg">
+          </div>
         </div>
       </article>
     </div>
@@ -337,7 +427,12 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>🚨 Urgence</h2>
-        <p class="meta">📞 Police/Ambulance: 10111 • 📱 Ruth: +27 82 962 7848</p>
+
+        <!-- NEW inner white container -->
+        <div class="inner">
+          <p>📞 <a href="tel:10111">Police/Ambulance: 10111</a></p>
+          <p>📱 <a href="tel:+27829627848">Ruth: +27 82 962 7848</a></p>
+        </div>
       </article>
     </div>
   </section>
@@ -393,18 +488,31 @@
             nav:["🏠 Home","💍 Welcome","✈️ Travel","🏨 Accommodation","📅 Itinerary","💒 Lobola & Wedding","🌍 Discover","📸 Gallery","🚨 Emergency"] }
     };
     let lang = 'fr';
+
     const applyLang = () => {
       const L = t[lang];
+      // Header/hero labels
       $('#heroTitle').textContent = L.hero;
       $('#ctaStart').textContent = L.cta;
       $('#welcomeTitle').textContent = L.welcomeTitle;
-      $('#welcomeText').textContent = L.welcomeText;
       $('#langToggle').textContent = L.langBtn;
+
+      // Nav labels
       const navLabels = $$('.nav-chip[href^="#"]');
       navLabels.forEach((el, i) => el.textContent = L.nav[i] || el.textContent);
+
+      // Show/hide any element with data-lang attr
+      $$('[data-lang]').forEach(el=>{
+        el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
+      });
     };
     applyLang();
-    langToggle.addEventListener('click', () => { lang = (lang==='fr') ? 'en' : 'fr'; applyLang(); setMenu(false); });
+
+    langToggle.addEventListener('click', () => {
+      lang = (lang==='fr') ? 'en' : 'fr';
+      applyLang();
+      setMenu(false); // close after switching
+    });
 
     // -------- CTA scroll --------
     $('#ctaStart').addEventListener('click', () => { $('#welcome').scrollIntoView({ behavior:'smooth', block:'start' }); });
