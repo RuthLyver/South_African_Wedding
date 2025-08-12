@@ -20,7 +20,7 @@
       --dark: hsl(30, 8%, 8%);
       --white:#fff;
 
-      --royal: #1E3A8A;               /* royal blue for links */
+      --royal: #1E3A8A;
       --royal-strong: #0A2A6A;
 
       --shadow-elev-1: 0 5px 18px rgba(0,0,0,.08);
@@ -37,7 +37,7 @@
     }
 
     * { box-sizing: border-box; margin:0; padding:0 }
-    html { scroll-behavior:smooth; color-scheme: light } /* stay light on mobile */
+    html { scroll-behavior:smooth; color-scheme: light }
     body {
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--dark);
@@ -53,12 +53,12 @@
       position:fixed; inset:0 0 auto 0;
       display:flex; align-items:center; justify-content:space-between;
       padding: 14px 18px;
-      background:#fff;                 /* white header */
-      color: var(--gold-600);          /* gold text */
+      background:#fff;
+      color: var(--gold-600);
       border-bottom: 1px solid hsl(35 15% 85%);
       z-index: 9999;
     }
-    .brand{ /* plain gold text logo, no background chip */
+    .brand{
       font-family:'Playfair Display', serif;
       font-weight:700;
       letter-spacing:.4px;
@@ -91,7 +91,6 @@
       z-index: 9998;
     }
     .nav-menu.open{ transform: translateX(0) }
-
     .nav-chip{
       display:inline-flex; align-items:center; justify-content:center; gap:.7rem;
       padding: .95rem 1.25rem;
@@ -125,38 +124,35 @@
       background: radial-gradient(60% 60% at 50% 40%, transparent 40%, rgba(0,0,0,.35) 100%);
       z-index:-1;
     }
-    .hero-inner{ max-width: var(--container); display:grid; gap:18px; animation: rise .9s var(--ease) .1s both }
+    /* Tight, elegant layout for title + CTA after removing the message chip */
+    .hero-inner{
+      max-width: var(--container);
+      display:grid;
+      justify-items:center;
+      gap: clamp(16px, 3.5vh, 28px);       /* tidy spacing between title and CTA */
+      padding-block: clamp(8px, 3vh, 24px); /* breathing room inside the hero */
+      animation: rise .9s var(--ease) .1s both;
+    }
     @keyframes rise { from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:translateY(0)} }
     h1.hero-title{
       font-family:'Playfair Display', serif; font-weight:700;
-      font-size: clamp(28px, 5.2vw, 54px);
-      text-shadow: 0 14px 28px rgba(0,0,0,.35);
+      font-size: clamp(32px, 5.6vw, 58px);  /* slightly larger for impact */
+      text-shadow: 0 18px 34px rgba(0,0,0,.42);
       letter-spacing:.2px;
-      text-align:center;
+      line-height:1.1;
+      margin: 0;                            /* rely on grid gap for spacing */
     }
     .cta{
       justify-self:center; border:0; cursor:pointer; outline:none;
-      padding: .95rem 1.4rem; border-radius: var(--radius-pill);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-pill);
       font-weight:700; color:#fff;
+      letter-spacing:.2px;
       background: linear-gradient(135deg, var(--gold), var(--gold-400));
       box-shadow: var(--shadow-elev-3);
       transition: transform .2s var(--ease), box-shadow .2s var(--ease);
     }
     .cta:hover{ transform: translateY(-2px); box-shadow: 0 30px 60px rgba(0,0,0,.25) }
-
-    /* Small white glass chip for hero message */
-    .hero-msg{
-      margin-top:.5rem;
-      background: rgba(255,255,255,.92);
-      color:#111;
-      border-radius: var(--radius-md);
-      padding: .85rem 1rem;
-      box-shadow: var(--shadow-elev-2);
-      max-width:min(760px, 90vw);
-      margin-inline:auto;
-      font-size: 1.02rem;             /* readability bump */
-      line-height: 1.55;
-    }
 
     /* ================= Floating Quick Buttons ================= */
     .floating-nav{ position: fixed; right: 14px; bottom: 16px; display:flex; flex-direction:column; gap:.7rem; z-index: 9997 }
@@ -173,7 +169,6 @@
     section{ padding: var(--section-pad-y) 0 }
     .wrap{ width: var(--container); margin: 0 auto; padding: 0 8px }
 
-    /* Outer GOLD card (richer metal gradient) */
     .card{
       background: linear-gradient(135deg, var(--gold-400), var(--gold-700));
       border: 1px solid rgba(255,255,255,.35);
@@ -189,12 +184,11 @@
       font-family:'Playfair Display', serif;
       font-size: clamp(22px, 3.6vw, 30px);
       margin-bottom: 14px;
-      color: #fff;                 /* headings unchanged */
+      color: #fff;
       text-align:center;
       letter-spacing:.2px;
     }
 
-    /* Inner white 3D container (glass/3D look) */
     .inner{
       background: rgba(255,255,255,.96);
       color:#111;
@@ -203,35 +197,30 @@
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,.9),
         0 18px 36px rgba(0,0,0,.14);
-      font-size: 1.06rem;         /* readability bump */
+      font-size: 1.06rem;
       line-height: 1.65;
     }
-
-    /* Clean list rhythm + separators for scanability */
     .inner ul, .inner ol { margin:.4rem 0 0 .95rem }
     .inner li { margin:.45rem 0; padding:.25rem 0 }
     .inner li + li { border-top: 1px solid rgba(0,0,0,.06); padding-top:.55rem; }
 
-    /* Luxury link style: royal blue + gold animated underline */
     .inner a{
       color: var(--royal);
       text-decoration: none;
       font-weight: 700;
-      background-image:
-        linear-gradient(to right, var(--gold) 0%, var(--gold-400) 100%);
+      background-image: linear-gradient(to right, var(--gold) 0%, var(--gold-400) 100%);
       background-size: 0% 2px;
       background-position: 0 100%;
       background-repeat: no-repeat;
       transition: color .2s var(--ease), background-size .25s var(--ease);
-      border-bottom: 1px solid rgba(30,58,138,.2); /* faint rule when not hovered */
+      border-bottom: 1px solid rgba(30,58,138,.2);
     }
     .inner a:hover{
       color: var(--royal-strong);
-      background-size: 100% 2px;  /* slide-in underline */
+      background-size: 100% 2px;
       border-bottom-color: transparent;
     }
 
-    /* Round headshot (Welcome) */
     .headshot{
       width: 180px; height: 180px; border-radius: 50%;
       object-fit: cover; object-position: center;
@@ -290,11 +279,6 @@
   <section id="home" class="hero">
     <div class="hero-inner">
       <h1 id="heroTitle" class="hero-title">Bienvenue en Afrique du Sud 🇿🇦</h1>
-      <!-- First Page – Welcome Message (FR/EN) -->
-      <div class="hero-msg">
-        <div data-lang="fr">Bienvenue au mariage traditionnel de Cédric et Ruth en Afrique du Sud.</div>
-        <div data-lang="en" style="display:none">Welcome to Cedric and Ruth’s Traditional Wedding in South Africa.</div>
-      </div>
       <button class="cta" id="ctaStart">Commencez votre aventure</button>
     </div>
   </section>
@@ -307,14 +291,12 @@
     <a class="fab" href="mailto:phaahlaruth@gmail.com" title="Email">✉️</a>
   </div>
 
-  <!-- ================= Sections ================= -->
+  <!-- ================= Sections (unchanged) ================= -->
   <section id="welcome">
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2 id="welcomeTitle">💍 Bienvenue</h2>
         <img class="headshot" src="images/image1.jpg" alt="Portrait de Ruth & Cédric">
-
-        <!-- Inner white container with FR/EN content -->
         <div class="inner">
           <div data-lang="fr">
             <p>Chère famille,</p>
@@ -337,8 +319,6 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>✈️ Voyage & Arrivée</h2>
-
-        <!-- Inner white container with timeline & links -->
         <div class="inner">
           <ul>
             <li>🛬 <strong>08:30</strong> — Arrival at <a href="https://maps.google.com/?q=OR+Tambo+International+Airport" target="_blank">OR Tambo International Airport</a></li>
@@ -347,7 +327,6 @@
             <li>🍽️ Travel to Bryanston for brunch (<a href="https://maps.google.com/?q=Bryanston+Johannesburg" target="_blank">map</a>)</li>
             <li>🏨 14:00 — Check-in at <a href="https://maps.google.com/?q=Sandton+Sun+%26+Towers" target="_blank">Sandton Sun &amp; Towers</a></li>
           </ul>
-
           <p style="margin-top:.6rem">
             Useful: 🗺️ <a href="https://www.gautrain.co.za/" target="_blank">Gautrain site</a> • ✈️ <a href="https://www.airports.co.za/airports/or-tambo-international-airport" target="_blank">OR Tambo info</a>
           </p>
@@ -360,8 +339,6 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>🏨 Hébergement</h2>
-
-        <!-- Inner white container with detailed list & links -->
         <div class="inner">
           <ol>
             <li>
@@ -396,8 +373,6 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>📅 Itinéraire</h2>
-
-        <!-- Inner white container placeholder -->
         <div class="inner">
           <p data-lang="fr">Explorez le programme du séjour jour par jour (détails à venir).</p>
           <p data-lang="en" style="display:none">Explore the day-by-day schedule (details coming soon).</p>
@@ -410,7 +385,6 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>💒 Lobola & Mariage</h2>
-
         <div class="inner">
           <p data-lang="fr">Cérémonie traditionnelle suivie de notre célébration.</p>
           <p data-lang="en" style="display:none">Traditional ceremony followed by our celebration.</p>
@@ -424,7 +398,6 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>🌍 Découvrir</h2>
-
         <div class="inner">
           <p data-lang="fr">Culture sud-africaine, safaris, paysages et plus encore.</p>
           <p data-lang="en" style="display:none">South African culture, safaris, landscapes and more.</p>
@@ -438,7 +411,6 @@
     <div class="wrap">
       <article class="card reveal">
         <h2>📸 Galerie</h2>
-
         <div class="inner">
           <div class="gallery-grid" id="galleryGrid">
             <img src="images/safari1.jpg" alt="Safari 1" data-full="images/safari1.jpg">
@@ -455,7 +427,6 @@
     <div class="wrap">
       <article class="card reveal" data-tilt>
         <h2>🚨 Urgence</h2>
-
         <div class="inner">
           <p>📞 <a href="tel:10111">Police/Ambulance: 10111</a></p>
           <p>📱 <a href="tel:+27829627848">Ruth: +27 82 962 7848</a></p>
@@ -486,11 +457,9 @@
   </div>
 
   <script>
-    // -------- Helpers --------
     const $ = (sel, root=document) => root.querySelector(sel);
     const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
 
-    // -------- Menu Toggle --------
     const menuBtn = $('#menu-toggle');
     const navMenu = $('#navMenu');
     const langToggle = $('#langToggle');
@@ -503,7 +472,6 @@
     menuBtn.addEventListener('click', () => setMenu(!navMenu.classList.contains('open')));
     $$('.nav-chip[href^="#"]').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-    // -------- Language Toggle (also closes menu) --------
     const t = {
       fr: { hero:"Bienvenue en Afrique du Sud 🇿🇦", cta:"Commencez votre aventure",
             welcomeTitle:"💍 Bienvenue", welcomeText:"Nous sommes ravis de vous accueillir en Afrique du Sud pour notre mariage.",
@@ -518,17 +486,14 @@
 
     const applyLang = () => {
       const L = t[lang];
-      // Header/hero labels
       $('#heroTitle').textContent = L.hero;
       $('#ctaStart').textContent = L.cta;
       $('#welcomeTitle').textContent = L.welcomeTitle;
       $('#langToggle').textContent = L.langBtn;
 
-      // Nav labels
       const navLabels = $$('.nav-chip[href^="#"]');
       navLabels.forEach((el, i) => el.textContent = L.nav[i] || el.textContent);
 
-      // Show/hide any element with data-lang attr
       $$('[data-lang]').forEach(el=>{
         el.style.display = (el.getAttribute('data-lang') === lang) ? '' : 'none';
       });
@@ -538,13 +503,11 @@
     langToggle.addEventListener('click', () => {
       lang = (lang==='fr') ? 'en' : 'fr';
       applyLang();
-      setMenu(false); // close after switching
+      setMenu(false);
     });
 
-    // -------- CTA scroll --------
     $('#ctaStart').addEventListener('click', () => { $('#welcome').scrollIntoView({ behavior:'smooth', block:'start' }); });
 
-    // -------- Countdown --------
     const target = new Date("2025-11-01T10:00:00+02:00");
     const tick = () => {
       const now = new Date();
@@ -560,7 +523,6 @@
     };
     tick(); setInterval(tick, 1000);
 
-    // -------- Reveal Animation --------
     const io = ('IntersectionObserver' in window)
       ? new IntersectionObserver(entries=>{
           entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -568,7 +530,6 @@
       : null;
     if(io){ $$('.reveal').forEach(el=> io.observe(el)) } else { $$('.reveal').forEach(el=> el.classList.add('in')) }
 
-    // -------- Subtle 3D hover tilt on cards --------
     const applyTilt = (card) => {
       let rect;
       const onMove = (e) => {
@@ -583,7 +544,6 @@
     };
     $$('.card[data-tilt]').forEach(applyTilt);
 
-    // -------- Gallery Lightbox --------
     const lb = $('#lightbox'), lbImg = $('#lbImg'), lbPrev = $('#lbPrev'), lbNext = $('#lbNext'), lbClose = $('#lbClose');
     const thumbs = $$('#galleryGrid img'); let idx = 0;
 
